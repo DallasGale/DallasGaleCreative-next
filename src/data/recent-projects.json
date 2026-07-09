@@ -1,0 +1,253 @@
+[
+  {
+    "id": 1,
+    "employer": {
+      "name": "Dijgtal",
+      "url": "https://dijgtal.com/"
+    },
+    "meta": {
+      "date": "Oct '25 to Jan '26",
+      "jobType": "Contract"
+    },
+    "logo": {
+      "path": "images/projects/2026/dijgtal/logo.jpeg",
+      "alt": ""
+    },
+    "thumbnail": {
+      "path": "images/projects/2026/dijgtal/thumbnail.jpg",
+      "alt": ""
+    },
+    "summary": "Dual website replatforming.",
+    "paragraphs": [
+      {
+        "text": "Linde MH and Baoli Forklifts (same ownership) needed their websites replatformed from Sitecore to <a target=\"_blank\" class=\"link\" href=\"https://nextjs.org/\">Next.js</a>/<a target=\"_blank\" class=\"link\" href=\"https://react.dev/\">React</a>. We had a hard deadline of early February '26, so during the planning stage, we decided on a monorepo approach, which allowed us to build two websites from a single design system. All shared components and modules were built with <a target=\"_blank\" class=\"link\" href=\"https://storybook.js.org/\">Storybook</a>, with the only difference between sites being the brand styling. We used Vanilla Extract CSS to enable variant-based styles, allowing us to handle both brand variations from a single stylesheet."
+      },
+      {
+        "text": "For the CMS, we used <a target=\"_blank\" class=\"link\" href=\"https://www.sanity.io\">Sanity.io</a>, leveraging the customisability of its structure/schema system to build a complete bespoke CMS solution"
+      },
+      {
+        "text": "Each component/module contained its own Sanity schema and query fragment, which fed into our page builder, allowing the client to create unique pages."
+      }
+    ],
+    "links": [
+      {
+        "label": "Linde Material Handling",
+        "url": "https://lindemh.com.au/",
+        "archived": false
+      },
+      {
+        "label": "Baoli Forklifts",
+        "url": "https://baoliforklifts.com.au/",
+        "archived": false
+      }
+    ],
+    "press": []
+  },
+  {
+    "id": 2,
+    "employer": {
+      "name": "Pidgeon & Ward",
+      "url": "https://pidgeonward.com.au/"
+    },
+    "meta": {
+      "date": "July '25 - Current ",
+      "jobType": "Freelance"
+    },
+    "logo": {
+      "path": "images/projects/2026/musimap/logo.png",
+      "alt": ""
+    },
+    "thumbnail": {
+      "path": "images/projects/2026/musimap/thumbnail.jpg",
+      "alt": ""
+    },
+    "summary": "AI Music Analysis Site.",
+    "paragraphs": [
+      {
+        "text": "<a target=\"_blank\" class=\"link\"  href=\"https://app.dev.musimap.ai\">MusiMap</a> is a platform that analyses audio/songs with the MusiTag AI backend. It is used to generate music tagging such as genres, moods, situations, and similar artists,which is mainly used by publishing houses. Audio can be uploaded as MP3s or via a shared URL from Spotify."
+      },
+      {
+        "text": "I was hired to build out <a target=\"_blank\" class=\"link\" href=\"https://app.dev.musimap.ai\">MusiMap.ai</a> using <a target=\"_blank\" class=\"link\" href=\"https://nextjs.org/\">Next.js</a>/<a target=\"_blank\" class=\"link\" href=\"https://react.dev/\">React</a> with <a target=\"_blank\" class=\"link\" href=\"https://storybook.js.org/\">Storybook</a> and integrate the backend APIs."
+      },
+      {
+        "text": "As this product is going to be heavily marketed in Europe, we also needed to include language translations based on a visitor's location. The marketing pages include many animations and inline videos to evoke the human side of music."
+      },
+      {
+        "text": "This is an ongoing project that will launch officially in 2026."
+      }
+    ],
+    "links": [
+      {
+        "label": "MusiMap.com",
+        "url": "https://app.musimap.com/",
+        "archived": false
+      }
+    ],
+    "press": []
+  },
+  {
+    "id": 3,
+    "employer": {
+      "name": "Thinkerbell",
+      "url": "https://thinkerbell.com.au/"
+    },
+    "meta": {
+      "date": "Oct '24 - Dec '24",
+      "jobType": "Freelance"
+    },
+    "logo": {
+      "path": "images/projects/2025/thinkerbell/logo.jpeg",
+      "alt": ""
+    },
+    "thumbnail": {
+      "path": "images/projects/2025/thinkerbell/kayo.jpg",
+      "alt": ""
+    },
+    "summary": "Full-stack competition landing page.",
+    "paragraphs": [
+      {
+        "text": "The <a target=\"_blank\" class=\"link\" href=\"https://kayosports.com.au/\">Kayo Sports</a> Call Up! was a short two-page competition site to find the next <a target=\"_blank\" class=\"link\" href=\"https://www.foxsports.com.au/afl\">Fox Footy</a> on-air star who will feature on the new-look Super Saturday LIVE coverage in 2025. The competition required a user to submit their entry with a link to either a YouTube, Instagram, Facebook, or TikTok video of them displaying their commentary skills."
+      },
+      {
+        "text": "I built the front-end using <a target=\"_blank\" class=\"link\" href=\"https://astro.build/\">AstroJS</a>/<a target=\"_blank\" class=\"link\" href=\"https://react.dev/\">React</a> with <a target=\"_blank\" class=\"link\" href=\"https://firebase.google.com/\">Google Firebase/Firestore</a> db on the back-end to support the competition entry submissions. The landing page included some hero animations using CSS transitions/animations."
+      },
+      {
+        "text": "<a target=\"_blank\" class=\"link\" href=\"https://kayosports.com.au/\">Kayo Sports</a> Call Up! launched via a competition reveal video which aired during the AFL Draft coverage, featuring recently retired Richmond champion Dustin Martin and Fox Footy expert Jack Riewoldt."
+      },
+      {
+        "text": "During the short four-week promotion, <a target=\"_blank\" class=\"link\" href=\"https://kayosports.com.au/\">Kayo</a> received over 500 entries."
+      }
+    ],
+    "links": [
+      {
+        "label": "thekayocallup.kayosports.com.au",
+        "url": "https://kayo-dallasgale1s-projects.vercel.app/",
+        "archived": true
+      }
+    ],
+    "press": [
+      {
+        "label": "The Kayo Call Up is officially underway to find Fox Footy's Next Super Saturday Star",
+        "url": "https://foxtelgroup.com.au/newsroom/the-kayo-call-up-is-officially-underway-to-find-fox-footys-next-super-saturday-star"
+      },
+      {
+        "label": "‘Call me smiling assassin’: Hilarious moment Fox Footy legends stitch up contestants in epic prank",
+        "url": "https://www.foxsports.com.au/afl/cue-the-chaos-kayo-call-up-contenders-put-in-hot-seat-with-hilarious-prank/news-story/e5348b088d0213702a35bd760d312f90"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "employer": {
+      "name": "Thinkerbell",
+      "url": "https://thinkerbell.com.au/"
+    },
+    "meta": {
+      "date": "Nov '24 - Dec '25",
+      "jobType": "Freelance"
+    },
+    "logo": {
+      "path": "images/projects/2025/thinkerbell/logo.jpeg",
+      "alt": ""
+    },
+    "thumbnail": {
+      "path": "images/projects/2025/thinkerbell/oua.jpg",
+      "alt": ""
+    },
+    "summary": "Online study campaign landing page.",
+    "paragraphs": [
+      {
+        "text": "<a target=\"_blank\" class=\"link\"  href=\"https://www.open.edu.au/\">Open Universities Australia</a> required a new campaign landing page to promote their online study course programs. The landing page included an interactive course matching quiz that forwards the user to an existing OUA page with customised course pathways."
+      },
+      {
+        "text": "The site needed to be built as static as possible (no React DOM etc.) since it was being hosted on an existing OUA system. I chose <a target=\"_blank\" class=\"link\" href=\"https://astro.build/\">AstroJS</a> because it is a static site builder that also allows you to sprinkle in <a target=\"_blank\" class=\"link\" href=\"https://react.dev/\">React</a> components or any other framework to add extra interactivity. The parallax slider is <a target=\"_blank\" class=\"link\" href=\"http://swiperjs.com/\">SwiperJS</a> and the quiz state is a <a target=\"_blank\" class=\"link\" href=\"https://react.dev/\">React</a> component."
+      }
+    ],
+    "links": [
+      {
+        "label": "open.edu.au/campaign/online-study/",
+        "url": "https://www.open.edu.au/campaign/online-study/",
+        "archived": false
+      }
+    ],
+    "press": []
+  },
+  {
+    "id": 5,
+    "employer": {
+      "name": "Thinkerbell",
+      "url": "https://thinkerbell.com.au/"
+    },
+    "meta": {
+      "date": "Dec '24 - Jan '25",
+      "jobType": "Freelance"
+    },
+    "logo": {
+      "path": "images/projects/2025/thinkerbell/logo.jpeg",
+      "alt": ""
+    },
+    "thumbnail": {
+      "path": "images/projects/2025/thinkerbell/pennington.jpg",
+      "alt": ""
+    },
+    "summary": "Full-stack quiz micro-site.",
+    "paragraphs": [
+      {
+        "text": "<a target=\"_blank\" class=\"link\" href=\"https://www.penington.org.au/\">Penington Institute</a> is an independent policy research non-profit committed to reducing serious drug harms. As a contracted developer, I built a quiz platform for their Regulate It campaign, an interactive experience designed to show Australians how their views on cannabis regulation compare with the broader population."
+      },
+      {
+        "text": "The platform was built with <a target=\"_blank\" class=\"link\" href=\"https://astro.build/\">AstroJS</a>/<a target=\"_blank\" class=\"link\" href=\"https://react.dev/\">React</a> on the front-end, with  <a target=\"_blank\" class=\"link\" href=\"https://firebase.google.com/\">Google Firebase/Firestore</a> db on the back-end to capture user postcodes on quiz completion and deliver personalised results. Users were encouraged to share their results on social media via a generated share URL, with Cloud Functions handling the dynamic creation of result images."
+      }
+    ],
+    "links": [
+      {
+        "label": "quiz.regulateit.com.au",
+        "url": "https://quiz.regulateit.com.au/",
+        "archived": false
+      }
+    ],
+    "press": []
+  },
+  {
+    "id": 6,
+    "employer": {
+      "name": "Caravan Cleaning Melbourne",
+      "url": "https://www.caravancleaningmelbourne.com.au"
+    },
+    "meta": {
+      "date": "Aug '24 - Oct '24",
+      "jobType": "Freelance"
+    },
+    "logo": {
+      "path": "images/projects/2024/caravan-cleaning-melourne/logo.svg",
+      "alt": ""
+    },
+    "thumbnail": {
+      "path": "images/projects/2024/caravan-cleaning-melourne/thumbnail.jpg",
+      "alt": ""
+    },
+    "summary": "Design & Build - Full-stack marketing site.",
+    "paragraphs": [
+      {
+        "text": "<a target=\"_blank\" class=\"link\" href=\"https://www.caravancleaningmelbourne.com.au/\">Caravan Cleaning Melbourne</a> is a family-run Melbourne business that approached me to overhaul their exisiting website. The site had become difficult to maintain and lacked responsiveness across smaller devices, with little consideration for accessibility."
+      },
+      {
+        "text": "I began  wireframing in <a target=\"_blank\" class=\"link\" href=\"https://www.figma.com/\">Figma</a>, shaping a more modern design focused on their core services and free quote enquiries. The redesign also introduced a before/after section to showcase the effectiveness of their cleaning work."
+      },
+      {
+        "text": "Preserving their existing SEO rankings was a key concern heading into the relaunch, so a mobile-first approach with statically generated pages was a priority from the outset. The final build used <a target=\"_blank\" class=\"link\" href=\"https://astro.build/\">AstroJS</a>/<a target=\"_blank\" class=\"link\" href=\"https://react.dev/\">React</a> on the front-end, with <a target=\"_blank\" class=\"link\" href=\"https://www.sanity.io\">Sanity.io</a> powering the CMS for easy content management."
+      },
+      {
+        "text": "Since launch, the business has maintained their #1 Google ranking and seen a strong increase in customer enquiries."
+      }
+    ],
+    "links": [
+      {
+        "label": "caravancleaningmelbourne.com.au",
+        "url": "https://www.caravancleaningmelbourne.com.au/",
+        "archived": false
+      }
+    ],
+    "press": []
+  }
+]

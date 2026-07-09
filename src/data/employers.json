@@ -1,0 +1,80 @@
+[
+  {
+    "agencies": [
+      {
+        "id": 1,
+        "name": "Dijgtal",
+        "url": "https://dijgtal.com/"
+      },
+      {
+        "id": 2,
+        "name": "Gee Digital",
+        "url": ""
+      },
+      {
+        "id": 3,
+        "name": "Hardhat",
+        "url": ""
+      },
+      {
+        "id": 4,
+        "name": "Isobar",
+        "url": ""
+      },
+      {
+        "id": 5,
+        "name": "Pidgeon & Ward",
+        "url": ""
+      },
+      {
+        "id": 6,
+        "name": "Prime Motive",
+        "url": ""
+      },
+      {
+        "id": 7,
+        "name": "Thinkerbell",
+        "url": ""
+      },
+      {
+        "id": 8,
+        "name": "Today",
+        "url": ""
+      }
+    ],
+    "organisations": [
+      {
+        "id": 1,
+        "name": "ABC",
+        "url": ""
+      },
+      {
+        "id": 2,
+        "name": "ACER",
+        "url": ""
+      }
+    ],
+    "startups": [
+      {
+        "id": 1,
+        "name": "My Local Broker",
+        "url": ""
+      },
+      {
+        "id": 2,
+        "name": "HIA Talk",
+        "url": ""
+      },
+      {
+        "id": 3,
+        "name": "Homepolish",
+        "url": ""
+      },
+      {
+        "id": 4,
+        "name": "Rarity Punks",
+        "url": ""
+      }
+    ]
+  }
+]
