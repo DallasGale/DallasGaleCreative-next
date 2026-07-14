@@ -1,7 +1,7 @@
 "use client"
 
-import {useState} from "react"
-import {motion, type Variants} from "framer-motion"
+import {useRef} from "react"
+import {motion, useInView, type Variants} from "framer-motion"
 import employersData from "@/data/employers.json"
 import type {Employer, EmployersData} from "@/types"
 import Image from "next/image"
@@ -21,8 +21,6 @@ const itemVariants: Variants = {
     transition: {duration: 0.2, ease: "easeInOut"},
   },
   hover: (i: number) => ({
-    // backgroundColor: "rgba(0,0,0,1)",
-    // color: "rgba(234,237,67,1)",
     opacity: 1,
     transition: {
       delay: HEADING_DELAY + i * STAGGER_STEP,
@@ -33,16 +31,18 @@ const itemVariants: Variants = {
 }
 
 function EmployerList({heading, items}: {heading: string; items: Employer[]}) {
-  const [hovered, setHovered] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
+  // Triggers once the element is at least 50% intersected in the viewport.
+  const hovered = useInView(ref, {amount: 0.5, once: false})
 
   const isMobile = useMobile()
   return (
-    <div
-      className="group"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
-      <h3 className="relative block z-1 mb-0 text-left text-[30px] md:text-[80px] font-black leading-[1] opacity-100 md:opacity-[0.095] group-hover:opacity-100 transition-all hover:transition-all duration-300">
+    <div ref={ref} className="group">
+      <h3
+        className={`relative block z-1 mb-0 text-left text-[30px] md:text-[80px] font-black leading-[1] opacity-100 transition-all duration-300 ${
+          hovered ? "md:opacity-100" : "md:opacity-[0.095]"
+        }`}
+      >
         {heading}
       </h3>
       <ul className="z-0 flex w-full list-none flex-wrap justify-start gap-2.5 pl-0 mt-10 md:flex-row">
@@ -52,7 +52,8 @@ function EmployerList({heading, items}: {heading: string; items: Employer[]}) {
             className=" font-bold p-2 md:p-5 uppercase flex items-center justify-center border border-[rgba(255,255,255,0.2)]"
             custom={index}
             initial={!isMobile && "hidden"}
-            animate={hovered ? "hover" : !isMobile ? "hidden" : "hover"}
+            // Mobile always shows; above mobile, reveal once the list scrolls into view.
+            animate={isMobile ? "hover" : hovered ? "hover" : "hidden"}
             variants={itemVariants}
           >
             {logo ? (
