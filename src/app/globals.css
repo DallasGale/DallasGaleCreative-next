@@ -10,7 +10,7 @@
   --color-med-grey: #adadad;
   --color-trans-black: rgba(19, 19, 19, 0.6);
 
-  --site-bg: rgb(19, 19, 19);
+  --site-bg: rgb(0, 0, 0);
   --site-text-color: #ffffff;
 
   --header-bg: var(--color-trans-black);
@@ -31,9 +31,9 @@
   --transition-slower: all 2.95s cubic-bezier(0.27, 0.82, 0, 1);
 
   /* Animated background palette */
-  --bg-blob-1: #ffffff;
-  --bg-blob-2: #0e2648;
-  --bg-blob-3: #330c45;
+  --bg-blob-1: #000000;
+  --bg-blob-2: #143158;
+  --bg-blob-3: #3c1150;
   --bg-blob-opacity: 0.35;
   --bg-blob-blur: 120px;
 }
@@ -67,6 +67,7 @@ a {
   mix-blend-mode: difference;
   pointer-events: none;
   background-color: var(--site-bg);
+  /* opacity: 0.5; */
 }
 
 .bg-gradient::before {
@@ -146,7 +147,6 @@ a {
   animation: fadeIn 1s ease-in-out forwards;
   animation-delay: 1s;
   transition: var(--transition-slow);
-  background-color: var(--header-bg);
   backdrop-filter: blur(8px);
 }
 
@@ -172,7 +172,7 @@ a {
   }
   .site-header.scrolled {
     height: 80px;
-    background-color: var(--header-bg);
+    /* background-color: var(--header-bg); */
     backdrop-filter: blur(8px);
   }
   .site-header.scrolled::after {
@@ -192,19 +192,11 @@ a {
   }
 }
 
-/* ------------------------------------------------------------------ *
- * Intro
- * ------------------------------------------------------------------ */
-.hero-text {
-  font-size: clamp(40px, 17vw, 120px);
-  line-height: 0.8;
-  font-weight: 700;
-}
-
 .intro-blurb {
   opacity: 1;
   transform: translateY(0);
   transition: var(--transition-slower);
+  width: 100%;
 }
 
 @media (min-width: 768px) {
@@ -216,17 +208,6 @@ a {
 }
 
 /* ------------------------------------------------------------------ *
- * Employer chips
- * ------------------------------------------------------------------ */
-.employer-li {
-  border: 1px dashed #444444;
-  padding: 20px;
-  font-size: 14px;
-  text-transform: uppercase;
-  font-weight: bold;
-}
-
-/* ------------------------------------------------------------------ *
  * Section titles + animated underline
  * ------------------------------------------------------------------ */
 .section-title {
@@ -234,15 +215,11 @@ a {
   position: relative;
   font-size: 30px;
   color: var(--color-white);
+  font-weight: bolder;
+  text-decoration: none;
 }
 
-@media (min-width: 768px) {
-  .section-title {
-    padding-left: 20px;
-  }
-}
-
-.section-title.underline::before {
+/* .section-title.section-title-underline::before {
   content: "";
   position: absolute;
   left: 0;
@@ -253,7 +230,7 @@ a {
   opacity: 0.8;
 }
 
-.section-title.underline::after {
+.section-title.section-title-underline::after {
   content: "";
   position: absolute;
   left: 0;
@@ -263,18 +240,27 @@ a {
   transform: translateX(-100%);
   background-color: var(--color-white);
   opacity: 0.8;
+} */
+
+/* @media (min-width: 1360px) { */
+.section-title.highlight {
+  color: var(--color-highlight);
 }
 
-@media (min-width: 1200px) {
-  .section-title.highlight {
-    color: var(--color-highlight);
-  }
-  #recent-work-heading.scrolled {
-    position: sticky;
-    top: 18px;
-    z-index: 10;
-  }
+/* .section-title.highlight::after,
+  .section-title.highlight::before {
+    content: none;
+  } */
+#recent-work-heading.scrolled {
+  position: sticky;
+  top: 80px;
+  z-index: 10;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  backdrop-filter: blur(8px);
 }
+/* } */
 
 /* ------------------------------------------------------------------ *
  * Rich text links inside project descriptions
@@ -285,33 +271,6 @@ a {
   font-weight: bold;
   text-decoration: underline;
   text-underline-offset: 2px;
-}
-
-.rich-text a:hover {
-  color: var(--color-highlight);
-}
-
-/* ------------------------------------------------------------------ *
- * Recent work
- * ------------------------------------------------------------------ */
-.recent-work-project {
-  transition: var(--transition-slow);
-}
-
-@media (min-width: 1200px) {
-  .recent-work-project {
-    filter: grayscale(1);
-  }
-  .recent-work-project:hover {
-    filter: grayscale(0);
-  }
-  .recent-work-project .rich-text p {
-    opacity: 0.6;
-    transition: var(--transition-slow);
-  }
-  .recent-work-project:hover .rich-text p {
-    opacity: 1;
-  }
 }
 
 /* ------------------------------------------------------------------ *

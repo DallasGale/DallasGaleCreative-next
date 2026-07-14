@@ -3,77 +3,97 @@
     "agencies": [
       {
         "id": 1,
-        "name": "Dijgtal",
-        "url": "https://dijgtal.com/"
+        "name": "Gee Digital",
+        "url": "",
+        "logo": "/images/logos/gee-logo.png"
       },
       {
         "id": 2,
-        "name": "Gee Digital",
-        "url": ""
+        "name": "Big Mirror Labs",
+        "url": "",
+        "logo": "/images/logos/bigmirrorlabs.jpeg"
       },
       {
         "id": 3,
-        "name": "Hardhat",
-        "url": ""
+        "name": "Dijgtal",
+        "url": "https://dijgtal.com/",
+        "logo": "/images/logos/dijgtal.svg"
       },
       {
         "id": 4,
-        "name": "Isobar",
-        "url": ""
+        "name": "Hardhat",
+        "url": "",
+        "logo": "/images/logos/hardhat.svg"
       },
       {
         "id": 5,
-        "name": "Pidgeon & Ward",
-        "url": ""
+        "name": "Isobar",
+        "url": "",
+        "logo": "/images/logos/isobar-white.png"
       },
       {
         "id": 6,
-        "name": "Prime Motive",
-        "url": ""
+        "name": "Pidgeon & Ward",
+        "url": "",
+        "logo": "/images/logos/pw.jpg"
       },
       {
         "id": 7,
-        "name": "Thinkerbell",
-        "url": ""
+        "name": "Prime Motive",
+        "url": "",
+        "logo": "/images/logos/prime-motive.jpg"
       },
       {
         "id": 8,
+        "name": "Thinkerbell",
+        "url": "",
+        "logo": "/images/logos/thinkerbell.png"
+      },
+      {
+        "id": 9,
         "name": "Today",
-        "url": ""
+        "url": "",
+        "logo": "/images/logos/today-white.png"
       }
     ],
     "organisations": [
       {
         "id": 1,
         "name": "ABC",
-        "url": ""
+        "url": "",
+        "logo": "/images/logos/abc.png"
       },
       {
         "id": 2,
         "name": "ACER",
-        "url": ""
+        "url": "",
+        "logo": "/images/logos/acer.svg"
       }
     ],
     "startups": [
       {
         "id": 1,
         "name": "My Local Broker",
-        "url": ""
+        "url": "",
+        "logo": "/images/logos/mlb-white.png"
       },
       {
         "id": 2,
         "name": "HIA Talk",
-        "url": ""
+        "url": "",
+        "logo": "/images/logos/hia-white-2.jpg"
       },
       {
         "id": 3,
         "name": "Homepolish",
-        "url": ""
+        "url": "",
+        "logo": "/images/logos/homepolish.jpg"
       },
       {
         "id": 4,
         "name": "Rarity Punks",
-        "url": ""
+        "url": "",
+        "logo": "/images/logos/rarity.jpg"
       }
     ]
   }

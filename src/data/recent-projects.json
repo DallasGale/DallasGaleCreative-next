@@ -10,13 +10,19 @@
       "jobType": "Contract"
     },
     "logo": {
-      "path": "images/projects/2026/dijgtal/logo.jpeg",
+      "path": "/images/projects/2026/dijgtal/logo.jpeg",
       "alt": ""
     },
-    "thumbnail": {
-      "path": "images/projects/2026/dijgtal/thumbnail.jpg",
-      "alt": ""
-    },
+    "thumbnails": [
+      {
+        "path": "/images/projects/2026/dijgtal/linde.png",
+        "alt": ""
+      },
+      {
+        "path": "/images/projects/2026/dijgtal/baoli.png",
+        "alt": ""
+      }
+    ],
     "summary": "Dual website replatforming.",
     "paragraphs": [
       {
@@ -54,13 +60,15 @@
       "jobType": "Freelance"
     },
     "logo": {
-      "path": "images/projects/2026/musimap/logo.png",
+      "path": "/images/projects/2026/musimap/logo.png",
       "alt": ""
     },
-    "thumbnail": {
-      "path": "images/projects/2026/musimap/thumbnail.jpg",
-      "alt": ""
-    },
+    "thumbnails": [
+      {
+        "path": "/images/projects/2026/musimap/screenshot.png",
+        "alt": ""
+      }
+    ],
     "summary": "AI Music Analysis Site.",
     "paragraphs": [
       {
@@ -96,13 +104,15 @@
       "jobType": "Freelance"
     },
     "logo": {
-      "path": "images/projects/2025/thinkerbell/logo.jpeg",
+      "path": "/images/projects/2025/thinkerbell/logo.jpeg",
       "alt": ""
     },
-    "thumbnail": {
-      "path": "images/projects/2025/thinkerbell/kayo.jpg",
-      "alt": ""
-    },
+    "thumbnails": [
+      {
+        "path": "/images/projects/2025/thinkerbell/screenshot.png",
+        "alt": ""
+      }
+    ],
     "summary": "Full-stack competition landing page.",
     "paragraphs": [
       {
@@ -147,13 +157,15 @@
       "jobType": "Freelance"
     },
     "logo": {
-      "path": "images/projects/2025/thinkerbell/logo.jpeg",
+      "path": "/images/projects/2025/thinkerbell/logo.jpeg",
       "alt": ""
     },
-    "thumbnail": {
-      "path": "images/projects/2025/thinkerbell/oua.jpg",
-      "alt": ""
-    },
+    "thumbnails": [
+      {
+        "path": "/images/projects/2025/thinkerbell/oua-screenshot.png",
+        "alt": ""
+      }
+    ],
     "summary": "Online study campaign landing page.",
     "paragraphs": [
       {
@@ -183,13 +195,15 @@
       "jobType": "Freelance"
     },
     "logo": {
-      "path": "images/projects/2025/thinkerbell/logo.jpeg",
+      "path": "/images/projects/2025/thinkerbell/logo.jpeg",
       "alt": ""
     },
-    "thumbnail": {
-      "path": "images/projects/2025/thinkerbell/pennington.jpg",
-      "alt": ""
-    },
+    "thumbnails": [
+      {
+        "path": "/images/projects/2025/thinkerbell/pen-screenshot.png",
+        "alt": ""
+      }
+    ],
     "summary": "Full-stack quiz micro-site.",
     "paragraphs": [
       {
@@ -219,13 +233,15 @@
       "jobType": "Freelance"
     },
     "logo": {
-      "path": "images/projects/2024/caravan-cleaning-melourne/logo.svg",
+      "path": "/images/projects/2024/caravan-cleaning-melourne/logo.svg",
       "alt": ""
     },
-    "thumbnail": {
-      "path": "images/projects/2024/caravan-cleaning-melourne/thumbnail.jpg",
-      "alt": ""
-    },
+    "thumbnails": [
+      {
+        "path": "/images/projects/2024/caravan-cleaning-melourne/screenshot.png",
+        "alt": ""
+      }
+    ],
     "summary": "Design & Build - Full-stack marketing site.",
     "paragraphs": [
       {
