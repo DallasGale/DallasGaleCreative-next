@@ -32,9 +32,9 @@
 
   /* Animated background palette */
   --bg-blob-1: #000000;
-  --bg-blob-2: #143158;
-  --bg-blob-3: #3c1150;
-  --bg-blob-opacity: 0.35;
+  --bg-blob-2: #254b7b;
+  --bg-blob-3: #511b6a;
+  --bg-blob-opacity: 0.65;
   --bg-blob-blur: 120px;
 }
 
