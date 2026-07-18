@@ -1,6 +1,6 @@
-import type { Metadata } from "next";
-import Script from "next/script";
-import "./globals.css";
+import type {Metadata} from "next"
+import Script from "next/script"
+import "./globals.css"
 
 export const metadata: Metadata = {
   title: "Dallas Gale Creative | Web Developer & UI Designer",
@@ -21,26 +21,30 @@ export const metadata: Metadata = {
     "portfolio sites for creatives",
     "JAMstack websites",
   ],
-  authors: [{ name: "Dallas Gale" }],
+  authors: [{name: "Dallas Gale"}],
   robots: "index, follow",
   icons: {
     icon: [
-      { url: "/favicon/favicon.ico" },
-      { url: "/favicon/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-      { url: "/favicon/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-      { url: "/favicon/android-icon-192x192.png", sizes: "192x192", type: "image/png" },
+      {url: "/favicon/favicon.ico"},
+      {url: "/favicon/favicon-32x32.png", sizes: "32x32", type: "image/png"},
+      {url: "/favicon/favicon-16x16.png", sizes: "16x16", type: "image/png"},
+      {
+        url: "/favicon/android-icon-192x192.png",
+        sizes: "192x192",
+        type: "image/png",
+      },
     ],
-    apple: [{ url: "/favicon/apple-icon-180x180.png", sizes: "180x180" }],
+    apple: [{url: "/favicon/apple-icon-180x180.png", sizes: "180x180"}],
   },
   manifest: "/favicon/manifest.json",
-};
+}
 
-const GA_ID = "G-0Q7YLR9V6J";
+const GA_ID = "G-0Q7YLR9V6J"
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
     <html lang="en" className="antialiased">
@@ -61,5 +65,5 @@ export default function RootLayout({
         </Script>
       </body>
     </html>
-  );
+  )
 }

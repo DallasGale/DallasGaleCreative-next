@@ -1,11 +1,11 @@
 "use client"
 
-import {useRef} from "react"
 import {motion, useInView, type Variants} from "framer-motion"
-import employersData from "@/data/employers.json"
-import type {Employer, EmployersData} from "@/types"
 import Image from "next/image"
+import {useRef} from "react"
+import employersData from "@/data/employers.json"
 import useMobile from "@/hooks/useMobile"
+import type {Employer, EmployersData} from "@/types"
 
 const data = (employersData as EmployersData[])[0]
 
