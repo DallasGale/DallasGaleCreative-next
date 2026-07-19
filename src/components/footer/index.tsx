@@ -2,7 +2,7 @@ import {GithubIcon, LinkedInIcon} from "@/components/icons"
 
 const Footer = () => {
   return (
-    <footer className="site-footer  relative z-[2] box-border flex h-[120px] w-full flex-col items-start justify-between p-5 md:fixed md:flex-row md:items-end bottom-0">
+    <footer className="site-footer relative bottom-0 z-[2] box-border flex h-[120px] w-full flex-col items-start justify-between p-5 md:fixed md:flex-row md:items-end">
       <nav className="flex w-full flex-row items-start gap-2.5 md:items-center md:gap-5">
         <a
           href="https://github.com/dallasgale"

@@ -246,7 +246,6 @@ a {
   animation: fadeIn 1s ease-in-out forwards;
   animation-delay: 1s;
   transition: var(--transition-slow);
-  backdrop-filter: blur(3px);
 }
 
 .footer-nav-icon svg,

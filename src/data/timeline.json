@@ -81,7 +81,7 @@
     "year": 2018,
     "milestone": "Started working in West Hollywood at HIA Technology, where I was exposed to the beginings of AI technology, LLM's and medical tech. I begun working on their App (HIA Talk) using Unity and C#",
     "logo": {
-      "src": "/images/logos/hia-white-2.jpg",
+      "src": "/images/logos/hia-black-white.jpg",
       "alt": "HIA Technology"
     },
     "location": "Los Angeles, CA"
@@ -101,9 +101,49 @@
     "year": 2019,
     "milestone": "I started work at an interior design start-up called Homepolish where I worked on the client side facing dashboard UI. Technology used was React, TypeScript and GraphQL.",
     "logo": {
-      "src": "/images/logos/homepolish.jpg",
+      "src": "/images/logos/homepolish-wh.jpg",
       "alt": "Homepolish"
     },
     "location": "New York, NY"
+  },
+  {
+    "id": 10,
+    "year": 2019,
+    "milestone": "Moved back home to Australia.",
+    "logo": {
+      "src": "/images/logos/aus-emblem.jpg",
+      "alt": "Australia"
+    },
+    "location": ""
+  },
+  {
+    "id": 10,
+    "year": 2019,
+    "milestone": "Contracted at Prime Motive, a small agency working on the CGU insurance campaign site called 'ABN Rescue'.",
+    "logo": {
+      "src": "/images/logos/prime-motive.jpg",
+      "alt": "Prime Motive"
+    },
+    "location": "Melbourne, Australia"
+  },
+  {
+    "id": 11,
+    "year": 2019,
+    "milestone": "Started working full-time at Hardhat, a medium sized agency with clients including Yarra Valley Water, Universty of New South Wales, Ventia and Simply Energy.",
+    "logo": {
+      "src": "/images/logos/hardhat.svg",
+      "alt": "Hardhat"
+    },
+    "location": "Melbourne, Australia (Hybrid)"
+  },
+  {
+    "id": 12,
+    "year": 2022,
+    "milestone": "I begun working at the ABC during the 2022 National Election as part of the News Digital team. I worked on the re-factoring of the main news home page layout by cleaning up the underlying grid code to allow for varying responsive layouts,  and implementing dark mode UI for the election result pages.",
+    "logo": {
+      "src": "/images/logos/abc.png",
+      "alt": "ABC"
+    },
+    "location": "Remote"
   }
 ]

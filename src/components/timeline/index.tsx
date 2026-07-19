@@ -18,15 +18,15 @@ const TimelineItem = ({d}: {d: TimelineEntry}) => {
         className={`relative z-1 flex flex-row gap-8 p-5 pt-0 pb-30 transition-all duration-500 last:pb-0`}
       >
         <div
-          className={`align-right sticky top-[200px] mt-8 flex w-1/2 items-start justify-end text-[clamp(12px,15vw,90px)] leading-0 font-extrabold text-white transition-all duration-500 ${
-            inView ? "opacity-100" : "opacity-30"
+          className={`align-right mt-8 flex w-1/2 items-start justify-end text-[clamp(12px,15vw,90px)] leading-0 font-extrabold text-white transition-all duration-500 ${
+            inView ? "opacity-100" : "opacity-30 blur-xs"
           }`}
         >
           {d.year}
         </div>
         <div
           className={`flex w-1/2 flex-col items-start justify-start gap-5 p-5 pt-0 transition-all duration-500 ${
-            inView ? "opacity-100" : "opacity-30"
+            inView ? "opacity-100" : "opacity-30 blur-xs"
           }`}
         >
           <div className="w-1/2">
@@ -43,7 +43,7 @@ const TimelineItem = ({d}: {d: TimelineEntry}) => {
             <p className="pt-0 text-sm font-bold">{d.location}</p>
           </div>
           <div className="w-full">
-            <p className="text-md font-regular">{d.milestone}</p>
+            <p className="text-md font-medium">{d.milestone}</p>
           </div>
         </div>
       </li>
