@@ -15,9 +15,9 @@ export default function Home() {
         <Intro />
         <RecentWork />
         <About />
-        <h3 className="color-white mt-20 h-50 text-center text-2xl font-extrabold md:mb-20 md:text-8xl">
+        {/* <h3 className="color-white mt-20 h-50 text-center text-2xl font-extrabold md:mb-20 md:text-8xl">
           Thanks for visiting.
-        </h3>
+        </h3> */}
       </main>
       <Footer />
       <ScrollEffects />
