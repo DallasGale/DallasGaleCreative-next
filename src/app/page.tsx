@@ -1,22 +1,23 @@
-import BackgroundGradient from "@/components/BackgroundGradient"
-import Header from "@/components/Header"
-import Intro from "@/components/Intro"
-import RecentWork from "@/components/RecentWork"
-import Footer from "@/components/Footer"
-import ScrollEffects from "@/components/ScrollEffects"
+import About from "@/components/about"
+import BackgroundGradient from "@/components/background-gradient"
+import Footer from "@/components/footer"
+import Header from "@/components/header"
+import Intro from "@/components/intro"
+import RecentWork from "@/components/recent-work"
+import ScrollEffects from "@/components/scroll-effects"
 
 export default function Home() {
   return (
     <>
       <BackgroundGradient />
       <Header />
-      <main className="z-0 relative mx-auto flex flex-col p-5 xl:p-0">
+      <main className="relative z-0 mx-auto flex flex-col">
         <Intro />
         <RecentWork />
-
-        <h3 className="text-2xl md:text-8xl color-white font-extrabold text-center md:mb-20 h-50 mt-20">
+        <About />
+        {/* <h3 className="color-white mt-20 h-50 text-center text-2xl font-extrabold md:mb-20 md:text-8xl">
           Thanks for visiting.
-        </h3>
+        </h3> */}
       </main>
       <Footer />
       <ScrollEffects />

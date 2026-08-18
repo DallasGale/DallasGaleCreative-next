@@ -1,11 +1,11 @@
-import {animate, PanInfo, motion, useMotionValue} from "framer-motion"
+import cn from "classnames"
+import {animate, motion, type PanInfo, useMotionValue} from "framer-motion"
 import {useEffect, useRef, useState} from "react"
 import projectsData from "@/data/recent-projects.json"
-import {Project} from "@/types"
-import ProjectCard from "./project.card"
+import type {Project} from "@/types"
 import useMobile from "../../hooks/useMobile"
-import cn from "classnames"
 import Control from "./control"
+import ProjectCard from "./project.card"
 
 const SPRING = {type: "spring" as const, stiffness: 300, damping: 34}
 
@@ -91,7 +91,7 @@ const Carousel = () => {
                 <div
                   key={project.id}
                   className={cn(
-                    "shrink-0 grow-0  md:pr-12 lg:pl-26",
+                    "shrink-0 grow-0  md:pr-12 lg:pl-40",
                     isMobile ? "basis-full" : "basis-[80%]",
                   )}
                 >

@@ -1,0 +1,149 @@
+[
+  {
+    "id": 0,
+    "year": 1983,
+    "milestone": "Hello World! (literally)",
+    "logo": {},
+    "location": "Melbourne, Australia"
+  },
+  {
+    "id": 1,
+    "year": 2011,
+    "milestone": "Graduated from Swinburne Institue of Technology with a Diploma of Graphic Design",
+    "logo": {
+      "src": "/images/logos/swinburne.png",
+      "alt": "Swinburne Institute of Technology"
+    },
+    "location": "Melbourne, Australia"
+  },
+  {
+    "id": 2,
+    "year": 2011,
+    "milestone": "Started working as a freelance designer for Monster Energy Drinks. I updated the AU website hero banners and re-touched photographs for use in publications. ",
+    "logo": {
+      "src": "/images/logos/monster.png",
+      "alt": "Monster Energy Drinks"
+    },
+    "location": "Melbourne, Australia"
+  },
+  {
+    "id": 3,
+    "year": 2012,
+    "milestone": "My first start-up job at EatNow (aquired by Menulog) as a Digital Designer. I created the branding assets.",
+    "logo": {
+      "src": "/images/logos/eatnow.png",
+      "alt": "EatNow"
+    },
+    "location": "Melbourne, Australia"
+  },
+  {
+    "id": 4,
+    "year": 2013,
+    "milestone": "Begun working at my first studio/agency gig at Gee Digital as a Digital Designer. I also started to convert some really old static client sites to be responsive using Bootstrap and a little jQuery.",
+    "logo": {
+      "src": "/images/logos/gee-logo.png",
+      "alt": "Gee Digital"
+    },
+    "location": "Melbourne, Australia"
+  },
+  {
+    "id": 5,
+    "year": 2015,
+    "milestone": "Started my first Front End Developer position at My Local Broker, a start-up in the home loan industry. Coming into this role I had no prior JS experience so I learnt alot on the job. The tech stack I was exposed to included AngularJs and Umbraco CMS",
+    "logo": {
+      "src": "/images/logos/mlb-white.png",
+      "alt": "My Local Broker"
+    },
+    "location": "Melbourne, Australia"
+  },
+  {
+    "id": 6,
+    "year": 2017,
+    "milestone": "After the collapse of My Local Broker I started a contract with Isobar, a large agency where I was part of the Holden team working on their website. Technology used was VueJS",
+    "logo": {
+      "src": "/images/logos/isobar-white.png",
+      "alt": "Isobar"
+    },
+    "location": "Melbourne, Australia"
+  },
+  {
+    "id": 7,
+    "year": 2018,
+    "milestone": "My wife and I won the US Green Card lottery and moved to the states!",
+    "logo": {
+      "src": "/images/logos/usa.png",
+      "alt": "Gee Digital"
+    },
+    "location": "Los Angeles, CA -  New York, NY"
+  },
+  {
+    "id": 8,
+    "year": 2018,
+    "milestone": "Started working in West Hollywood at HIA Technology, where I was exposed to the beginings of AI technology, LLM's and medical tech. I begun working on their App (HIA Talk) using Unity and C#",
+    "logo": {
+      "src": "/images/logos/hia-black-white.jpg",
+      "alt": "HIA Technology"
+    },
+    "location": "Los Angeles, CA"
+  },
+  {
+    "id": 9,
+    "year": 2019,
+    "milestone": "I re-located to New York City and started working at Big Mirror Labs, an incubator & consultancy where I briefly worked on the dashboard for their CorsortiumX client. Technology used was VueJS.",
+    "logo": {
+      "src": "/images/logos/bigmirrorlabs.jpeg",
+      "alt": "Big Mirror Labs"
+    },
+    "location": "New York, NY"
+  },
+  {
+    "id": 10,
+    "year": 2019,
+    "milestone": "I started work at an interior design start-up called Homepolish where I worked on the client side facing dashboard UI. Technology used was React, TypeScript and GraphQL.",
+    "logo": {
+      "src": "/images/logos/homepolish-wh.jpg",
+      "alt": "Homepolish"
+    },
+    "location": "New York, NY"
+  },
+  {
+    "id": 10,
+    "year": 2019,
+    "milestone": "Moved back home to Australia.",
+    "logo": {
+      "src": "/images/logos/aus-emblem.jpg",
+      "alt": "Australia"
+    },
+    "location": ""
+  },
+  {
+    "id": 10,
+    "year": 2019,
+    "milestone": "Contracted at Prime Motive, a small agency working on the CGU insurance campaign site called 'ABN Rescue'.",
+    "logo": {
+      "src": "/images/logos/prime-motive.jpg",
+      "alt": "Prime Motive"
+    },
+    "location": "Melbourne, Australia"
+  },
+  {
+    "id": 11,
+    "year": 2019,
+    "milestone": "Started working full-time at Hardhat, a medium sized agency with clients including Yarra Valley Water, Universty of New South Wales, Ventia and Simply Energy.",
+    "logo": {
+      "src": "/images/logos/hardhat.svg",
+      "alt": "Hardhat"
+    },
+    "location": "Melbourne, Australia (Hybrid)"
+  },
+  {
+    "id": 12,
+    "year": 2022,
+    "milestone": "I begun working at the ABC during the 2022 National Election as part of the News Digital team. I worked on the re-factoring of the main news home page layout by cleaning up the underlying grid code to allow for varying responsive layouts,  and implementing dark mode UI for the election result pages.",
+    "logo": {
+      "src": "/images/logos/abc.png",
+      "alt": "ABC"
+    },
+    "location": "Remote"
+  }
+]

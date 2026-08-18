@@ -1,4 +1,4 @@
-import Employers from "@/components/Employers"
+import Employers from "@/components/employers"
 
 export default function Intro() {
   return (

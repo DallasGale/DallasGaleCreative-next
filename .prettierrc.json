@@ -1,0 +1,9 @@
+{
+  "semi": false,
+  "singleQuote": false,
+  "bracketSpacing": false,
+  "tabWidth": 2,
+  "plugins": ["prettier-plugin-tailwindcss"],
+  "tailwindStylesheet": "./src/app/globals.css",
+  "tailwindFunctions": ["classNames", "clsx", "cva", "cn", "cx", "twMerge"]
+}

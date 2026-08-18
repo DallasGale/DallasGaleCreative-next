@@ -1,9 +1,9 @@
 "use client"
 
-import {useEffect, useState} from "react"
 import Link from "next/link"
-import {getClockData, type ClockData} from "@/lib/datetime"
+import {useEffect, useState} from "react"
 import {TimeIcon} from "@/components/icons"
+import {type ClockData, getClockData} from "@/lib/datetime"
 
 export default function Header() {
   const [clock, setClock] = useState<ClockData | null>(null)
