@@ -4,12 +4,7 @@
  * Design tokens (ported from the original SCSS :root)
  * ------------------------------------------------------------------ */
 :root {
-  --color-white: #ffffff;
-  --color-black: #000000;
-  --color-highlight: #eaed43;
-  --color-med-grey: #adadad;
-  --color-trans-black: rgba(19, 19, 19, 0.6);
-
+  --highlight: #eaed43;
   --site-bg: rgb(0, 0, 0);
   --site-text-color: #ffffff;
 
@@ -38,22 +33,39 @@
   --bg-blob-blur: 120px;
 }
 
-html {
-  scroll-behavior: smooth;
+/* ------------------------------------------------------------------ *
+ * Colour palette
+ *
+ * These live in @theme (not :root) so Tailwind generates utilities for
+ * them — text-highlight, bg-med-grey, border-trans-black, etc. Tailwind
+ * still emits each one as a :root custom property, so var(--color-*)
+ * references below keep working. Add new colours here.
+ * ------------------------------------------------------------------ */
+@theme inline {
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-highlight: var(--highlight);
+  --color-med-grey: #adadad;
+  --color-trans-black: rgba(19, 19, 19, 0.6);
 }
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
 
-body {
-  margin: 0;
-  font-family: var(--default-font);
-  line-height: 1.5;
-  color: var(--site-text-color);
-  background-color: var(--site-bg);
-  transition: var(--transition);
-}
+  body {
+    margin: 0;
+    font-family: var(--default-font);
+    line-height: 1.5;
+    color: var(--site-text-color);
+    background-color: var(--site-bg);
+    transition: var(--transition);
+  }
 
-a {
-  text-decoration: none;
-  color: var(--site-text-color);
+  a {
+    text-decoration: none;
+    color: var(--site-text-color);
+  }
 }
 
 /* ------------------------------------------------------------------ *
@@ -230,12 +242,14 @@ a {
 /* ------------------------------------------------------------------ *
  * Rich text links inside project descriptions
  * ------------------------------------------------------------------ */
-.rich-text a,
-.link {
-  color: var(--color-white);
-  font-weight: bold;
-  text-decoration: underline;
-  text-underline-offset: 2px;
+@layer components {
+  .rich-text a,
+  .link {
+    color: var(--color-white);
+    font-weight: bold;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
 }
 
 /* ------------------------------------------------------------------ *
