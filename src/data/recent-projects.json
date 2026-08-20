@@ -1,13 +1,51 @@
 [
   {
-    "id": 3,
+    "id": 8,
+    "employer": {
+      "name": "Today",
+      "url": "https://today.design/"
+    },
+    "meta": {
+      "date": "Aug '26",
+      "jobType": "Contract"
+    },
+    "logo": {
+      "path": "/images/projects/2026/today/logo.jpeg",
+      "alt": ""
+    },
+    "thumbnails": [
+      {
+        "path": "/images/projects/2026/today/mind.png",
+        "alt": ""
+      }
+    ],
+    "summary": "Mind Australia - MVP re-branded build.",
+    "paragraphs": [
+      {
+        "text": "I built an MVP re-branded <a target=\"_blank\" class=\"link\" href=\"https://www.mindaustralia.org.au/\">home page</a> and <a target=\"_blank\" class=\"link\" href=\"https://www.mindaustralia.org.au/lived-experience-at-mind\">generic content page</a> for <strong>Today</strong>'s client, <i><strong>Mind Australia</strong></i>, one of the largest providers of community-managed specialist mental health services in Australia. "
+      },
+      {
+        "text": "Their existing site is Drupal, so for this MVP most of the pages are still served from their old stack; however, we injected web components into their old site to maintain the re-branded header and footer. The new tech stack is <strong>React/NextJS</strong> with <strong>Tailwind</strong> and <strong>Payload CMS</strong> on the backend."
+      }
+    ],
+    "links": [
+      {
+        "label": "Mind Australia",
+        "url": "https://www.mindaustralia.org.au/",
+        "archived": false
+      }
+    ],
+    "press": []
+  },
+  {
+    "id": 7,
     "employer": {
       "name": "Thinkerbell",
       "url": "https://thinkerbell.com.au/"
     },
     "meta": {
       "date": "Jul '26 - Aug '26",
-      "jobType": "Contact"
+      "jobType": "Contract"
     },
     "logo": {
       "path": "/images/projects/2025/thinkerbell/logo.jpeg",
@@ -43,7 +81,7 @@
     ]
   },
   {
-    "id": 1,
+    "id": 6,
     "employer": {
       "name": "Dijgtal",
       "url": "https://dijgtal.com/"
@@ -93,7 +131,7 @@
     "press": []
   },
   {
-    "id": 2,
+    "id": 5,
     "employer": {
       "name": "Pidgeon & Ward",
       "url": "https://pidgeonward.com.au/"
@@ -137,7 +175,7 @@
     "press": []
   },
   {
-    "id": 3,
+    "id": 4,
     "employer": {
       "name": "Thinkerbell",
       "url": "https://thinkerbell.com.au/"
@@ -190,7 +228,7 @@
     ]
   },
   {
-    "id": 4,
+    "id": 3,
     "employer": {
       "name": "Thinkerbell",
       "url": "https://thinkerbell.com.au/"
@@ -228,7 +266,7 @@
     "press": []
   },
   {
-    "id": 5,
+    "id": 2,
     "employer": {
       "name": "Thinkerbell",
       "url": "https://thinkerbell.com.au/"
@@ -266,7 +304,7 @@
     "press": []
   },
   {
-    "id": 6,
+    "id": 1,
     "employer": {
       "name": "Caravan Cleaning Melbourne",
       "url": "https://www.caravancleaningmelbourne.com.au"

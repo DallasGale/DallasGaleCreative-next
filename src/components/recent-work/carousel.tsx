@@ -5,7 +5,7 @@ import projectsData from "@/data/recent-projects.json"
 import type {Project} from "@/types"
 import useMobile from "../../hooks/useMobile"
 import Control from "./control"
-import ProjectCard from "./project.card"
+import ProjectCard from "./project-card"
 
 const SPRING = {type: "spring" as const, stiffness: 300, damping: 34}
 
@@ -35,6 +35,7 @@ const Carousel = () => {
   }, [])
 
   // Re-seat the track (without animating) whenever the measured width changes.
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     x.set(-index * slideWidth)
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -58,7 +59,7 @@ const Carousel = () => {
 
   return (
     <>
-      <div className="flex items-center justify-between gap-6 left-5 sticky top-35 w-[200px] z-10 relative mt-4 mb-30">
+      <div className="relative sticky top-35 left-5 z-10 mt-4 mb-30 flex w-[200px] items-center justify-between gap-6">
         <div className="flex items-center gap-3">
           <Control
             direction="previous"
@@ -76,8 +77,8 @@ const Carousel = () => {
           </span>
         </div>
       </div>
-      <section id="recent-work" className="section w-full relative z-0">
-        <div className="flex flex-col gap-6 relative">
+      <section id="recent-work" className="section relative z-0 w-full">
+        <div className="relative flex flex-col gap-6">
           <div ref={containerRef} className="overflow-hidden">
             <motion.div
               className="flex cursor-grab active:cursor-grabbing md:pt-20"
@@ -91,7 +92,7 @@ const Carousel = () => {
                 <div
                   key={project.id}
                   className={cn(
-                    "shrink-0 grow-0  md:pr-12 lg:pl-40",
+                    "shrink-0 grow-0 md:pr-12 lg:pl-40",
                     isMobile ? "basis-full" : "basis-[80%]",
                   )}
                 >
