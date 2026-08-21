@@ -1,5 +1,5 @@
 import {unstable_rethrow} from "next/navigation"
-import {formatCents} from "@/lib/format"
+import {formatCents, formatDay} from "@/lib/format"
 import {buildAllocation, weeklyTakeHomeCents} from "@/lib/up/allocation"
 import {
   buildBudget,
@@ -21,9 +21,11 @@ import {
   toRfc3339,
 } from "@/lib/up/period"
 import {repriceForecast} from "@/lib/up/pricing"
-import {getCategories, getTransactionsSince} from "@/lib/up/queries"
+import {getAccounts, getCategories, getTransactionsSince} from "@/lib/up/queries"
+import {buildSaverPlan} from "@/lib/up/savers"
 import {buildSavings, isFeeCharge} from "@/lib/up/savings"
-import type {UpCategory, UpTransaction} from "@/lib/up/types"
+import {snapshotTakenAt} from "@/lib/up/snapshot"
+import type {UpAccount, UpCategory, UpTransaction} from "@/lib/up/types"
 import AllocationPanel from "./allocation-panel"
 import BudgetSummary from "./budget-summary"
 import BudgetTable from "./budget-table"
@@ -31,6 +33,7 @@ import HeldOutPanel from "./held-out-panel"
 import MerchantsChart from "./merchants-chart"
 import {ErrorPanel, Panel, Skeleton, Stat} from "./primitives"
 import RepricedNote from "./repriced-note"
+import SaversPanel from "./savers-panel"
 import SavingsPanel from "./savings-panel"
 import SubscriptionCandidates from "./subscription-candidates"
 import TransactionsList from "./transactions-list"
@@ -61,16 +64,19 @@ export default async function BudgetSection() {
   let transactions: UpTransaction[]
   let truncated: boolean
   let categories: UpCategory[]
+  let accounts: UpAccount[]
 
   try {
-    // Both are memoized and independent, so let them overlap.
-    const [txResult, categoryResult] = await Promise.all([
+    // All three are memoized and independent, so let them overlap.
+    const [txResult, categoryResult, accountResult] = await Promise.all([
       getTransactionsSince(since),
       getCategories(),
+      getAccounts(),
     ])
     transactions = txResult.items
     truncated = txResult.truncated
     categories = categoryResult
+    accounts = accountResult
   } catch (error) {
     unstable_rethrow(error)
 
@@ -115,6 +121,17 @@ export default async function BudgetSection() {
     completed,
     buckets,
     forecast.ids,
+    transactions,
+  )
+  // What the forecast means for each saver. Built from the repriced set like
+  // everything else forward-looking, but handed the untouched history too:
+  // the transfers already going in are facts about what you did, not
+  // predictions about what things cost.
+  const savers = buildSaverPlan(
+    accounts,
+    priced.transactions,
+    forecast,
+    completed,
     transactions,
   )
   // A monthly interest charge recurs as reliably as Netflix, but telling you
@@ -180,6 +197,11 @@ export default async function BudgetSection() {
   )
   const recent = recentTransactions(transactions, 12)
 
+  // Say so on the page. Every figure below is derived from history frozen at
+  // build time, and a dashboard that looks live while quietly being a week
+  // old is worse than one that tells you how old it is.
+  const frozenAt = snapshotTakenAt()
+
   return (
     <div className="flex flex-col gap-5">
       {truncated && (
@@ -205,6 +227,37 @@ export default async function BudgetSection() {
         changes={priced.changes}
         perMonthDeltaCents={priced.perMonthDeltaCents}
       />
+
+      {frozenAt && (
+        <p className="text-xs text-med-grey">
+          History frozen {formatDay(frozenAt)} — {transactions.length}{" "}
+          transactions, bundled at build time so the page renders in a second
+          rather than fifty requests. Balances and savers are live. Redeploy,
+          or run <code className="text-white">pnpm snapshot</code> locally, to
+          bring the history forward.
+        </p>
+      )}
+
+      <Panel
+        title="Where to put it"
+        action={
+          <span className="text-xs text-med-grey">
+            {savers.savers.filter((plan) => plan.perMonthCents > 0).length} of{" "}
+            {savers.savers.length} savers funded
+          </span>
+        }
+      >
+        <p className="mb-4 text-sm text-med-grey">
+          The figure above, split across the savers that actually have to pay
+          it. You've already built the routing — a saver per bill — so this
+          only says how much each one needs and how far that is from what's
+          going in today. Which saver covers which merchant is the one thing
+          the bank can't know: it's declared in SAVER_FEEDS in
+          src/lib/up/savers.ts. What's going in is measured, not matched —
+          every internal transfer names the account it landed in.
+        </p>
+        <SaversPanel report={savers} />
+      </Panel>
 
       {allocation && (
         <Panel

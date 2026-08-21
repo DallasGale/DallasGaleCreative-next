@@ -4,11 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "predev": "node --experimental-strip-types scripts/snapshot-up.ts --ensure",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
     "format": "prettier --write .",
-    "check": "biome check --write ."
+    "check": "biome check --write .",
+    "prebuild": "node --experimental-strip-types --env-file-if-exists=.env.local scripts/snapshot-up.ts",
+    "snapshot": "node --experimental-strip-types --env-file-if-exists=.env.local scripts/snapshot-up.ts"
   },
   "dependencies": {
     "classnames": "^2.5.1",
