@@ -4,6 +4,7 @@ import {cache} from "react"
 import {verifySession} from "@/lib/auth/dal"
 import type {UpCollection} from "./client"
 import {upGet, upGetAll, upQuery} from "./client"
+import {monthWindows} from "./period"
 import type {
   UpAccount,
   UpCategory,
@@ -29,13 +30,49 @@ import type {
 export const UP_HISTORY_TAG = "up-history"
 
 /**
- * Thirteen months of transactions is around fifty sequential requests to Up.
- * Doing that on every page load is what makes a render long enough for the
- * connection to be cut mid-stream — and all but the last few days of it is
- * settled history that cannot change. Fifteen minutes keeps today's spending
- * close to live while making a reload essentially free.
+ * The month in progress is the only one still moving, so it is the only one
+ * fetched anything like live.
  */
-const HISTORY_TTL_SECONDS = 15 * 60
+const CURRENT_MONTH_TTL_SECONDS = 15 * 60
+
+/**
+ * Finished months are settled history. They are refetched twice a day only
+ * because a hold placed last month can settle this one, which changes an
+ * amount slightly and fills in a settlement date.
+ */
+const SETTLED_MONTH_TTL_SECONDS = 12 * 60 * 60
+
+/**
+ * How many month windows to walk at once. Each is a short cursor chain, and
+ * running a handful side by side is what keeps a cold load comfortably inside
+ * a serverless time limit. Kept well below the window count so a year of
+ * history never arrives as one burst that Up would be right to rate limit.
+ */
+const CONCURRENT_WINDOWS = 6
+
+/** Runs `task` across `items`, at most `limit` in flight at a time. */
+async function mapWithLimit<T, R>(
+  items: T[],
+  limit: number,
+  task: (item: T) => Promise<R>,
+): Promise<R[]> {
+  const results = new Array<R>(items.length)
+  let cursor = 0
+
+  const workers = Array.from(
+    {length: Math.min(limit, items.length)},
+    async () => {
+      while (true) {
+        const index = cursor++
+        if (index >= items.length) return
+        results[index] = await task(items[index])
+      }
+    },
+  )
+
+  await Promise.all(workers)
+  return results
+}
 
 /** Up's category taxonomy is fixed; refetching it hourly would be silly. */
 const CATEGORY_TTL_SECONDS = 24 * 60 * 60
@@ -61,6 +98,12 @@ export const getCategories = cache(async (): Promise<UpCategory[]> => {
  * All transactions from `sinceIso` to now. The parameter is a string rather
  * than a Date so cache() can key on it by value.
  *
+ * Fetched a month at a time, several months at once. One long cursor walk is
+ * both slow (fifty round trips nose to tail) and badly cacheable (every page
+ * expires together, so one stale page refetches the lot). A month is a short
+ * walk under a URL that never changes, which means finished months can sit in
+ * the cache for hours while today's stays fresh.
+ *
  * `truncated` comes back with the data because the budget divides these
  * totals by a month count — an incomplete fetch would quietly understate
  * every average rather than fail.
@@ -68,13 +111,36 @@ export const getCategories = cache(async (): Promise<UpCategory[]> => {
 export const getTransactionsSince = cache(
   async (sinceIso: string): Promise<UpCollection<UpTransaction>> => {
     await verifySession()
-    return upGetAll<UpTransaction>(
-      `/transactions${upQuery({
-        "page[size]": 100,
-        "filter[since]": sinceIso,
-      })}`,
-      {revalidate: HISTORY_TTL_SECONDS, tags: [UP_HISTORY_TAG]},
+
+    const windows = monthWindows(new Date(sinceIso))
+
+    const pages = await mapWithLimit(windows, CONCURRENT_WINDOWS, (window) =>
+      upGetAll<UpTransaction>(
+        `/transactions${upQuery({
+          "page[size]": 100,
+          "filter[since]": window.since,
+          "filter[until]": window.until,
+        })}`,
+        {
+          revalidate: window.current
+            ? CURRENT_MONTH_TTL_SECONDS
+            : SETTLED_MONTH_TTL_SECONDS,
+          tags: [UP_HISTORY_TAG],
+        },
+      ),
     )
+
+    // Windows overlap on their boundary instant by design, so the merge has
+    // to be by id rather than by concatenation.
+    const byId = new Map<string, UpTransaction>()
+    for (const page of pages) {
+      for (const tx of page.items) byId.set(tx.id, tx)
+    }
+
+    return {
+      items: [...byId.values()],
+      truncated: pages.some((page) => page.truncated),
+    }
   },
 )
 

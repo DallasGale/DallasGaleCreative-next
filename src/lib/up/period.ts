@@ -141,3 +141,60 @@ export function startOfMonth(bucket: MonthBucket): Date {
 export function toRfc3339(date: Date): string {
   return date.toISOString()
 }
+
+export type MonthWindow = {
+  /** Sortable key of the month this covers, e.g. "2026-08". */
+  key: string
+  /** Lower bound, RFC-3339. */
+  since: string
+  /** Upper bound. Absent on the final window, which simply runs to now. */
+  until?: string
+  /** True for the month still in progress — the only one that can change. */
+  current: boolean
+}
+
+/**
+ * Splits a date range into month-aligned windows, oldest first.
+ *
+ * Cursor pagination is sequential by nature: you cannot ask for page nine
+ * without walking pages one to eight. A year of transactions is around fifty
+ * of those round trips end to end, which on a constrained plan is enough to
+ * run a request out of time before it renders anything. Cut the same range
+ * into months and each is a short chain that can be walked alongside the
+ * others, turning fifty sequential requests into a handful of concurrent
+ * ones for the same fifty results.
+ *
+ * Windows share their boundary instant rather than trying to abut it exactly,
+ * so a transaction landing on a month boundary is fetched twice rather than
+ * missed once — whether Up reads `filter[until]` as inclusive or exclusive.
+ * The caller dedupes by id.
+ */
+export function monthWindows(from: Date, now = new Date()): MonthWindow[] {
+  const start = partsInZone(from)
+  const end = partsInZone(now)
+  const span = (end.year - start.year) * 12 + (end.month - start.month)
+  const windows: MonthWindow[] = []
+
+  for (let i = 0; i <= span; i++) {
+    const offset = start.month - 1 + i
+    const bucket = bucketFor(
+      start.year + Math.floor(offset / 12),
+      (offset % 12) + 1,
+    )
+    const nextBucket = bucketFor(
+      start.year + Math.floor((offset + 1) / 12),
+      ((offset + 1) % 12) + 1,
+    )
+
+    windows.push({
+      key: bucket.key,
+      // The first window honours the caller's exact start rather than
+      // widening it to the whole month.
+      since: toRfc3339(i === 0 ? from : startOfMonth(bucket)),
+      until: i === span ? undefined : toRfc3339(startOfMonth(nextBucket)),
+      current: i === span,
+    })
+  }
+
+  return windows
+}
