@@ -8,12 +8,13 @@ import BudgetSection, {
 import {verifySession} from "@/lib/auth/dal"
 
 /**
- * Thirteen months of paginated bank history is a long render on a cold cache.
- * The platform default is generous, but this route is the one place in the app
- * that can genuinely need the time, and a render cut short mid-stream surfaces
- * as a closed connection rather than as an error anyone can act on.
+ * Sixty seconds is the ceiling on Vercel's Hobby plan, so this is as much room
+ * as the route can ask for — and the reason the history is fetched a month at
+ * a time, several at once, rather than as one fifty-request cursor walk. A
+ * render that runs out of time surfaces as a closed connection rather than as
+ * an error anyone can act on, so the budget here is real.
  */
-export const maxDuration = 300
+export const maxDuration = 60
 
 export default async function DashboardPage() {
   // Redirects to /login if the session cookie is missing or invalid.
