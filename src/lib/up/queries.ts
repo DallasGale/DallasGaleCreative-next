@@ -5,6 +5,7 @@ import {verifySession} from "@/lib/auth/dal"
 import type {UpCollection} from "./client"
 import {upGet, upGetAll, upQuery} from "./client"
 import {monthWindows} from "./period"
+import {snapshotSince} from "./snapshot"
 import type {
   UpAccount,
   UpCategory,
@@ -18,9 +19,11 @@ import type {
  * so components can fetch what they need without prop drilling and still only
  * hit Up once per render.
  *
- * Balances are read live. History is read from Next's data cache, because
- * walking it fresh on every load is slow enough to be unreliable — the Refresh
- * button clears it (see refreshDashboard) when you want the walk repeated.
+ * Balances are read live. History comes from the snapshot bundled at build
+ * time (see ./snapshot), because walking it fresh on every load is slow
+ * enough to be unreliable. Only when there's no snapshot does it go to the
+ * network, and then through Next's data cache — the Refresh button clears
+ * that (see refreshDashboard) when you want the walk repeated.
  */
 
 /**
@@ -98,11 +101,17 @@ export const getCategories = cache(async (): Promise<UpCategory[]> => {
  * All transactions from `sinceIso` to now. The parameter is a string rather
  * than a Date so cache() can key on it by value.
  *
- * Fetched a month at a time, several months at once. One long cursor walk is
- * both slow (fifty round trips nose to tail) and badly cacheable (every page
- * expires together, so one stale page refetches the lot). A month is a short
- * walk under a URL that never changes, which means finished months can sit in
- * the cache for hours while today's stays fresh.
+ * Served from the build-time snapshot whenever there is one that covers the
+ * window. This is the whole reason the dashboard renders in production: the
+ * history is settled, so fetching it per-request was fifty round trips spent
+ * re-learning something that hadn't changed.
+ *
+ * The fallback is the old path, kept because a clone with no snapshot should
+ * still work: a month at a time, several months at once. One long cursor walk
+ * is both slow (fifty round trips nose to tail) and badly cacheable (every
+ * page expires together, so one stale page refetches the lot). A month is a
+ * short walk under a URL that never changes, which means finished months can
+ * sit in the cache for hours while today's stays fresh.
  *
  * `truncated` comes back with the data because the budget divides these
  * totals by a month count — an incomplete fetch would quietly understate
@@ -111,6 +120,9 @@ export const getCategories = cache(async (): Promise<UpCategory[]> => {
 export const getTransactionsSince = cache(
   async (sinceIso: string): Promise<UpCollection<UpTransaction>> => {
     await verifySession()
+
+    const bundled = snapshotSince(sinceIso)
+    if (bundled) return bundled
 
     const windows = monthWindows(new Date(sinceIso))
 

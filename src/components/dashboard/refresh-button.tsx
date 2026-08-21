@@ -5,10 +5,10 @@ import {useTransition} from "react"
 import {refreshDashboard} from "@/app/actions/refresh"
 
 /**
- * Balances are fetched live, so a router refresh alone would repaint those and
- * leave every transaction-derived figure exactly as it was — the history is
- * cached for fifteen minutes so the page can load at all. Dropping that cache
- * first is what makes this button mean what it says.
+ * Repaints what's actually live: balances, and the saver positions built on
+ * them. The transaction history behind the forecast is frozen at build time,
+ * so this can't move it — see src/lib/up/snapshot.ts for why that trade is
+ * the reason the page renders at all.
  */
 export default function RefreshButton() {
   const router = useRouter()
