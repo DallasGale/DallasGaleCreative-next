@@ -69,11 +69,8 @@ export async function login(
   }
 
   if (!matches(password, expected)) {
-    // Says nothing about either value: after the normalising above, a failure
-    // here means the environment genuinely holds a different password, and
-    // the fix is always to re-set it and redeploy rather than to read a log.
     console.error(
-      "Login rejected: DASHBOARD_PASSWORD does not match the password submitted.",
+      `Login rejected: DASHBOARD_PASSWORD does not match the password submitted.${diagnose(password)}`,
     )
     return {error: "Incorrect password."}
   }
@@ -90,6 +87,41 @@ export async function login(
 
   // redirect() throws internally, so it must sit outside any try/catch.
   redirect(destination)
+}
+
+/**
+ * Opt-in diagnostic for the one failure this app can't reason about: the
+ * value in the hosting dashboard looks right, and login still says no.
+ *
+ * The two candidates are indistinguishable from the outside — the running
+ * deployment carries a stale copy of the variable (environment changes only
+ * reach deployments built after them), or the password being typed genuinely
+ * isn't the one stored. A fingerprint separates them: run the same hash over
+ * your local value and compare. Equal means the deployment has the right
+ * value and the typing is wrong; different means the deployment is serving
+ * something else and needs rebuilding.
+ *
+ *   grep '^DASHBOARD_PASSWORD=' .env.local | cut -d= -f2- | tr -d '\n' \
+ *     | shasum -a 256 | cut -c1-8
+ *
+ * Eight hex characters is enough to tell two values apart and far too little
+ * to recover either. Set DASHBOARD_DEBUG_AUTH=1 to turn it on, and remove it
+ * once the answer is in — a fingerprint in a log is still a fact about a
+ * password.
+ */
+function diagnose(submitted: string): string {
+  if (!process.env.DASHBOARD_DEBUG_AUTH) return ""
+
+  const raw = process.env.DASHBOARD_PASSWORD ?? ""
+  const expected = configuredPassword() ?? ""
+  const print = (value: string) =>
+    createHash("sha256").update(value).digest("hex").slice(0, 8)
+
+  return (
+    ` Configured: ${expected.length} chars, fingerprint ${print(expected)}` +
+    ` (raw ${raw.length} chars before trimming).` +
+    ` Submitted: ${submitted.length} chars, fingerprint ${print(submitted)}.`
+  )
 }
 
 export async function logout(): Promise<void> {
