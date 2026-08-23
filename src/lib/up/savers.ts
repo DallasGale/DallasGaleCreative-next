@@ -79,6 +79,17 @@ export type SaverFeed = {
    */
   goal?: boolean
   /**
+   * Not a saver at all. This money stays in the Spending account and is paid
+   * as it lands, so it's forecast like everything else but never routed and
+   * never reported as a gap — there's no account to be short.
+   *
+   * It still has to be claimed rather than left out, because the forecast has
+   * to add up: what the savers hold plus what Spending keeps is the whole
+   * number, and a cost that's deliberately unrouted looks identical to one
+   * that fell through a crack unless it's declared.
+   */
+  spending?: boolean
+  /**
    * Claims everything no other feed does, so the split is exhaustive: every
    * dollar the forecast expects lands in a saver and the weekly figures add
    * back up to the headline. Exactly one feed should set this, and it has to
@@ -120,11 +131,13 @@ export const SAVER_FEEDS: SaverFeed[] = [
 
   // -- Media and software -------------------------------------------------
   {
+    // All three are cancelled, so none of them is what this saver funds any
+    // more — the category is. Patreon, Hubbl and HBO Max are the same kind of
+    // spend under a different name, and the account keeps its old name in Up
+    // until you rename it. The row will look far cheaper than it used to.
     saver: "Netflix/YouTube/Kayo",
-    merchants: ["netflix", "youtube", "kayo", "kayo sports"],
-    // Patreon, Hubbl and HBO Max are the same kind of spend under a
-    // different name, so the category catches what the list doesn't.
     categories: ["tv-and-music"],
+    note: "Netflix, YouTube and Kayo are cancelled. This now covers what's left in TV and music — rename it in Up and the row follows.",
   },
   {
     saver: "SAAS",
@@ -141,6 +154,10 @@ export const SAVER_FEEDS: SaverFeed[] = [
 
   // -- Kids ---------------------------------------------------------------
   {saver: "Beast Academy", merchants: ["beast academy"]},
+  // Declared in COMMITMENTS rather than read from charges, so this claims a
+  // cost the history doesn't contain yet. Matched by name like any other:
+  // the feed can't tell, and shouldn't have to.
+  {saver: "Guitar Tuition", merchants: ["guitar tuition"]},
   {saver: "AusCycling", merchants: ["auscycling"]},
   {saver: "Buzz Swimming", merchants: ["jack hort"]},
   {saver: "Groceries", categories: ["groceries"]},
@@ -185,11 +202,6 @@ export const SAVER_FEEDS: SaverFeed[] = [
     saver: "Race entries",
     merchants: ["entryboss", "bmx club", "mylaps", "trybooking"],
   },
-  {
-    saver: "Medical out-of-pocket",
-    categories: ["health-and-medical"],
-    note: "What Medibank doesn't cover — gaps, scans, scripts.",
-  },
   {saver: "Eating out", categories: ["restaurants-and-cafes", "takeaway"]},
   {
     saver: "Home maintenance",
@@ -198,21 +210,59 @@ export const SAVER_FEEDS: SaverFeed[] = [
   },
   {
     saver: "Car servicing",
-    merchants: ["midland cycles"],
     categories: ["car-insurance-and-maintenance", "parking"],
   },
   {saver: "Clothing", categories: ["clothing-and-accessories"]},
-  {saver: "Cycling", categories: ["cycling"]},
+  // Seven kinds of spending folded into one line, and then deliberately not
+  // made a saver: shops, days out, cycling, hobbies, haircuts, fitness and
+  // medical gaps are what the Spending account is for. Each of them was a
+  // proposal here at $4 to $26 a week, and seven transfers of pocket money
+  // into seven accounts you'd only transfer straight back out is work with no
+  // budget behind it.
+  //
+  // Declared rather than simply deleted, and that distinction is the whole
+  // reason this flag exists. Deleting it wouldn't mean "this stays in
+  // Spending" — it would mean the charges fall through to "Everything else"
+  // and quietly become a saver anyway. This says out loud that $81 a week is
+  // meant to sit in Spending, which makes it a figure you can hold yourself
+  // to rather than a residue.
+  //
+  // What it gives up is the reason each part was listed separately: a saver
+  // that funds one thing tells you when that thing gets more expensive. This
+  // can't — a quiet doubling in bike parts reads the same as a haircut. The
+  // per-merchant breakdown is the only thing left that will show you.
+  //
+  // The merchants are named rather than left to their categories because Up
+  // files almost none of them: Big W, Kmart, Myer, Amazon, AliExpress and
+  // Officeworks all arrive with no category at all. Without this list they'd
+  // reach the same place by accident instead of on purpose.
+  //
+  // Then nine categories, in the order they cost.
   {
-    saver: "Hobbies",
-    categories: ["hobbies", "games-and-software", "news-magazines-and-books"],
+    saver: "General Spending",
+    spending: true,
+    merchants: [
+      "big w",
+      "kmart",
+      "myer",
+      "amazon",
+      "aliexpress",
+      "officeworks",
+      "just $2",
+    ],
+    categories: [
+      "events-and-gigs",
+      "holidays-and-travel",
+      "cycling",
+      "hobbies",
+      "games-and-software",
+      "news-magazines-and-books",
+      "hair-and-beauty",
+      "fitness-and-wellbeing",
+      "health-and-medical",
+    ],
+    note: "Stays in Spending — shops, days out, cycling, hobbies, haircuts, fitness, and the medical gaps Medibank doesn't cover.",
   },
-  {saver: "Days out", categories: ["events-and-gigs", "holidays-and-travel"]},
-  {saver: "General shopping", merchants: ["big w", "kmart", "myer", "amazon", "aliexpress", "officeworks", "just $2"]},
-  {saver: "Cash", merchants: ["atm cash out"]},
-  {saver: "Haircuts", categories: ["hair-and-beauty"]},
-  {saver: "Fitness", categories: ["fitness-and-wellbeing"]},
-  {saver: "Pets", categories: ["pets"]},
 
   // Last, and deliberately: everything no feed above claims. Without it the
   // savers would add up to less than the budget headline and the difference
@@ -286,6 +336,8 @@ export type SaverPlan = {
   /** True when SAVER_FEEDS says what this saver pays for. */
   declared: boolean
   goal: boolean
+  /** Declared as staying in Spending, so it's a cost rather than a saver. */
+  spending: boolean
   note: string | null
   /** What the forecast says has to pass through here, three ways. */
   perWeekCents: number
@@ -304,9 +356,18 @@ export type SaverPlanReport = {
   months: number
   savers: SaverPlan[]
   /**
-   * The whole forecast, per month. Equal to the savers' total whenever a
-   * catch-all feed is declared — which is the invariant this view rests on,
-   * so the page states it rather than assuming it.
+   * Declared as staying put: forecast spend that never becomes a transfer.
+   * Kept out of `savers` so the routing sheet only lists things you route,
+   * and counted separately below so the total still reconciles.
+   */
+  spending: SaverPlan[]
+  spendingPerMonthCents: number
+  spendingPerWeekCents: number
+  /**
+   * The whole forecast, per month. Equal to the savers' total plus what
+   * Spending keeps, whenever a catch-all feed is declared — which is the
+   * invariant this view rests on, so the page states it rather than assuming
+   * it.
    */
   forecastPerMonthCents: number
   /** Forecast spend no saver claims. It comes out of Spending as it lands. */
@@ -512,6 +573,7 @@ export function buildSaverPlan(
       ),
       declared: feed !== null,
       goal: feed?.goal === true,
+      spending: feed?.spending === true,
       note: feed?.note ?? null,
       // All three come off the annual figure rather than doubling the weekly,
       // so a fortnight is a real 1/26th of the year and not two rounded weeks.
@@ -519,14 +581,24 @@ export function buildSaverPlan(
       perFortnightCents: Math.round(perYear / 26),
       perMonthCents,
       currentPerMonthCents,
-      // A goal has no bill to fall short of, so it never reports a gap.
+      // A goal has no bill to fall short of, and a Spending line has no
+      // account to be short in. Neither reports a gap.
       gapPerMonthCents:
-        feed?.goal === true ? 0 : perMonthCents - currentPerMonthCents,
+        feed?.goal === true || feed?.spending === true
+          ? 0
+          : perMonthCents - currentPerMonthCents,
       funds,
     }
   })
 
   plans.sort((a, b) => b.perMonthCents - a.perMonthCents)
+
+  // Split late rather than early: a Spending line is claimed, tallied and
+  // averaged by exactly the same code as a saver, because it's the same
+  // question — what does this cost — and only the answer to "where does it
+  // go" differs.
+  const spending = plans.filter((plan) => plan.spending)
+  const routed = plans.filter((plan) => !plan.spending)
 
   const unallocated = [...unclaimed.values()]
     .map((fund) => ({
@@ -539,18 +611,25 @@ export function buildSaverPlan(
     [...unclaimed.values()].reduce((sum, fund) => sum + fund.perMonthCents, 0) /
       monthCount,
   )
-  const perMonthCents = plans.reduce((sum, plan) => sum + plan.perMonthCents, 0)
+  const spendingPerMonthCents = spending.reduce(
+    (sum, plan) => sum + plan.perMonthCents,
+    0,
+  )
+  const perMonthCents = routed.reduce((sum, plan) => sum + plan.perMonthCents, 0)
   // Goals are excluded here for the same reason they never report a gap:
   // including the thousands a month going into Savings would leave the total
   // column and the total gap describing two different sets of savers.
-  const currentPerMonthCents = plans.reduce(
+  const currentPerMonthCents = routed.reduce(
     (sum, plan) => (plan.goal ? sum : sum + plan.currentPerMonthCents),
     0,
   )
 
   return {
     months: months.length,
-    savers: plans,
+    savers: routed,
+    spending,
+    spendingPerMonthCents,
+    spendingPerWeekCents: Math.round(spendingPerMonthCents / WEEKS_PER_MONTH),
     forecastPerMonthCents: Math.round(forecastCents / monthCount),
     unallocated,
     unallocatedPerMonthCents,
@@ -561,6 +640,9 @@ export function buildSaverPlan(
     perFortnightCents: Math.round((perMonthCents * 12) / 26),
     perMonthCents,
     currentPerMonthCents,
-    gapPerMonthCents: plans.reduce((sum, plan) => sum + plan.gapPerMonthCents, 0),
+    gapPerMonthCents: routed.reduce(
+      (sum, plan) => sum + plan.gapPerMonthCents,
+      0,
+    ),
   }
 }

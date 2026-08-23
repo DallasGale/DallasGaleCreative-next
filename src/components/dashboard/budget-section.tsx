@@ -20,7 +20,7 @@ import {
   startOfMonth,
   toRfc3339,
 } from "@/lib/up/period"
-import {repriceForecast} from "@/lib/up/pricing"
+import {repriceForecast, withCommitments} from "@/lib/up/pricing"
 import {getAccounts, getCategories, getTransactionsSince} from "@/lib/up/queries"
 import {buildSaverPlan} from "@/lib/up/savers"
 import {buildSavings, isFeeCharge} from "@/lib/up/savings"
@@ -29,6 +29,7 @@ import type {UpAccount, UpCategory, UpTransaction} from "@/lib/up/types"
 import AllocationPanel from "./allocation-panel"
 import BudgetSummary from "./budget-summary"
 import BudgetTable from "./budget-table"
+import CommittedNote from "./committed-note"
 import HeldOutPanel from "./held-out-panel"
 import MerchantsChart from "./merchants-chart"
 import {ErrorPanel, Panel, Skeleton, Stat} from "./primitives"
@@ -97,19 +98,26 @@ export default async function BudgetSection() {
   // where "what happened" becomes "what will happen".
   const completedKeys = new Set(completed.map((m) => m.key))
   const forecast = buildForecastBasis(transactions, completedKeys)
-  // Two adjustments turn history into a forecast, in order: drop what won't
-  // happen again, then restate what's left at what it costs today. The second
-  // reads the first, so a merchant that's been held out is never repriced.
+  // Three adjustments turn history into a forecast, in order: drop what won't
+  // happen again, restate what's left at what it costs today, then add what's
+  // coming that the history has never seen. The second reads the first, so a
+  // merchant that's been held out is never repriced; the third is declared
+  // outright, so it reads neither.
   const priced = repriceForecast(transactions, completed, current.key, forecast)
+  const committed = withCommitments(priced.transactions, completed)
+  // Everything forward-looking is built from this, so a commitment reaches
+  // the headline, its bucket and its saver by the same route real spending
+  // does. Nothing downstream has to know it was declared.
+  const ahead = committed.transactions
   const budget = buildBudget(
-    priced.transactions,
+    ahead,
     categories,
     completed,
     current.key,
     forecast.ids,
   )
   const buckets = buildBuckets(
-    priced.transactions,
+    ahead,
     categories,
     completed,
     current.key,
@@ -117,7 +125,7 @@ export default async function BudgetSection() {
     transactions,
   )
   const savings = buildSavings(
-    priced.transactions,
+    ahead,
     completed,
     buckets,
     forecast.ids,
@@ -129,7 +137,7 @@ export default async function BudgetSection() {
   // predictions about what things cost.
   const savers = buildSaverPlan(
     accounts,
-    priced.transactions,
+    ahead,
     forecast,
     completed,
     transactions,
@@ -191,7 +199,7 @@ export default async function BudgetSection() {
   // Completed months only. The chart puts each merchant in per-month terms,
   // and folding in a part-finished month would understate every one of them.
   const merchants = topMerchants(
-    priced.transactions.filter((tx) => !forecast.ids.has(tx.id)),
+    ahead.filter((tx) => !forecast.ids.has(tx.id)),
     10,
     completedKeys,
   )
@@ -228,6 +236,11 @@ export default async function BudgetSection() {
         perMonthDeltaCents={priced.perMonthDeltaCents}
       />
 
+      <CommittedNote
+        added={committed.added}
+        perMonthCents={committed.perMonthCents}
+      />
+
       {frozenAt && (
         <p className="text-xs text-med-grey">
           History frozen {formatDay(frozenAt)} — {transactions.length}{" "}
@@ -249,9 +262,11 @@ export default async function BudgetSection() {
       >
         <p className="mb-4 text-sm text-med-grey">
           The figure above, split across the savers that actually have to pay
-          it. You've already built the routing — a saver per bill — so this
-          only says how much each one needs and how far that is from what's
-          going in today. Which saver covers which merchant is the one thing
+          it — and the part that isn't routed at all, because it's declared as
+          staying in Spending. You've already built the routing — a saver per
+          bill — so this only says how much each one needs and how far that is
+          from what's going in today. Which saver covers which merchant is the
+          one thing
           the bank can't know: it's declared in SAVER_FEEDS in
           src/lib/up/savers.ts. What's going in is measured, not matched —
           every internal transfer names the account it landed in.
