@@ -327,6 +327,13 @@ export const CANCELLED_MERCHANTS: string[] = [
   "stan",
   "peloton",
   "healesville stockfeeds",
+  // Cancelled August 2026, all three at once. YouTube billed through Apple
+  // rather than under its own name, so the entry that actually stops it is
+  // the one removed from CURRENT_PRICES — this is here so a charge arriving
+  // under a Google descriptor later can't quietly re-enter the forecast.
+  "netflix",
+  "kayo",
+  "youtube*",
 ]
 
 const CANCELLED_PATTERN = merchantPattern(CANCELLED_MERCHANTS)
@@ -399,7 +406,43 @@ export function finishedReason(description: string): string | null {
  * is deleted from the history; it's only held out of the averages.
  * ------------------------------------------------------------------ */
 
-export const ONE_OFF_MERCHANTS: string[] = ["sky music"]
+export const ONE_OFF_MERCHANTS: string[] = [
+  "sky music",
+  // Motocross gear and bike parts: real spending, bought when something needs
+  // replacing rather than on any rhythm. Four charges across the year at two
+  // shops is enough for the averages to bill you $92 a month forever for a
+  // purchase you're not planning to repeat.
+  "mxstore",
+  "midland cycles",
+  // One episode of care, Sep 2025 to Jan 2026: specialist, imaging, surgeon,
+  // anaesthetist, hospital, pharmacy, rehab. Every charge is real and none of
+  // it is a rate you'll go on paying, but health-and-medical is a lumpy-bill
+  // category — an annual premium looks identical to a single big charge —
+  // so the automatic rule is deliberately blind here and each one has to be
+  // named. The chemist is left in: that one genuinely recurs.
+  "victorian bone and joint specialists",
+  "vision radiology",
+  "simon lau",
+  "victorian anaesthetic group",
+  "st vincent",
+  "slade pharmacies",
+  "exercise thought",
+  // Bought once each, at shops you'll go back to for something else entirely.
+  // A chicken coop, a bike frame jig, a guitar, a pile of toys — none of them
+  // a rate. Both CTD and Billy Hyde bill under two descriptors apiece, and
+  // one entry catches both.
+  "omlet",
+  "ctd industries",
+  "billy hyde",
+  // One word, no spaces, exactly as the card feed sends it.
+  "kidstoylover",
+  // Not a merchant but a transaction type, and the one entry here worth
+  // thinking twice about: this stops the forecast expecting *any* future
+  // withdrawal, not just these two. That's the intent — cash is money moved
+  // rather than money spent, and what it buys is already budgeted elsewhere.
+  // If a regular cash habit ever starts, take this out.
+  "atm cash out",
+]
 
 const ONE_OFF_PATTERN = merchantPattern(ONE_OFF_MERCHANTS)
 

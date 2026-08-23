@@ -12,7 +12,7 @@ import {EmptyState} from "./primitives"
  * is the thing you can go and fix in the Up app this afternoon.
  */
 export default function SaversPanel({report}: {report: SaverPlanReport}) {
-  if (report.savers.length === 0) {
+  if (report.savers.length === 0 && report.spending.length === 0) {
     return <EmptyState message="No savers on this account, so there's nothing to route money into yet." />
   }
 
@@ -28,12 +28,19 @@ export default function SaversPanel({report}: {report: SaverPlanReport}) {
   const idle = report.savers.filter(
     (plan) => !plan.goal && plan.exists && plan.perMonthCents === 0,
   )
+  // Spending included: its note is the one that says why it isn't a saver,
+  // which is exactly the kind of thing this footer exists to say.
+  const notes = [...report.savers, ...report.spending].filter(
+    (plan) => plan.note,
+  )
 
   // The whole point of the catch-all feed: if these disagree, a dollar of the
   // forecast has gone missing between the budget and the savers, and saying
-  // so beats quietly presenting a total that doesn't add up.
-  const balanced =
-    Math.abs(report.perMonthCents - report.forecastPerMonthCents) <= 100
+  // so beats quietly presenting a total that doesn't add up. Spending is on
+  // this side of the equation because it's forecast money with a declared
+  // home — it just isn't a transfer.
+  const accountedFor = report.perMonthCents + report.spendingPerMonthCents
+  const balanced = Math.abs(accountedFor - report.forecastPerMonthCents) <= 100
 
   return (
     <div className="flex flex-col gap-6">
@@ -110,11 +117,52 @@ export default function SaversPanel({report}: {report: SaverPlanReport}) {
         flatter the total.
       </p>
 
+      {report.spending.length > 0 && (
+        <div className="rounded-md border border-sky-400/20 bg-sky-400/[0.04] p-4">
+          <p className="text-xs font-bold tracking-widest text-med-grey uppercase">
+            Stays in Spending ·{" "}
+            <span className="text-white">
+              {formatCents(report.spendingPerWeekCents)} a week
+            </span>
+          </p>
+          <p className="mt-2 text-sm text-med-grey">
+            {formatCents(report.spendingPerMonthCents)} a month the forecast
+            expects and no saver holds, because it isn't a bill waiting to be
+            paid — it's the money you spend as you go. It's declared rather
+            than left over, which is the difference between a number to keep
+            to and a number you discover at the end of the month.
+          </p>
+          {report.spending.map((plan) => (
+            <div key={plan.id} className="mt-3">
+              <p className="text-sm">
+                <span className="font-bold text-white">{plan.name}</span>{" "}
+                <span className="tabular-nums text-med-grey">
+                  {formatCents(plan.perWeekCents)} a week ·{" "}
+                  {formatCents(plan.perMonthCents)} a month
+                </span>
+              </p>
+              <ul className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs text-med-grey">
+                {plan.funds.slice(0, 12).map((fund) => (
+                  <li key={fund.name} className="tabular-nums">
+                    {fund.name}{" "}
+                    <span className="font-bold text-white">
+                      {formatCents(fund.perMonthCents)}
+                    </span>
+                    /mo
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      )}
+
       {balanced ? (
         <p className="rounded-md border border-emerald-400/20 bg-emerald-400/[0.04] p-4 text-sm text-med-grey">
           <span className="font-bold text-white">Nothing left over.</span> The
-          savers add up to {formatCents(report.perMonthCents)} a month, which
-          is the whole forecast —{" "}
+          savers add up to {formatCents(report.perMonthCents)} a month, plus{" "}
+          {formatCents(report.spendingPerMonthCents)} that stays in Spending —
+          together the whole forecast, {" "}
           {formatCents(report.forecastPerMonthCents)}. Every dollar you're
           told to put aside has somewhere to be, and the last saver on the
           list is what makes that true: whatever no other feed claims lands in
@@ -124,8 +172,9 @@ export default function SaversPanel({report}: {report: SaverPlanReport}) {
       ) : (
         <p className="rounded-md border border-rose-400/30 bg-rose-400/[0.04] p-4 text-sm text-med-grey">
           <span className="font-bold text-white">Doesn't add up.</span> The
-          savers total {formatCents(report.perMonthCents)} a month against a
-          forecast of {formatCents(report.forecastPerMonthCents)}. The
+          savers and Spending together total {formatCents(accountedFor)} a
+          month against a forecast of{" "}
+          {formatCents(report.forecastPerMonthCents)}. The
           difference is forecast spend with no saver behind it — declare a
           catchAll feed in src/lib/up/savers.ts so nothing falls through.
         </p>
@@ -160,7 +209,7 @@ export default function SaversPanel({report}: {report: SaverPlanReport}) {
         </div>
       )}
 
-      {(idle.length > 0 || goals.length > 0) && (
+      {(idle.length > 0 || goals.length > 0 || notes.length > 0) && (
         <div className="flex flex-col gap-2 border-t border-white/10 pt-4 text-xs text-med-grey">
           {goals.length > 0 && (
             <p>
@@ -176,14 +225,12 @@ export default function SaversPanel({report}: {report: SaverPlanReport}) {
               stopped, or nothing in SAVER_FEEDS points at it yet.
             </p>
           )}
-          {report.savers
-            .filter((plan) => plan.note)
-            .map((plan) => (
-              <p key={plan.id}>
-                <span className="font-bold text-white">{plan.name}:</span>{" "}
-                {plan.note}
-              </p>
-            ))}
+          {notes.map((plan) => (
+            <p key={plan.id}>
+              <span className="font-bold text-white">{plan.name}:</span>{" "}
+              {plan.note}
+            </p>
+          ))}
         </div>
       )}
     </div>

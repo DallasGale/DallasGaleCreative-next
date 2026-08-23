@@ -70,14 +70,16 @@ export type CurrentPrice = {
  * a statement that these are the only charges it will make from now on.
  */
 export const CURRENT_PRICES: CurrentPrice[] = [
-  // Dropped from about $30 a month to $9.99 in July 2026.
-  {merchant: "netflix", amount: 10, every: "monthly"},
-  // $40, then $45.99, then paused for five months, and now $25.
-  {merchant: "kayo", amount: 25, every: "monthly"},
-  // One descriptor, two services, plus a year of App Store purchases and a
-  // $1,998 device in the history that aren't coming back.
+  // Netflix ($9.99) and Kayo ($25) were declared here until they were
+  // cancelled in August 2026. A cancelled service doesn't belong here at all:
+  // this list says "this is what it will charge from now on", and the honest
+  // answer is nothing. They're in CANCELLED_MERCHANTS instead, which drops
+  // them from the forecast rather than restating them.
+  //
+  // One descriptor, one service now that YouTube is gone — but the `what` is
+  // worth keeping, because a year of App Store purchases and a $1,998 device
+  // are also in Apple's history and none of it is coming back.
   {merchant: "apple", amount: 14.99, every: "monthly", what: "iCloud"},
-  {merchant: "apple", amount: 22.99, every: "monthly", what: "YouTube"},
 ]
 
 /* ------------------------------------------------------------------ *
@@ -403,6 +405,175 @@ function restate(
       cashback: null,
       createdAt: at,
       settledAt: at,
+    },
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * Commitments
+ *
+ * A cost you've taken on that the history has never seen.
+ *
+ * CURRENT_PRICES restates a merchant you already pay; this is for the one you
+ * start paying tomorrow. An average over twelve months has no way to know
+ * about it — the charge simply isn't there — so the forecast would keep
+ * telling you to put aside a figure that's already wrong, and the saver you
+ * created for it would sit at zero looking like an idea rather than a bill.
+ *
+ * Each entry is written into the window as one charge a month, at the monthly
+ * equivalent of its rhythm, so every report downstream treats it exactly like
+ * spending that really happened: it lands in a bucket, it reaches a saver, and
+ * it counts towards the weekly number. Past-facing figures are built from the
+ * untouched history and never see these, which is the right way round — you
+ * haven't spent this yet.
+ *
+ * The cost of that convenience is that an entry here is unfalsifiable: no
+ * charge will ever contradict it. Take one out once the real charges have a
+ * year behind them, or once it stops.
+ * ------------------------------------------------------------------ */
+
+export type Commitment = {
+  /** How it reads on the page, and what a saver feed matches against. */
+  description: string
+  /** Dollars per charge. */
+  amount: number
+  every: Recurrence
+  /**
+   * Up's category id, so it buckets with things of its kind rather than
+   * landing in Other. Must be a real one — "family", "fitness-and-wellbeing",
+   * "hobbies" and the rest are visible on any transaction in the app.
+   */
+  category: string
+  parentCategory: string
+  /** Why it isn't in the history. Shown on the page verbatim. */
+  why: string
+}
+
+export const COMMITMENTS: Commitment[] = [
+  {
+    description: "Guitar Tuition",
+    amount: 35,
+    every: "weekly",
+    // Where Beast Academy already sits, and for the same reason: a kid's
+    // lessons are a family cost, not the buyer's hobby. Sheet music from
+    // Werner Guitar Editions stays where Up filed it, under TV and music —
+    // it's the same instrument but not the same commitment.
+    category: "family",
+    parentCategory: "personal",
+    why: "Started August 2026, so no charges have landed yet.",
+  },
+]
+
+export type Committed = {
+  description: string
+  /** The price in words, e.g. "$35 a week". */
+  detail: string
+  perMonthCents: number
+  why: string
+}
+
+export type CommittedForecast = {
+  /** The window's transactions with each commitment written in. */
+  transactions: UpTransaction[]
+  added: Committed[]
+  /** What the commitments add to the monthly forecast. */
+  perMonthCents: number
+}
+
+/**
+ * Writes the declared commitments into the window.
+ *
+ * `months` must be the completed months the averages are built from — one
+ * charge lands in each, so the average comes out at exactly the declared
+ * price. The month in progress is left alone.
+ *
+ * Runs after repricing rather than before it: a commitment is already stated
+ * at today's price, and there's nothing there for a rhythm-detector to find.
+ */
+export function withCommitments(
+  transactions: UpTransaction[],
+  months: MonthBucket[],
+): CommittedForecast {
+  if (COMMITMENTS.length === 0 || months.length === 0) {
+    return {transactions, added: [], perMonthCents: 0}
+  }
+
+  // Every synthetic charge needs an account to belong to, and inventing an id
+  // would put it in an account that doesn't exist. Borrowing a real one keeps
+  // it inside the accounts every other report already walks.
+  const sample = transactions.find(isSpend)
+  if (!sample) return {transactions, added: [], perMonthCents: 0}
+
+  const written = [...transactions]
+  const added: Committed[] = []
+
+  for (const commitment of COMMITMENTS) {
+    const chargeCents = Math.round(commitment.amount * 100)
+    const perMonthCents = perMonth(chargeCents, commitment.every)
+    const slug = commitment.description.trim().toLowerCase()
+
+    for (const month of months) {
+      written.push(commit(sample, commitment, slug, perMonthCents, month))
+    }
+
+    added.push({
+      description: commitment.description,
+      detail: `${money(chargeCents)} ${PERIOD_WORD[commitment.every]}`,
+      perMonthCents,
+      why: commitment.why,
+    })
+  }
+
+  return {
+    transactions: written,
+    added,
+    perMonthCents: added.reduce((sum, item) => sum + item.perMonthCents, 0),
+  }
+}
+
+/** One month's worth of a commitment, as a charge that never happened. */
+function commit(
+  sample: UpTransaction,
+  commitment: Commitment,
+  slug: string,
+  perMonthCents: number,
+  month: MonthBucket,
+): UpTransaction {
+  // Mid-month and mid-day, same as a repriced charge: far enough from either
+  // edge that no timezone resolves it into the month next door.
+  const at = `${month.key}-15T12:00:00Z`
+
+  return {
+    ...sample,
+    id: `committed:${slug}:${month.key}`,
+    attributes: {
+      ...sample.attributes,
+      status: "SETTLED",
+      description: commitment.description,
+      // Null rather than a copy of the sample's: rawText is what the merchant
+      // actually sent, and nothing was sent.
+      rawText: null,
+      message: null,
+      amount: {
+        ...sample.attributes.amount,
+        value: (-perMonthCents / 100).toFixed(2),
+        valueInBaseUnits: -perMonthCents,
+      },
+      foreignAmount: null,
+      roundUp: null,
+      cashback: null,
+      note: null,
+      createdAt: at,
+      settledAt: at,
+    },
+    relationships: {
+      ...sample.relationships,
+      transferAccount: {data: null},
+      category: {data: {type: "categories", id: commitment.category}},
+      parentCategory: {
+        data: {type: "categories", id: commitment.parentCategory},
+      },
+      tags: {data: []},
     },
   }
 }
