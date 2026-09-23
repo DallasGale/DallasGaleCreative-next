@@ -26,7 +26,7 @@ const Footer = () => {
 
       <div className="flex w-full flex-row justify-start gap-5 md:justify-end">
         <a
-          href="/CV-Folio.pdf"
+          href="/CV-Folio-v2.0.0.pdf"
           className="footer-cta p-2.5 text-sm font-semibold"
         >
           Download Folio
