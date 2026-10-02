@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import {useRef, useState} from "react"
+import {useEffect, useRef, useState} from "react"
 import projectsData from "@/data/recent-projects.json"
 import type {Project} from "@/types"
 import ProjectCard from "./project-card"
@@ -48,6 +48,14 @@ const ProjectSlides = ({project, isFirst}: {project: ProjectSlideData; isFirst: 
     setCurrentSlide(index)
   }
 
+  const handleResize = () => {
+    if (!scrollRef.current) return
+    const index = Math.round(
+      scrollRef.current.scrollLeft / scrollRef.current.clientWidth,
+    )
+    setCurrentSlide(index)
+  }
+
   const scrollToSlide = (index: number) => {
     if (!scrollRef.current) return
     scrollRef.current.scrollTo({
@@ -55,6 +63,11 @@ const ProjectSlides = ({project, isFirst}: {project: ProjectSlideData; isFirst: 
       behavior: "smooth",
     })
   }
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize)
+    return () => window.removeEventListener("resize", handleResize)
+  }, [])
 
   return (
     <div className="flex flex-col gap-3 mb-8">
