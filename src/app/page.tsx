@@ -5,6 +5,8 @@ import Footer from "@/components/footer"
 import Header from "@/components/header"
 import Intro from "@/components/intro"
 import RecentWork from "@/components/recent-work"
+import MobileCarousel from "@/components/recent-work/mobile-carousel"
+import SectionHeading from "@/components/section-heading"
 import ScrollEffects from "@/components/scroll-effects"
 import useMobile from "@/hooks/useMobile"
 
@@ -16,7 +18,14 @@ export default function Home() {
       <Header />
       <main className="relative z-0 mx-auto flex flex-col">
         <Intro />
-        {!isMobile && <RecentWork />}
+        {isMobile ? (
+          <>
+            <SectionHeading id="recent-work-heading" heading="Recent Work." />
+            <MobileCarousel />
+          </>
+        ) : (
+          <RecentWork />
+        )}
         <Employers />
         {/* <About /> */}
         {/* <h3 className="color-white mt-20 h-50 text-center text-2xl font-extrabold md:mb-20 md:text-8xl">
