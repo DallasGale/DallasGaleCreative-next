@@ -28,7 +28,7 @@
       }
     ],
     "summary": "Mind Australia - MVP re-branded build.",
-    "keyTakeaways": "Rebuilt homepage and content pages for one of Australia's largest mental health service providers. Injected React/NextJS web components with Tailwind and Payload CMS into existing Drupal site to maintain consistent branding.",
+    "keyTakeaways": "Rebuilt homepage and content pages for one of Australia's largest mental health service providers. Injected React/NextJS web components with Tailwind and Payload CMS into existing Drupal site to maintain consistent branding while the full-site built progresses",
     "paragraphs": [
       {
         "text": "I built an MVP re-branded <a target=\"_blank\" class=\"link\" href=\"https://www.mindaustralia.org.au/\">home page</a> and <a target=\"_blank\" class=\"link\" href=\"https://www.mindaustralia.org.au/lived-experience-at-mind\">generic content page</a> for <strong>Today</strong>'s client, <i><strong>Mind Australia</strong></i>, one of the largest providers of community-managed specialist mental health services in Australia. "
@@ -76,7 +76,7 @@
       }
     ],
     "summary": "Australia Post - Locker Land event landing page.",
-    "keyTakeaways": "Developed landing page for Australia Post's Locker Land event featuring heavy animations and interactive transitions. Built with React and Tailwind, including arc carousel animations and modal-driven benefits explorer.",
+    "keyTakeaways": "Developed landing page for Australia Post's Locker Land event featuring animations and interactive transitions. Built with React and Tailwind, including custom arc carousel and modal-driven benefits explorer.",
     "paragraphs": [
       {
         "text": "For two weeks I worked with <a target=\"_blank\" class=\"link\" href=\"https://www.thinkerbell.com.au\">Thinkerbell</a> to produce a fun little landing page for <a target=\"_blank\" class=\"link\" href=\"https://www.auspost.com.au\">Australia Post</a>."
@@ -271,7 +271,7 @@
       }
     ],
     "summary": "Online study campaign landing page.",
-    "keyTakeaways": "Developed static campaign landing page with interactive course matching quiz using AstroJS for minimal overhead. Integrated SwiperJS parallax slider and React quiz component to forward users to customized course pathways.",
+    "keyTakeaways": "Developed static campaign landing page with interactive course matching quiz using AstroJS so the build could be used in clients php codebase. Integrated SwiperJS parallax slider and React quiz component to forward users to customised course pathways.",
     "paragraphs": [
       {
         "text": "<a target=\"_blank\" class=\"link\"  href=\"https://www.open.edu.au/\">Open Universities Australia</a> required a new campaign landing page to promote their online study course programs. The landing page included an interactive course matching quiz that forwards the user to an existing OUA page with customised course pathways."
