@@ -34,10 +34,10 @@ const TimelineItem = ({d}: {d: TimelineEntry}) => {
               <Image
                 src={d.logo.src}
                 alt={d.logo.alt}
-                width={200}
-                height={200}
-                layout="responsive"
-                className="mb-3 max-h-[200px] max-w-[100px]"
+                width={100}
+                height={100}
+                className="mb-3 max-h-[100px] max-w-[100px]"
+                style={{width: 'auto', height: 'auto'}}
               />
             )}
             <p className="pt-0 text-sm font-bold">{d.location}</p>

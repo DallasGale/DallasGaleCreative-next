@@ -1,100 +1,132 @@
 [
   {
-    "agencies": [
-      {
-        "id": 1,
-        "name": "Gee Digital",
-        "url": "",
-        "logo": "/images/logos/gee-logo.png"
-      },
-      {
-        "id": 2,
-        "name": "Big Mirror Labs",
-        "url": "",
-        "logo": "/images/logos/bigmirrorlabs.jpeg"
-      },
-      {
-        "id": 3,
-        "name": "Dijgtal",
-        "url": "https://dijgtal.com/",
-        "logo": "/images/logos/dijgtal.svg"
-      },
-      {
-        "id": 4,
-        "name": "Hardhat",
-        "url": "",
-        "logo": "/images/logos/hardhat.svg"
-      },
-      {
-        "id": 5,
-        "name": "Isobar",
-        "url": "",
-        "logo": "/images/logos/isobar-white.png"
-      },
-      {
-        "id": 6,
-        "name": "Pidgeon & Ward",
-        "url": "",
-        "logo": "/images/logos/pw.jpg"
-      },
-      {
-        "id": 7,
-        "name": "Prime Motive",
-        "url": "",
-        "logo": "/images/logos/prime-motive.jpg"
-      },
-      {
-        "id": 8,
-        "name": "Thinkerbell",
-        "url": "",
-        "logo": "/images/logos/thinkerbell.png"
-      },
-      {
-        "id": 9,
-        "name": "Today",
-        "url": "",
-        "logo": "/images/logos/today-white.png"
-      }
-    ],
-    "organisations": [
-      {
-        "id": 1,
-        "name": "ABC",
-        "url": "",
-        "logo": "/images/logos/abc.png"
-      },
-      {
-        "id": 2,
-        "name": "ACER",
-        "url": "",
-        "logo": "/images/logos/acer.svg"
-      }
-    ],
-    "startups": [
-      {
-        "id": 1,
-        "name": "My Local Broker",
-        "url": "",
-        "logo": "/images/logos/mlb-white.png"
-      },
-      {
-        "id": 2,
-        "name": "HIA Talk",
-        "url": "",
-        "logo": "/images/logos/hia-black-white.jpg"
-      },
-      {
-        "id": 3,
-        "name": "Homepolish",
-        "url": "",
-        "logo": "/images/logos/homepolish-wh.jpg"
-      },
-      {
-        "id": 4,
-        "name": "Rarity Punks",
-        "url": "",
-        "logo": "/images/logos/rarity.jpg"
-      }
-    ]
+    "id": 15,
+    "name": "Upgrowth",
+    "url": "https://www.upgrowth.com.au/",
+    "logo": "/images/logos/upgrowth_australia_logo.jpg",
+    "status": "current",
+    "location": "Australia"
+  },
+  {
+    "id": 8,
+    "name": "Thinkerbell",
+    "url": "https://thinkerbell.com/",
+    "logo": "/images/logos/thinkerbell.png",
+    "status": "current",
+    "location": "Australia"
+  },
+  {
+    "id": 9,
+    "name": "Today Design",
+    "url": "https://today.design/",
+    "logo": "/images/logos/today-white.png",
+    "status": "current",
+    "location": "Australia"
+  },
+  {
+    "id": 3,
+    "name": "Dijgtal",
+    "url": "https://dijgtal.com/",
+    "logo": "/images/logos/dijgtal.svg",
+    "status": "past",
+    "location": "Australia"
+  },
+  {
+    "id": 6,
+    "name": "Pidgeon & Ward",
+    "url": "https://pidgeonward.com.au/",
+    "logo": "/images/logos/pw.jpg",
+    "status": "past",
+    "location": "Australia"
+  },
+  {
+    "id": 11,
+    "name": "ACER",
+    "url": "https://www.acer.org/au/",
+    "logo": "/images/logos/acer.svg",
+    "status": "past",
+    "location": "Australia"
+  },
+  {
+    "id": 15,
+    "name": "Giggabuddy",
+    "url": "https://www.linkedin.com/company/gigabuddy/",
+    "logo": "/images/logos/rarity.jpg",
+    "status": "past",
+    "location": "Australia"
+  },
+
+  {
+    "id": 10,
+    "name": "ABC",
+    "url": "https://abc.net.au",
+    "logo": "/images/logos/abc.png",
+    "status": "past",
+    "location": "Australia"
+  },
+  {
+    "id": 4,
+    "name": "Hardhat",
+    "url": "https://hardhat.com.au/",
+    "logo": "/images/logos/hardhat.svg",
+    "status": "past",
+    "location": "Australia"
+  },
+
+  {
+    "id": 7,
+    "name": "Prime Motive",
+    "url": "https://primemotive.com.au/",
+    "logo": "/images/logos/prime-motive.jpg",
+    "status": "past",
+    "location": "Australia"
+  },
+  {
+    "id": 2,
+    "name": "Big Mirror Labs",
+    "url": "https://www.linkedin.com/company/bigmirrorlabs/",
+    "logo": "/images/logos/bigmirrorlabs.jpeg",
+    "status": "past",
+    "location": "New York, USA"
+  },
+  {
+    "id": 14,
+    "name": "Homepolish",
+    "url": "https://www.linkedin.com/company/homepolish/posts/?feedView=all",
+    "logo": "/images/logos/homepolish-wh.jpg",
+    "status": "past",
+    "location": "New York, USA"
+  },
+  {
+    "id": 13,
+    "name": "HIA Talk",
+    "url": "https://hia.ai/",
+    "logo": "/images/logos/hia-black-white.jpg",
+    "status": "past",
+    "location": "Los Angeles, USA"
+  },
+  {
+    "id": 5,
+    "name": "Dentsu -Isobar",
+    "url": "https://www.dentsu.com/",
+    "logo": "/images/logos/isobar-white.png",
+    "status": "past",
+    "location": "Australia"
+  },
+  {
+    "id": 12,
+    "name": "My Local Broker",
+    "url": "https://mylocalbroker.com.au/",
+    "logo": "/images/logos/mlb-white.png",
+    "status": "past",
+    "location": "Australia"
+  },
+  {
+    "id": 1,
+    "name": "Gee Digital",
+    "url": "https://ggg.com.au/",
+    "logo": "/images/logos/gee-logo.png",
+    "status": "past",
+    "location": "Australia"
   }
 ]

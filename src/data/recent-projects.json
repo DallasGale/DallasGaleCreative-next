@@ -2,7 +2,7 @@
   {
     "id": 8,
     "employer": {
-      "name": "Today",
+      "name": "Today Design",
       "url": "https://today.design/"
     },
     "meta": {
@@ -13,13 +13,22 @@
       "path": "/images/projects/2026/today/logo.jpeg",
       "alt": ""
     },
-    "thumbnails": [
+    "heroImages": [
       {
-        "path": "/images/projects/2026/today/mind.png",
+        "path": "/images/projects/2026/today/mind/macbook.png",
+        "alt": ""
+      },
+      {
+        "path": "/images/projects/2026/today/mind/iphone-1.png",
+        "alt": ""
+      },
+      {
+        "path": "/images/projects/2026/today/mind/iphone-2.png",
         "alt": ""
       }
     ],
     "summary": "Mind Australia - MVP re-branded build.",
+    "keyTakeaways": "Rebuilt homepage and content pages for one of Australia's largest mental health service providers. Injected React/NextJS web components with Tailwind and Payload CMS into existing Drupal site to maintain consistent branding.",
     "paragraphs": [
       {
         "text": "I built an MVP re-branded <a target=\"_blank\" class=\"link\" href=\"https://www.mindaustralia.org.au/\">home page</a> and <a target=\"_blank\" class=\"link\" href=\"https://www.mindaustralia.org.au/lived-experience-at-mind\">generic content page</a> for <strong>Today</strong>'s client, <i><strong>Mind Australia</strong></i>, one of the largest providers of community-managed specialist mental health services in Australia. "
@@ -32,6 +41,7 @@
       {
         "label": "Mind Australia",
         "url": "https://www.mindaustralia.org.au/",
+        "urlLabel": "mindaustralia.org.au",
         "archived": false
       }
     ],
@@ -51,13 +61,22 @@
       "path": "/images/projects/2025/thinkerbell/logo.jpeg",
       "alt": ""
     },
-    "thumbnails": [
+    "heroImages": [
       {
-        "path": "/images/projects/2026/thinkerbell/locker-land.png",
+        "path": "/images/projects/2026/thinkerbell/locker-land/macbook.png",
+        "alt": ""
+      },
+      {
+        "path": "/images/projects/2026/thinkerbell/locker-land/iphone-1.png",
+        "alt": ""
+      },
+      {
+        "path": "/images/projects/2026/thinkerbell/locker-land/iphone-2.png",
         "alt": ""
       }
     ],
     "summary": "Australia Post - Locker Land event landing page.",
+    "keyTakeaways": "Developed landing page for Australia Post's Locker Land event featuring heavy animations and interactive transitions. Built with React and Tailwind, including arc carousel animations and modal-driven benefits explorer.",
     "paragraphs": [
       {
         "text": "For two weeks I worked with <a target=\"_blank\" class=\"link\" href=\"https://www.thinkerbell.com.au\">Thinkerbell</a> to produce a fun little landing page for <a target=\"_blank\" class=\"link\" href=\"https://www.auspost.com.au\">Australia Post</a>."
@@ -70,6 +89,7 @@
       {
         "label": "Locker Land",
         "url": "https://lockerland.com.au/",
+        "urlLabel": "lockerland.com.au",
         "archived": false
       }
     ],
@@ -94,17 +114,44 @@
       "path": "/images/projects/2026/dijgtal/logo.jpeg",
       "alt": ""
     },
-    "thumbnails": [
+    "heroImageSets": [
       {
-        "path": "/images/projects/2026/dijgtal/linde.png",
-        "alt": ""
+        "name": "Baoli",
+        "images": [
+          {
+            "path": "/images/projects/2026/dijgtal/baoli/macbook.png",
+            "alt": ""
+          },
+          {
+            "path": "/images/projects/2026/dijgtal/baoli/iphone-1.png",
+            "alt": ""
+          },
+          {
+            "path": "/images/projects/2026/dijgtal/baoli/iphone-2.png",
+            "alt": ""
+          }
+        ]
       },
       {
-        "path": "/images/projects/2026/dijgtal/baoli.png",
-        "alt": ""
+        "name": "Linde",
+        "images": [
+          {
+            "path": "/images/projects/2026/dijgtal/linde/macbook.png",
+            "alt": ""
+          },
+          {
+            "path": "/images/projects/2026/dijgtal/linde/iphone-1.png",
+            "alt": ""
+          },
+          {
+            "path": "/images/projects/2026/dijgtal/linde/iphone-2.png",
+            "alt": ""
+          }
+        ]
       }
     ],
     "summary": "Dual website replatforming.",
+    "keyTakeaways": "Replatformed two websites (Linde MH and Baoli Forklifts) from Sitecore to Next.js/React using monorepo architecture with shared design system. Implemented Storybook components, Vanilla Extract CSS for multi-brand variants, and Sanity.io CMS with custom page builder.",
     "paragraphs": [
       {
         "text": "Linde MH and Baoli Forklifts (same ownership) needed their websites replatformed from Sitecore to <a target=\"_blank\" class=\"link\" href=\"https://nextjs.org/\">Next.js</a>/<a target=\"_blank\" class=\"link\" href=\"https://react.dev/\">React</a>. We had a hard deadline of early February '26, so during the planning stage, we decided on a monorepo approach, which allowed us to build two websites from a single design system. All shared components and modules were built with <a target=\"_blank\" class=\"link\" href=\"https://storybook.js.org/\">Storybook</a>, with the only difference between sites being the brand styling. We used Vanilla Extract CSS to enable variant-based styles, allowing us to handle both brand variations from a single stylesheet."
@@ -120,55 +167,13 @@
       {
         "label": "Linde Material Handling",
         "url": "https://lindemh.com.au/",
+        "urlLabel": "lindemh.com.au",
         "archived": false
       },
       {
         "label": "Baoli Forklifts",
         "url": "https://baoliforklifts.com.au/",
-        "archived": false
-      }
-    ],
-    "press": []
-  },
-  {
-    "id": 5,
-    "employer": {
-      "name": "Pidgeon & Ward",
-      "url": "https://pidgeonward.com.au/"
-    },
-    "meta": {
-      "date": "July '25 - Current ",
-      "jobType": "Freelance"
-    },
-    "logo": {
-      "path": "/images/projects/2026/musimap/logo.png",
-      "alt": ""
-    },
-    "thumbnails": [
-      {
-        "path": "/images/projects/2026/musimap/screenshot.png",
-        "alt": ""
-      }
-    ],
-    "summary": "AI Music Analysis Site.",
-    "paragraphs": [
-      {
-        "text": "<a target=\"_blank\" class=\"link\"  href=\"https://app.dev.musimap.ai\">MusiMap</a> is a platform that analyses audio/songs with the MusiTag AI backend. It is used to generate music tagging such as genres, moods, situations, and similar artists,which is mainly used by publishing houses. Audio can be uploaded as MP3s or via a shared URL from Spotify."
-      },
-      {
-        "text": "I was hired to build out <a target=\"_blank\" class=\"link\" href=\"https://app.dev.musimap.ai\">MusiMap.ai</a> using <a target=\"_blank\" class=\"link\" href=\"https://nextjs.org/\">Next.js</a>/<a target=\"_blank\" class=\"link\" href=\"https://react.dev/\">React</a> with <a target=\"_blank\" class=\"link\" href=\"https://storybook.js.org/\">Storybook</a> and integrate the backend APIs."
-      },
-      {
-        "text": "As this product is going to be heavily marketed in Europe, we also needed to include language translations based on a visitor's location. The marketing pages include many animations and inline videos to evoke the human side of music."
-      },
-      {
-        "text": "This is an ongoing project that will launch officially in 2026."
-      }
-    ],
-    "links": [
-      {
-        "label": "MusiMap.com",
-        "url": "https://app.musimap.com/",
+        "urlLabel": "baoliforklifts.com.au",
         "archived": false
       }
     ],
@@ -188,13 +193,22 @@
       "path": "/images/projects/2025/thinkerbell/logo.jpeg",
       "alt": ""
     },
-    "thumbnails": [
+    "heroImages": [
       {
-        "path": "/images/projects/2025/thinkerbell/screenshot.png",
+        "path": "/images/projects/2025/thinkerbell/kayo/macbook.png",
+        "alt": ""
+      },
+      {
+        "path": "/images/projects/2025/thinkerbell/kayo/iphone-1.png",
+        "alt": ""
+      },
+      {
+        "path": "/images/projects/2025/thinkerbell/kayo/iphone-2.png",
         "alt": ""
       }
     ],
     "summary": "Full-stack competition landing page.",
+    "keyTakeaways": "Built two-page competition site for Kayo Sports/Fox Footy using AstroJS/React frontend with Google Firebase backend. Received 500+ entries during promotion. Launched with celebrity reveal video during AFL Draft coverage featuring commentary skill submissions.",
     "paragraphs": [
       {
         "text": "The <a target=\"_blank\" class=\"link\" href=\"https://kayosports.com.au/\">Kayo Sports</a> Call Up! was a short two-page competition site to find the next <a target=\"_blank\" class=\"link\" href=\"https://www.foxsports.com.au/afl\">Fox Footy</a> on-air star who will feature on the new-look Super Saturday LIVE coverage in 2025. The competition required a user to submit their entry with a link to either a YouTube, Instagram, Facebook, or TikTok video of them displaying their commentary skills."
@@ -213,6 +227,7 @@
       {
         "label": "thekayocallup.kayosports.com.au",
         "url": "https://kayo-dallasgale1s-projects.vercel.app/",
+        "urlLabel": "archived.url",
         "archived": true
       }
     ],
@@ -241,13 +256,22 @@
       "path": "/images/projects/2025/thinkerbell/logo.jpeg",
       "alt": ""
     },
-    "thumbnails": [
+    "heroImages": [
       {
-        "path": "/images/projects/2025/thinkerbell/oua-screenshot.png",
+        "path": "/images/projects/2025/thinkerbell/oua/macbook.png",
+        "alt": ""
+      },
+      {
+        "path": "/images/projects/2025/thinkerbell/oua/iphone-1.png",
+        "alt": ""
+      },
+      {
+        "path": "/images/projects/2025/thinkerbell/oua/iphone-2.png",
         "alt": ""
       }
     ],
     "summary": "Online study campaign landing page.",
+    "keyTakeaways": "Developed static campaign landing page with interactive course matching quiz using AstroJS for minimal overhead. Integrated SwiperJS parallax slider and React quiz component to forward users to customized course pathways.",
     "paragraphs": [
       {
         "text": "<a target=\"_blank\" class=\"link\"  href=\"https://www.open.edu.au/\">Open Universities Australia</a> required a new campaign landing page to promote their online study course programs. The landing page included an interactive course matching quiz that forwards the user to an existing OUA page with customised course pathways."
@@ -260,88 +284,7 @@
       {
         "label": "open.edu.au/campaign/online-study/",
         "url": "https://www.open.edu.au/campaign/online-study/",
-        "archived": false
-      }
-    ],
-    "press": []
-  },
-  {
-    "id": 2,
-    "employer": {
-      "name": "Thinkerbell",
-      "url": "https://thinkerbell.com.au/"
-    },
-    "meta": {
-      "date": "Dec '24 - Jan '25",
-      "jobType": "Freelance"
-    },
-    "logo": {
-      "path": "/images/projects/2025/thinkerbell/logo.jpeg",
-      "alt": ""
-    },
-    "thumbnails": [
-      {
-        "path": "/images/projects/2025/thinkerbell/pen-screenshot.png",
-        "alt": ""
-      }
-    ],
-    "summary": "Full-stack quiz micro-site.",
-    "paragraphs": [
-      {
-        "text": "<a target=\"_blank\" class=\"link\" href=\"https://www.penington.org.au/\">Penington Institute</a> is an independent policy research non-profit committed to reducing serious drug harms. As a contracted developer, I built a quiz platform for their Regulate It campaign, an interactive experience designed to show Australians how their views on cannabis regulation compare with the broader population."
-      },
-      {
-        "text": "The platform was built with <a target=\"_blank\" class=\"link\" href=\"https://astro.build/\">AstroJS</a>/<a target=\"_blank\" class=\"link\" href=\"https://react.dev/\">React</a> on the front-end, with  <a target=\"_blank\" class=\"link\" href=\"https://firebase.google.com/\">Google Firebase/Firestore</a> db on the back-end to capture user postcodes on quiz completion and deliver personalised results. Users were encouraged to share their results on social media via a generated share URL, with Cloud Functions handling the dynamic creation of result images."
-      }
-    ],
-    "links": [
-      {
-        "label": "quiz.regulateit.com.au",
-        "url": "https://quiz.regulateit.com.au/",
-        "archived": false
-      }
-    ],
-    "press": []
-  },
-  {
-    "id": 1,
-    "employer": {
-      "name": "Caravan Cleaning Melbourne",
-      "url": "https://www.caravancleaningmelbourne.com.au"
-    },
-    "meta": {
-      "date": "Aug '24 - Oct '24",
-      "jobType": "Freelance"
-    },
-    "logo": {
-      "path": "/images/projects/2024/caravan-cleaning-melourne/logo.svg",
-      "alt": ""
-    },
-    "thumbnails": [
-      {
-        "path": "/images/projects/2024/caravan-cleaning-melourne/screenshot.png",
-        "alt": ""
-      }
-    ],
-    "summary": "Design & Build - Full-stack marketing site.",
-    "paragraphs": [
-      {
-        "text": "<a target=\"_blank\" class=\"link\" href=\"https://www.caravancleaningmelbourne.com.au/\">Caravan Cleaning Melbourne</a> is a family-run Melbourne business that approached me to overhaul their exisiting website. The site had become difficult to maintain and lacked responsiveness across smaller devices, with little consideration for accessibility."
-      },
-      {
-        "text": "I began  wireframing in <a target=\"_blank\" class=\"link\" href=\"https://www.figma.com/\">Figma</a>, shaping a more modern design focused on their core services and free quote enquiries. The redesign also introduced a before/after section to showcase the effectiveness of their cleaning work."
-      },
-      {
-        "text": "Preserving their existing SEO rankings was a key concern heading into the relaunch, so a mobile-first approach with statically generated pages was a priority from the outset. The final build used <a target=\"_blank\" class=\"link\" href=\"https://astro.build/\">AstroJS</a>/<a target=\"_blank\" class=\"link\" href=\"https://react.dev/\">React</a> on the front-end, with <a target=\"_blank\" class=\"link\" href=\"https://www.sanity.io\">Sanity.io</a> powering the CMS for easy content management."
-      },
-      {
-        "text": "Since launch, the business has maintained their #1 Google ranking and seen a strong increase in customer enquiries."
-      }
-    ],
-    "links": [
-      {
-        "label": "caravancleaningmelbourne.com.au",
-        "url": "https://www.caravancleaningmelbourne.com.au/",
+        "urlLabel": "open.edu.au/campaign/online-study",
         "archived": false
       }
     ],
