@@ -7,6 +7,7 @@ import {
   IconDeviceMobile,
 } from "@tabler/icons-react"
 import {AnimatePresence, motion, useScroll, useTransform} from "framer-motion"
+import Image from "next/image"
 import {useEffect, useRef, useState} from "react"
 import projectsData from "@/data/recent-projects.json"
 import useMobile from "@/hooks/useMobile"
@@ -68,12 +69,13 @@ const Carousel = () => {
 
   if (heroImageSets && heroImageSets.length > 0) {
     const currentSet = heroImageSets[setIndex]
-    if (currentSet && currentSet.images && currentSet.images[deviceIndex]) {
-      currentImage = currentSet.images[deviceIndex]
+    if (currentSet && currentSet.images && currentSet.images.length > 0) {
+      currentImage =
+        currentSet.images[Math.min(deviceIndex, currentSet.images.length - 1)]
       isHeroImage = deviceIndex === 0
     }
   } else if (heroImages && heroImages.length > 0) {
-    currentImage = heroImages[deviceIndex]
+    currentImage = heroImages[Math.min(deviceIndex, heroImages.length - 1)]
     isHeroImage = deviceIndex === 0
   }
 
@@ -121,7 +123,7 @@ const Carousel = () => {
           </button>
         </div>
 
-        <div className="justift-center flex w-full flex-row items-center md:w-auto lg:justify-start">
+        <div className="flex w-full flex-row items-center justify-center md:w-auto lg:justify-start">
           {heroImageSets && heroImageSets.length > 0 && (
             <div className="flex w-full items-center gap-2">
               {heroImageSets.map((set: any, index: number) => (
@@ -209,7 +211,7 @@ const Carousel = () => {
               className="flex w-full items-start justify-center"
             >
               <motion.div
-                className=""
+                className="relative h-[40dvh] w-full md:h-[800px]"
                 initial={false}
                 animate={{
                   y: [0, -24, 14, 2, 0],
@@ -228,24 +230,14 @@ const Carousel = () => {
                   },
                 }}
               >
-                {/** biome-ignore lint/performance/noImgElement: <explanation> */}
-                <img
+                <Image
                   src={currentImageUrl}
                   alt={currentImage.alt || "Project image"}
-                  style={
-                    isHeroImage
-                      ? {
-                          minWidth: "100%",
-                          maxWidth: "100%",
-                          maxHeight: isMobile ? "40vh" : "800px",
-                        }
-                      : {
-                          minWidth: "100%",
-                          maxWidth: isMobile ? "150px" : "900px",
-                          maxHeight: isMobile ? "40vh" : "800px",
-                        }
-                  }
-                  className="object-cover drop-shadow-2xl"
+                  fill
+                  priority={currentIndex === 0}
+                  quality={85}
+                  sizes={isHeroImage ? "100vw" : isMobile ? "150px" : "900px"}
+                  className="bg-transparent object-contain drop-shadow-2xl"
                 />
               </motion.div>
             </motion.div>
