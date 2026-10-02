@@ -4,7 +4,7 @@ const useMobile = () => {
   const [isMobile, setIsMobile] = useState(false)
 
   function initSize() {
-    if (window.innerWidth < 768) setIsMobile(true)
+    if (window.innerWidth < 1268) setIsMobile(true)
     else setIsMobile(false)
   }
 
