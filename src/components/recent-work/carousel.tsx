@@ -1,109 +1,254 @@
-import cn from "classnames"
-import {animate, motion, type PanInfo, useMotionValue} from "framer-motion"
+"use client"
+
+import {
+  IconChevronLeft,
+  IconChevronRight,
+  IconDeviceLaptop,
+  IconDeviceMobile,
+} from "@tabler/icons-react"
+import {AnimatePresence, motion, useScroll, useTransform} from "framer-motion"
 import {useEffect, useRef, useState} from "react"
 import projectsData from "@/data/recent-projects.json"
+import useMobile from "@/hooks/useMobile"
 import type {Project} from "@/types"
-import useMobile from "../../hooks/useMobile"
-import Control from "./control"
 import ProjectCard from "./project-card"
-
-const SPRING = {type: "spring" as const, stiffness: 300, damping: 34}
 
 const projects = projectsData as Project[]
 
 const Carousel = () => {
-  const isMobile = useMobile()
-  const SLIDE_FRACTION = isMobile ? 1 : 0.8
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [setIndex, setSetIndex] = useState(0)
+  const [deviceIndex, setDeviceIndex] = useState(0)
+  const [mounted, setMounted] = useState(false)
+  const isMobileQuery = useMobile()
+  const isMobile = mounted ? isMobileQuery : false
+  const sectionRef = useRef<HTMLElement>(null)
+  const {scrollYProgress} = useScroll({
+    target: sectionRef,
+    offset: ["center end", "end center"],
+  })
+  const imageOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.3, 0.7, 1],
+    [0, 1, 1, 0],
+  )
+  const heroImageY = useTransform(scrollYProgress, [0, 1], [0, -150])
 
-  const containerRef = useRef<HTMLDivElement>(null)
-  const [width, setWidth] = useState(0)
-  const [index, setIndex] = useState(0)
-  const x = useMotionValue(0)
-
-  const slideWidth = width * SLIDE_FRACTION
-  const lastIndex = projects.length - 1
-
-  // Track the container width so slide offsets stay in sync with the CSS basis.
   useEffect(() => {
-    const el = containerRef.current
-    if (!el) return
-    const update = () => setWidth(el.clientWidth)
-    update()
-    const ro = new ResizeObserver(update)
-    ro.observe(el)
-    return () => ro.disconnect()
+    setMounted(true)
   }, [])
 
-  // Re-seat the track (without animating) whenever the measured width changes.
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
-  useEffect(() => {
-    x.set(-index * slideWidth)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [slideWidth])
-
-  const goTo = (i: number) => {
-    const clamped = Math.max(0, Math.min(lastIndex, i))
-    setIndex(clamped)
-    animate(x, -clamped * slideWidth, SPRING)
+  const navigateProject = (direction: number) => {
+    const newIndex = currentIndex + direction
+    if (newIndex >= 0 && newIndex < projects.length) {
+      setCurrentIndex(newIndex)
+      setSetIndex(0)
+      setDeviceIndex(0)
+    }
   }
 
-  const onDragEnd = (
-    _e: MouseEvent | TouchEvent | PointerEvent,
-    {offset, velocity}: PanInfo,
-  ) => {
-    const threshold = Math.max(slideWidth * 0.15, 50)
-    if (offset.x < -threshold || velocity.x < -400) goTo(index + 1)
-    else if (offset.x > threshold || velocity.x > 400) goTo(index - 1)
-    else goTo(index) // snap back to the current slide
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") navigateProject(-1)
+      if (e.key === "ArrowRight") navigateProject(1)
+    }
+
+    window.addEventListener("keydown", handleKeyDown)
+    return () => window.removeEventListener("keydown", handleKeyDown)
+  }, [currentIndex])
+
+  const project = projects[currentIndex]
+  const heroImageSets = (project as any).heroImageSets
+  const heroImages = (project as any).heroImages
+
+  if (!mounted || !project) return null
+
+  let currentImage: any = null
+  let isHeroImage = false
+
+  if (heroImageSets && heroImageSets.length > 0) {
+    const currentSet = heroImageSets[setIndex]
+    if (currentSet && currentSet.images && currentSet.images[deviceIndex]) {
+      currentImage = currentSet.images[deviceIndex]
+      isHeroImage = deviceIndex === 0
+    }
+  } else if (heroImages && heroImages.length > 0) {
+    currentImage = heroImages[deviceIndex]
+    isHeroImage = deviceIndex === 0
+  }
+
+  if (!currentImage) return null
+
+  const currentImageUrl = currentImage.path
+
+  let currentImageCount = 0
+  if (heroImageSets && heroImageSets.length > 0) {
+    const currentSet = heroImageSets[setIndex]
+    currentImageCount = currentSet?.images?.length || 0
+  } else if (heroImages) {
+    currentImageCount = heroImages.length
   }
 
   return (
-    <>
-      <div className="relative sticky top-35 left-5 z-10 mt-4 mb-30 flex w-[200px] items-center justify-between gap-6">
-        <div className="flex items-center gap-3">
-          <Control
-            direction="previous"
-            onClick={() => goTo(index - 1)}
-            disabled={index === 0}
-          />
-          <Control
-            direction="next"
-            onClick={() => goTo(index + 1)}
-            disabled={index === lastIndex}
-          />
-
-          <span className="ml-2 text-xs tabular-nums opacity-60">
-            {index + 1} / {projects.length}
+    <section
+      ref={sectionRef}
+      id="recent-work"
+      className="relative mx-auto mb-[200px] flex h-auto w-full max-w-[20300px] flex-col items-start p-5"
+    >
+      <motion.div
+        style={{opacity: imageOpacity}}
+        className={`z-10 flex w-full flex-col items-center gap-2 p-2 px-0 backdrop-blur-md lg:flex-row ${isMobile ? "fixed right-0 bottom-0 left-0" : "sticky top-[119px]"}`}
+      >
+        <div className="flex w-full items-center justify-center lg:max-w-[120px]">
+          <button
+            type="button"
+            onClick={() => navigateProject(-1)}
+            disabled={currentIndex === 0}
+            className="cursor-pointer border-white bg-none p-2 font-medium text-white transition-all hover:text-highlight disabled:cursor-not-allowed disabled:opacity-30"
+          >
+            <IconChevronLeft />
+          </button>
+          <span className="min-w-12 text-center text-sm text-gray-500">
+            {currentIndex + 1} / {projects.length}
           </span>
+          <button
+            type="button"
+            onClick={() => navigateProject(1)}
+            disabled={currentIndex === projects.length - 1}
+            className="cursor-pointer border-white bg-none p-2 font-medium text-white transition-all hover:text-highlight disabled:cursor-not-allowed disabled:opacity-30"
+          >
+            <IconChevronRight />
+          </button>
         </div>
-      </div>
-      <section id="recent-work" className="section relative z-0 w-full">
-        <div className="relative flex flex-col gap-6">
-          <div ref={containerRef} className="overflow-hidden">
-            <motion.div
-              className="flex cursor-grab active:cursor-grabbing md:pt-20"
-              style={{x}}
-              drag="x"
-              dragConstraints={{left: -slideWidth * lastIndex, right: 0}}
-              dragElastic={0.12}
-              onDragEnd={onDragEnd}
-            >
-              {projects.map((project) => (
-                <div
-                  key={project.id}
-                  className={cn(
-                    "shrink-0 grow-0 md:pr-12 lg:pl-40",
-                    isMobile ? "basis-full" : "basis-[80%]",
-                  )}
+
+        <div className="justift-center flex w-full flex-row items-center lg:justify-start">
+          {heroImageSets && heroImageSets.length > 0 && (
+            <div className="flex w-full items-center gap-2">
+              {heroImageSets.map((set: any, index: number) => (
+                <button
+                  key={index}
+                  type="button"
+                  onClick={() => {
+                    setSetIndex(index)
+                    setDeviceIndex(0)
+                  }}
+                  className={`cursor-pointer bg-transparent bg-none px-3 py-2 font-medium transition-all ${
+                    setIndex === index
+                      ? "text-highlight"
+                      : "text-white hover:text-highlight"
+                  }`}
                 >
-                  <ProjectCard project={project} />
-                </div>
+                  {set.name}
+                </button>
               ))}
-            </motion.div>
+            </div>
+          )}
+
+          <div className="flex items-center justify-center gap-2 lg:w-full lg:justify-start">
+            {Array.from({length: currentImageCount}).map((_, index) => (
+              <button
+                key={index}
+                type="button"
+                onClick={() => setDeviceIndex(index)}
+                className={`cursor-pointer bg-transparent bg-none px-3 py-2 font-medium transition-all ${
+                  deviceIndex === index
+                    ? "text-highlight"
+                    : "text-white hover:text-highlight"
+                }`}
+              >
+                {index === 0 ? <IconDeviceLaptop /> : <IconDeviceMobile />}
+              </button>
+            ))}
           </div>
         </div>
-      </section>
-    </>
+      </motion.div>
+      <div className="flex h-dvh w-full flex-col items-center lg:h-[160dvh] lg:flex-row lg:p-5">
+        <motion.div
+          style={{opacity: imageOpacity}}
+          className="relative top-[200px] z-2 flex w-full -translate-y-1/2 flex-col items-center gap-2 px-0 lg:fixed lg:top-1/2 lg:left-5 lg:w-1/3 lg:p-2"
+        >
+          {/* Text Info - Left side */}
+          <motion.div className="left-0 w-full">
+            <motion.div
+              className="w-full"
+              key={currentIndex}
+              initial={{opacity: 0, x: -30}}
+              animate={{opacity: 1, x: 0}}
+              transition={{type: "spring", stiffness: 100, damping: 15}}
+            >
+              <ProjectCard project={project} />
+            </motion.div>
+
+            {/* Project Navigation */}
+          </motion.div>
+        </motion.div>
+
+        {/* Hero Image - Right side */}
+        <motion.div
+          style={{y: heroImageY, opacity: imageOpacity}}
+          className="fixed top-2/3 right-0 z-0 flex h-[90dvh] w-full -translate-y-1/2 items-center justify-center pt-20 lg:top-1/2 lg:w-2/3 lg:items-end"
+        >
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={`${currentIndex}-${setIndex}-${deviceIndex}`}
+              initial={{y: -400}}
+              animate={{y: 0}}
+              exit={{
+                y: 900,
+                opacity: 0,
+                transition: {type: "spring", duration: 1, ease: "easeIn"},
+              }}
+              transition={{
+                default: {
+                  type: "spring",
+                  stiffness: 90,
+                  damping: 18,
+                  duration: 1.2,
+                },
+              }}
+              className="flex w-full items-start justify-center"
+            >
+              <motion.div
+                className=""
+                initial={false}
+                animate={{
+                  y: [0, -24, 14, 2, 0],
+                  rotateZ: [0, 1, -1, 0.5, 0],
+                }}
+                transition={{
+                  y: {
+                    duration: 20,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  },
+                  rotateZ: {
+                    duration: 24,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  },
+                }}
+              >
+                {/** biome-ignore lint/performance/noImgElement: <explanation> */}
+                <img
+                  src={currentImageUrl}
+                  alt={currentImage.alt || "Project image"}
+                  style={
+                    isHeroImage
+                      ? {minWidth: "100%", maxWidth: "100%", maxHeight: "40vh"}
+                      : {
+                          minWidth: "100%",
+                          maxWidth: isMobile ? "150px" : "900px",
+                          maxHeight: "40vh",
+                        }
+                  }
+                  className="object-cover drop-shadow-2xl"
+                />
+              </motion.div>
+            </motion.div>
+          </AnimatePresence>
+        </motion.div>
+      </div>
+    </section>
   )
 }
 

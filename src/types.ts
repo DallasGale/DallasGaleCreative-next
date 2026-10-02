@@ -3,17 +3,20 @@ export type Employer = {
   name: string
   url: string
   logo: string
+  status: "past" | "current"
+  location: string
 }
 
-export type EmployersData = {
-  agencies: Employer[]
-  organisations: Employer[]
-  startups: Employer[]
-}
+// export type EmployersData = {
+//   agencies: Employer[]
+//   organisations: Employer[]
+//   startups: Employer[]
+// }
 
 export type ProjectLink = {
   label: string
   url: string
+  urlLabel: string
   archived?: boolean
 }
 
@@ -27,6 +30,7 @@ export type Project = {
   employer: {
     name: string
     url: string
+    urlLabel: string
   }
   meta: {
     date: string
@@ -36,11 +40,12 @@ export type Project = {
     path: string
     alt: string
   }
-  thumbnails: {
+  heroImages: {
     path: string
     alt: string
   }[]
   summary: string
+  keyTakeaways: string
   paragraphs: {text: string}[]
   links: ProjectLink[]
   press: PressLink[]

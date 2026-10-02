@@ -1,5 +1,6 @@
 import About from "@/components/about"
 import BackgroundGradient from "@/components/background-gradient"
+import Employers from "@/components/employers"
 import Footer from "@/components/footer"
 import Header from "@/components/header"
 import Intro from "@/components/intro"
@@ -14,7 +15,8 @@ export default function Home() {
       <main className="relative z-0 mx-auto flex flex-col">
         <Intro />
         <RecentWork />
-        <About />
+        <Employers />
+        {/* <About /> */}
         {/* <h3 className="color-white mt-20 h-50 text-center text-2xl font-extrabold md:mb-20 md:text-8xl">
           Thanks for visiting.
         </h3> */}
