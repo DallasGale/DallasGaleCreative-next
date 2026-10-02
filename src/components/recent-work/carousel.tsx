@@ -121,7 +121,7 @@ const Carousel = () => {
           </button>
         </div>
 
-        <div className="justift-center flex w-full flex-row items-center lg:justify-start">
+        <div className="justift-center flex w-full flex-row items-center md:w-auto lg:justify-start">
           {heroImageSets && heroImageSets.length > 0 && (
             <div className="flex w-full items-center gap-2">
               {heroImageSets.map((set: any, index: number) => (
@@ -234,11 +234,15 @@ const Carousel = () => {
                   alt={currentImage.alt || "Project image"}
                   style={
                     isHeroImage
-                      ? {minWidth: "100%", maxWidth: "100%", maxHeight: "40vh"}
+                      ? {
+                          minWidth: "100%",
+                          maxWidth: "100%",
+                          maxHeight: isMobile ? "40vh" : "800px",
+                        }
                       : {
                           minWidth: "100%",
                           maxWidth: isMobile ? "150px" : "900px",
-                          maxHeight: "40vh",
+                          maxHeight: isMobile ? "40vh" : "800px",
                         }
                   }
                   className="object-cover drop-shadow-2xl"
