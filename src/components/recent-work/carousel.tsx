@@ -99,7 +99,7 @@ const Carousel = () => {
     >
       <motion.div
         style={{opacity: imageOpacity}}
-        className={`z-10 flex w-full flex-col items-center gap-2 p-2 px-0 backdrop-blur-md lg:flex-row ${isMobile ? "fixed right-0 bottom-0 left-0" : "sticky top-[119px]"}`}
+        className={`z-10 flex w-full flex-col items-center gap-2 p-2 px-0 lg:flex-row ${isMobile ? "fixed right-0 bottom-0 left-0" : "sticky top-[119px]"}`}
       >
         <div className="flex w-full items-center justify-center lg:max-w-[120px]">
           <button
