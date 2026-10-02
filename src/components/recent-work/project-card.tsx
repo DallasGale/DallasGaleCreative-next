@@ -31,7 +31,7 @@ const ProjectCard = ({project}: {project: Project}) => {
             {summary}
           </h4>
 
-          <div className="rich-text hidden flex-col gap-3 opacity-100 transition-all group-hover:opacity-100 md:flex md:opacity-[1]">
+          <div className="rich-text flex flex-col gap-3 opacity-100 transition-all group-hover:opacity-100 md:opacity-[1]">
             <p className="text-[16px] text-[var(--color-med-grey)]">
               {keyTakeaways}
             </p>
