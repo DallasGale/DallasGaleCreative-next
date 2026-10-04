@@ -28,7 +28,7 @@
       }
     ],
     "summary": "Mind Australia - MVP re-branded build.",
-    "keyTakeaways": "Built the re-branded homepage and Lived Experience content page for one of Australia's largest mental health service providers. Re-platforming from a Drupal site to a React/NextJS with Tailwind and Payload CMS. Web components were injected into the Drupal components for non-migrated pages to maintain the new branding as the full-site build progresses",
+    "keyTakeaways": "A rebranded front-end and new Payload CMS for one of Australia's largest mental health service providers. The first phase of a re-platforming project to progressively migrate from Drupal to React/Next.js, with the header and footer packaged as web components and injected into the Drupal site so legacy pages stay visually consistent during the transition.",
     "paragraphs": [
       {
         "text": "I built an MVP re-branded <a target=\"_blank\" class=\"link\" href=\"https://www.mindaustralia.org.au/\">home page</a> and <a target=\"_blank\" class=\"link\" href=\"https://www.mindaustralia.org.au/lived-experience-at-mind\">generic content page</a> for <strong>Today</strong>'s client, <i><strong>Mind Australia</strong></i>, one of the largest providers of community-managed specialist mental health services in Australia. "
