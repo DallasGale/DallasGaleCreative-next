@@ -97,7 +97,7 @@ export default function Employers() {
             >
               {item.name}
 
-              <div className="relative mb-4.5 ml-2 text-xs text-white md:mb-5.5 lg:mt-10">
+              <div className="relative mb-4.5 ml-2 hidden text-xs text-white md:mb-5.5 md:block lg:mt-10">
                 {item.location}
               </div>
             </GradientText>
