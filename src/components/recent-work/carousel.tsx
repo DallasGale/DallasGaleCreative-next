@@ -17,11 +17,26 @@ import ProjectCard from "./project-card"
 
 const projects = projectsData as Project[]
 
+const slideVariants = {
+  initial: {y: -400, opacity: 0},
+  animate: {y: 0, opacity: 1},
+  exit: {y: 900, opacity: 0},
+}
+
+const floatVariants = {
+  initial: {y: 0, rotateZ: 0},
+  animate: {
+    y: [0, -24, 14, 2, 0],
+    rotateZ: [0, 1, -1, 0.5, 0],
+  },
+}
+
 const Carousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [setIndex, setSetIndex] = useState(0)
   const [deviceIndex, setDeviceIndex] = useState(0)
   const [mounted, setMounted] = useState(false)
+  const [isAnimating, setIsAnimating] = useState(false)
   const isMobileQuery = useMobile()
   const isMobile = mounted ? isMobileQuery : false
   const sectionRef = useRef<HTMLElement>(null)
@@ -89,14 +104,17 @@ const Carousel = () => {
 
   console.log({isHeroImage})
 
-  if (!mounted || !project) {
+  if (!mounted) {
     return (
       <section
-        ref={sectionRef}
         id="recent-work"
         className="relative mx-auto mb-[200px] flex h-auto w-full max-w-[20300px] flex-col items-start p-5"
       />
     )
+  }
+
+  if (!project) {
+    return null
   }
 
   return (
@@ -202,13 +220,10 @@ const Carousel = () => {
             <AnimatePresence mode="wait">
               <motion.div
                 key={`${currentIndex}-${setIndex}-${deviceIndex}`}
-                initial={{y: -400, opacity: 0}}
-                animate={{y: 0, opacity: 1}}
-                exit={{
-                  y: 900,
-                  opacity: 0,
-                  transition: {type: "spring", duration: 1, ease: "easeIn"},
-                }}
+                variants={slideVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
                 transition={{
                   default: {
                     type: "spring",
@@ -216,6 +231,7 @@ const Carousel = () => {
                     damping: 18,
                     duration: 1.2,
                   },
+                  exit: {type: "spring", duration: 1, ease: "easeIn"},
                 }}
                 className="flex w-full items-start justify-center"
               >
@@ -226,11 +242,9 @@ const Carousel = () => {
                     "md:h-[600px]": !isMobile && !isHeroImage,
                   })}
 
-                  initial={{y: 0, rotateZ: 0}}
-                  animate={{
-                    y: [0, -24, 14, 2, 0],
-                    rotateZ: [0, 1, -1, 0.5, 0],
-                  }}
+                  variants={floatVariants}
+                  initial="initial"
+                  animate="animate"
                   transition={{
                     y: {
                       duration: 20,
