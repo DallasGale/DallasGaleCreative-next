@@ -77,54 +77,32 @@ function EmployerList({heading, items}: {heading: string; items: Employer[]}) {
 }
 
 export default function Employers() {
-  const currentEmployers = data.filter(({status}) => status === "current")
-  const pastEmployers = data.filter(({status}) => status === "past")
   return (
     <section className="z-10 w-full backdrop-blur-md">
       <SectionHeading id="recent-work-heading" heading="Past & Present." />
-
-      {/* <div className="mx-auto mt-100 mb-40 max-w-[1800px] p-5">
-        <GradientText
-          as="p"
-          className="text-[clamp(16px,3vw,28px)] leading-relaxed font-light mb-20 max-w-2xl text-balance"
-          duration={8}
-          colors={["#ffffff", "#e862ec", "#e6ba89", "#c097e2", "#ffffff"]}
-        >
-          I've had the privilege of working with some incredible teams and organizations. From early-stage startups to established brands, each experience shaped how I approach design and development.
-        </GradientText>
-      </div> */}
-      <div className="mx-auto mt-10 mb-30 flex max-w-[1200px] flex-col flex-row flex-wrap gap-2 p-5 lg:mt-50 lg:mb-50">
-        <p className="text-lg font-bold text-[#c097e2] md:text-5xl">
+      <div className="mx-auto mt-10 mb-30 flex max-w-[1200px] flex-col flex-row flex-wrap gap-5 p-5 lg:mt-50 lg:mb-50">
+        <p className="text-[22px] leading-7 font-bold text-white md:text-5xl md:leading-12">
           Since 2011 I've had the privilege of working with some inspiring teams
           within large organisations, start-ups and established agencies. Each
           experience has shaped how I approach design and development.
         </p>
-        <div className="flex flex-col gap-0">
+        <div className="flex flex-row flex-wrap gap-0">
           {data.map((item) => (
             <GradientText
               key={item.name}
-              className="relative flex flex-row items-end text-2xl leading-7 font-black md:text-7xl md:leading-21"
+              className="relative flex border-collapse flex-row items-end border-1 border-white px-4 text-[30px] leading-16 font-black md:text-5xl md:leading-21"
               duration={90}
               as="a"
               href={item.url}
-              // hoverColor="t"
             >
               {item.name}
 
-              <div className="relative ml-2 text-sm text-white md:mb-2.5 lg:mt-10">
+              <div className="relative mb-4.5 ml-2 text-xs text-white md:mb-5.5 lg:mt-10">
                 {item.location}
               </div>
             </GradientText>
           ))}
         </div>
-        {/* <EmployerList items={data} heading="" /> */}
-        {/* <EmployerList heading="// Current " items={currentEmployers} /> */}
-        {/* <EmployerList heading="// Past" items={pastEmployers} /> */}
-        {/* <EmployerList heading="...orgs such as" items={data.organisations} />
-      <EmployerList
-        heading="...and start-ups including"
-        items={data.startups}
-      /> */}
       </div>
     </section>
   )

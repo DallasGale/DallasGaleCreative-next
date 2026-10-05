@@ -7,12 +7,6 @@ export type Employer = {
   location: string
 }
 
-// export type EmployersData = {
-//   agencies: Employer[]
-//   organisations: Employer[]
-//   startups: Employer[]
-// }
-
 export type ProjectLink = {
   label: string
   url: string
@@ -26,7 +20,7 @@ export type PressLink = {
 }
 
 export type Project = {
-  id: number
+  id: string
   employer: {
     name: string
     url: string
@@ -40,7 +34,7 @@ export type Project = {
     path: string
     alt: string
   }
-  heroImages?: HeroImages[]
+  heroImages?: HeroImage[]
   heroImageSets?: HeroImageSet[]
   summary: string
   keyTakeaways: string
@@ -49,14 +43,16 @@ export type Project = {
   press: PressLink[]
 }
 
-export type HeroImages = {
+export type HeroImage = {
+  id: string
   path: string
   alt: string
 }
 
 export type HeroImageSet = {
+  id: string
   name: string
-  images: HeroImages[]
+  images: HeroImage[]
 }
 
 export type DaySegment = "morning" | "afternoon" | "evening"

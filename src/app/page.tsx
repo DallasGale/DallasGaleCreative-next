@@ -18,14 +18,7 @@ export default function Home() {
       <Header />
       <main className="relative z-0 mx-auto flex flex-col">
         <Intro />
-        {isMobile ? (
-          <>
-            <SectionHeading id="recent-work-heading" heading="Recent Work." />
-            <MobileCarousel />
-          </>
-        ) : (
-          <RecentWork />
-        )}
+        <RecentWork isMobile={isMobile} />
         <Employers />
         {/* <About /> */}
         {/* <h3 className="color-white mt-20 h-50 text-center text-2xl font-extrabold md:mb-20 md:text-8xl">
