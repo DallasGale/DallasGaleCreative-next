@@ -76,7 +76,7 @@
       }
     ],
     "summary": "Australia Post - Locker Land event landing page.",
-    "keyTakeaways": "Developed landing page for Australia Post's Locker Land event featuring animations and interactive transitions. Built with React and Tailwind, including custom arc carousel and modal-driven benefits explorer.",
+    "keyTakeaways": "Developed a landing page for Australia Post's <i>Locker Land</i> promotion featuring animations and interactive transitions. Built using React and Tailwind this page including a custom built arc carousel and modal-driven benefits explorer.",
     "paragraphs": [
       {
         "text": "For two weeks I worked with <a target=\"_blank\" class=\"link\" href=\"https://www.thinkerbell.com.au\">Thinkerbell</a> to produce a fun little landing page for <a target=\"_blank\" class=\"link\" href=\"https://www.auspost.com.au\">Australia Post</a>."
@@ -208,7 +208,7 @@
       }
     ],
     "summary": "Full-stack competition landing page.",
-    "keyTakeaways": "Built two-page competition site for Kayo Sports/Fox Footy using AstroJS/React frontend with Google Firebase backend. Received 500+ entries during promotion. Launched with celebrity reveal video during AFL Draft coverage featuring commentary skill submissions.",
+    "keyTakeaways": "Built a competition microsite for <i>Kayo Sports/Fox Footy</i> to capture submissions for Australia's best amature sports commentator. Using an AstroJS/React on the frontend and Google Firebase to store the submissions it received 500+ entries during the  promotion.",
     "paragraphs": [
       {
         "text": "The <a target=\"_blank\" class=\"link\" href=\"https://kayosports.com.au/\">Kayo Sports</a> Call Up! was a short two-page competition site to find the next <a target=\"_blank\" class=\"link\" href=\"https://www.foxsports.com.au/afl\">Fox Footy</a> on-air star who will feature on the new-look Super Saturday LIVE coverage in 2025. The competition required a user to submit their entry with a link to either a YouTube, Instagram, Facebook, or TikTok video of them displaying their commentary skills."

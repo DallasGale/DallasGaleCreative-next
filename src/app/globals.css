@@ -51,6 +51,7 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    overscroll-behavior-y: none;
   }
 
   body {
@@ -60,6 +61,7 @@
     color: var(--site-text-color);
     background-color: var(--site-bg);
     transition: var(--transition);
+    overscroll-behavior-y: none;
   }
 
   a {
