@@ -9,10 +9,10 @@ import {
 import classnames from "classnames"
 import {AnimatePresence, motion, useScroll, useTransform} from "framer-motion"
 import Image from "next/image"
-import {useEffect, useRef, useState, useLayoutEffect} from "react"
+import {useEffect, useLayoutEffect, useRef, useState} from "react"
 import projectsData from "@/data/recent-projects.json"
 import useMobile from "@/hooks/useMobile"
-import type {Project} from "@/types"
+import type {HeroImageSet, Project} from "@/types"
 import ProjectCard from "./project-card"
 
 const projects = projectsData as Project[]
@@ -36,7 +36,6 @@ const Carousel = () => {
   const [setIndex, setSetIndex] = useState(0)
   const [deviceIndex, setDeviceIndex] = useState(0)
   const [mounted, setMounted] = useState(false)
-  const [isAnimating, setIsAnimating] = useState(false)
   const isMobileQuery = useMobile()
   const isMobile = mounted ? isMobileQuery : false
   const sectionRef = useRef<HTMLElement>(null)
@@ -66,12 +65,12 @@ const Carousel = () => {
   }
 
   useLayoutEffect(() => {
-    void (document.documentElement.offsetHeight)
-  }, [currentIndex, setIndex, deviceIndex])
+    void document.documentElement.offsetHeight
+  }, [])
 
   const project = projects[currentIndex]
-  const heroImageSets = (project as any)?.heroImageSets
-  const heroImages = (project as any)?.heroImages
+  const heroImageSets = (project as Project)?.heroImageSets
+  const heroImages = (project as Project)?.heroImages
 
   let currentImage: any = null
   let isHeroImage = false
@@ -79,7 +78,7 @@ const Carousel = () => {
   if (project && mounted) {
     if (heroImageSets && heroImageSets.length > 0) {
       const currentSet = heroImageSets[setIndex]
-      if (currentSet && currentSet.images && currentSet.images.length > 0) {
+      if (currentSet?.images?.length > 0) {
         currentImage =
           currentSet.images[Math.min(deviceIndex, currentSet.images.length - 1)]
         isHeroImage = deviceIndex === 0
@@ -152,9 +151,9 @@ const Carousel = () => {
         <div className="flex w-full flex-row items-center justify-center md:w-auto lg:justify-start">
           {heroImageSets && heroImageSets.length > 0 && (
             <div className="flex w-full items-center gap-2">
-              {heroImageSets.map((set: any, index: number) => (
+              {heroImageSets.map((set: HeroImageSet, index: number) => (
                 <button
-                  key={index}
+                  key={set.name}
                   type="button"
                   onClick={() => {
                     setSetIndex(index)
@@ -175,6 +174,7 @@ const Carousel = () => {
           <div className="flex items-center justify-center gap-2 lg:w-full lg:justify-start">
             {Array.from({length: currentImageCount}).map((_, index) => (
               <button
+                // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
                 key={index}
                 type="button"
                 onClick={() => setDeviceIndex(index)}
@@ -223,7 +223,11 @@ const Carousel = () => {
                 variants={slideVariants}
                 initial="initial"
                 animate="animate"
-                exit="exit"
+                exit={{
+                  y: 900,
+                  opacity: 0,
+                  transition: {type: "spring", duration: 1, ease: "easeIn"},
+                }}
                 transition={{
                   default: {
                     type: "spring",
@@ -231,7 +235,6 @@ const Carousel = () => {
                     damping: 18,
                     duration: 1.2,
                   },
-                  exit: {type: "spring", duration: 1, ease: "easeIn"},
                 }}
                 className="flex w-full items-start justify-center"
               >
@@ -264,7 +267,6 @@ const Carousel = () => {
                     fill
                     priority={true}
                     quality={100}
-                    // sizes={isHeroImage ? "100vw" : isMobile ? "150px" : "900px"}
                     className="bg-transparent object-contain drop-shadow-2xl"
                   />
                 </motion.div>

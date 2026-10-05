@@ -70,6 +70,8 @@ const ProjectCard = ({project}: {project: Project}) => {
                 className="flex flex-row items-center gap-2.5"
               >
                 <a
+                  target="_blank"
+                  rel="noreferrer"
                   href={link.url}
                   className="group/link flex flex-row items-center text-xs font-bold underline underline-offset-5 transition-all hover:text-highlight lg:text-lg"
                 >
