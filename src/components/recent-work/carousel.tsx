@@ -6,6 +6,7 @@ import {
   IconDeviceLaptop,
   IconDeviceMobile,
 } from "@tabler/icons-react"
+import classnames from "classnames"
 import {AnimatePresence, motion, useScroll, useTransform} from "framer-motion"
 import Image from "next/image"
 import {useEffect, useRef, useState} from "react"
@@ -24,6 +25,7 @@ const Carousel = () => {
   const isMobileQuery = useMobile()
   const isMobile = mounted ? isMobileQuery : false
   const sectionRef = useRef<HTMLElement>(null)
+
   const {scrollYProgress} = useScroll({
     target: sectionRef,
     offset: ["center end", "end center"],
@@ -48,47 +50,49 @@ const Carousel = () => {
     }
   }
 
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "ArrowLeft") navigateProject(-1)
-      if (e.key === "ArrowRight") navigateProject(1)
-    }
-
-    window.addEventListener("keydown", handleKeyDown)
-    return () => window.removeEventListener("keydown", handleKeyDown)
-  }, [currentIndex])
-
   const project = projects[currentIndex]
-  const heroImageSets = (project as any).heroImageSets
-  const heroImages = (project as any).heroImages
-
-  if (!mounted || !project) return null
+  const heroImageSets = (project as any)?.heroImageSets
+  const heroImages = (project as any)?.heroImages
 
   let currentImage: any = null
   let isHeroImage = false
 
-  if (heroImageSets && heroImageSets.length > 0) {
-    const currentSet = heroImageSets[setIndex]
-    if (currentSet && currentSet.images && currentSet.images.length > 0) {
-      currentImage =
-        currentSet.images[Math.min(deviceIndex, currentSet.images.length - 1)]
+  if (project && mounted) {
+    if (heroImageSets && heroImageSets.length > 0) {
+      const currentSet = heroImageSets[setIndex]
+      if (currentSet && currentSet.images && currentSet.images.length > 0) {
+        currentImage =
+          currentSet.images[Math.min(deviceIndex, currentSet.images.length - 1)]
+        isHeroImage = deviceIndex === 0
+      }
+    } else if (heroImages && heroImages.length > 0) {
+      currentImage = heroImages[Math.min(deviceIndex, heroImages.length - 1)]
       isHeroImage = deviceIndex === 0
     }
-  } else if (heroImages && heroImages.length > 0) {
-    currentImage = heroImages[Math.min(deviceIndex, heroImages.length - 1)]
-    isHeroImage = deviceIndex === 0
   }
 
-  if (!currentImage) return null
-
-  const currentImageUrl = currentImage.path
+  const currentImageUrl = currentImage?.path
 
   let currentImageCount = 0
-  if (heroImageSets && heroImageSets.length > 0) {
-    const currentSet = heroImageSets[setIndex]
-    currentImageCount = currentSet?.images?.length || 0
-  } else if (heroImages) {
-    currentImageCount = heroImages.length
+  if (project && mounted) {
+    if (heroImageSets && heroImageSets.length > 0) {
+      const currentSet = heroImageSets[setIndex]
+      currentImageCount = currentSet?.images?.length || 0
+    } else if (heroImages) {
+      currentImageCount = heroImages.length
+    }
+  }
+
+  console.log({isHeroImage})
+
+  if (!mounted || !project) {
+    return (
+      <section
+        ref={sectionRef}
+        id="recent-work"
+        className="relative mx-auto mb-[200px] flex h-auto w-full max-w-[20300px] flex-col items-start p-5"
+      />
+    )
   }
 
   return (
@@ -186,63 +190,70 @@ const Carousel = () => {
         </motion.div>
 
         {/* Hero Image - Right side */}
-        <motion.div
-          style={{y: heroImageY, opacity: imageOpacity}}
-          className="fixed top-2/3 right-0 z-0 flex h-[90dvh] w-full -translate-y-1/2 items-center justify-center pt-20 lg:top-1/2 lg:w-2/3 lg:items-end"
-        >
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={`${currentIndex}-${setIndex}-${deviceIndex}`}
-              initial={{y: -400}}
-              animate={{y: 0}}
-              exit={{
-                y: 900,
-                opacity: 0,
-                transition: {type: "spring", duration: 1, ease: "easeIn"},
-              }}
-              transition={{
-                default: {
-                  type: "spring",
-                  stiffness: 90,
-                  damping: 18,
-                  duration: 1.2,
-                },
-              }}
-              className="flex w-full items-start justify-center"
-            >
+        {currentImage && (
+          <motion.div
+            style={{y: heroImageY, opacity: imageOpacity}}
+            className="fixed top-2/3 right-0 z-0 flex h-[90dvh] w-full -translate-y-1/2 items-center justify-center pt-20 lg:top-1/2 lg:w-2/3 lg:items-end"
+          >
+            <AnimatePresence mode="wait">
               <motion.div
-                className="relative h-[40dvh] w-full md:h-[800px]"
-                initial={false}
-                animate={{
-                  y: [0, -24, 14, 2, 0],
-                  rotateZ: [0, 1, -1, 0.5, 0],
+                key={`${currentIndex}-${setIndex}-${deviceIndex}`}
+                initial={{y: -400}}
+                animate={{y: 0}}
+                exit={{
+                  y: 900,
+                  opacity: 0,
+                  transition: {type: "spring", duration: 1, ease: "easeIn"},
                 }}
                 transition={{
-                  y: {
-                    duration: 20,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  },
-                  rotateZ: {
-                    duration: 24,
-                    repeat: Infinity,
-                    ease: "easeInOut",
+                  default: {
+                    type: "spring",
+                    stiffness: 90,
+                    damping: 18,
+                    duration: 1.2,
                   },
                 }}
+                className="flex w-full items-start justify-center"
               >
-                <Image
-                  src={currentImageUrl}
-                  alt={currentImage.alt || "Project image"}
-                  fill
-                  priority={currentIndex === 0}
-                  quality={85}
-                  sizes={isHeroImage ? "100vw" : isMobile ? "150px" : "900px"}
-                  className="bg-transparent object-contain drop-shadow-2xl"
-                />
+                <motion.div
+                  className={classnames("relative w-full", {
+                    "h-[40dvh]": isMobile,
+                    "md:h-[700px]": !isMobile && isHeroImage,
+                    "md:h-[600px]": !isMobile && !isHeroImage,
+                  })}
+
+                  initial={false}
+                  animate={{
+                    y: [0, -24, 14, 2, 0],
+                    rotateZ: [0, 1, -1, 0.5, 0],
+                  }}
+                  transition={{
+                    y: {
+                      duration: 20,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    },
+                    rotateZ: {
+                      duration: 24,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    },
+                  }}
+                >
+                  <Image
+                    src={currentImageUrl}
+                    alt={currentImage.alt || "Project image"}
+                    fill
+                    priority={currentIndex === 0}
+                    quality={100}
+                    // sizes={isHeroImage ? "100vw" : isMobile ? "150px" : "900px"}
+                    className="bg-transparent object-contain drop-shadow-2xl"
+                  />
+                </motion.div>
               </motion.div>
-            </motion.div>
-          </AnimatePresence>
-        </motion.div>
+            </AnimatePresence>
+          </motion.div>
+        )}
       </div>
     </section>
   )

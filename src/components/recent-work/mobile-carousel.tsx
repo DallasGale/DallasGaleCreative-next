@@ -74,7 +74,7 @@ const ProjectSlides = ({project, isFirst}: {project: ProjectSlideData; isFirst: 
       {/* Horizontal scroll carousel */}
       <div
         ref={scrollRef}
-        className="flex overflow-x-auto snap-x snap-mandatory scroll-smooth"
+        className="flex overflow-x-auto snap-x snap-mandatory scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
         onScroll={handleScroll}
       >
         {slides.map((slide, index) => (
