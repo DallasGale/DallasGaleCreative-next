@@ -9,7 +9,7 @@ import {
 import classnames from "classnames"
 import {AnimatePresence, motion, useScroll, useTransform} from "framer-motion"
 import Image from "next/image"
-import {useEffect, useRef, useState} from "react"
+import {useEffect, useRef, useState, useLayoutEffect} from "react"
 import projectsData from "@/data/recent-projects.json"
 import useMobile from "@/hooks/useMobile"
 import type {Project} from "@/types"
@@ -49,6 +49,10 @@ const Carousel = () => {
       setDeviceIndex(0)
     }
   }
+
+  useLayoutEffect(() => {
+    void (document.documentElement.offsetHeight)
+  }, [currentIndex, setIndex, deviceIndex])
 
   const project = projects[currentIndex]
   const heroImageSets = (project as any)?.heroImageSets
@@ -198,8 +202,8 @@ const Carousel = () => {
             <AnimatePresence mode="wait">
               <motion.div
                 key={`${currentIndex}-${setIndex}-${deviceIndex}`}
-                initial={{y: -400}}
-                animate={{y: 0}}
+                initial={{y: -400, opacity: 0}}
+                animate={{y: 0, opacity: 1}}
                 exit={{
                   y: 900,
                   opacity: 0,
@@ -222,7 +226,7 @@ const Carousel = () => {
                     "md:h-[600px]": !isMobile && !isHeroImage,
                   })}
 
-                  initial={false}
+                  initial={{y: 0, rotateZ: 0}}
                   animate={{
                     y: [0, -24, 14, 2, 0],
                     rotateZ: [0, 1, -1, 0.5, 0],
