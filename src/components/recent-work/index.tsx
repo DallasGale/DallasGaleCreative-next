@@ -1,13 +1,17 @@
 "use client"
 
 import SectionHeading from "../section-heading"
-import Carousel from "./carousel"
+import Carousel from "./carousel/"
+import MobileCarousel from "./mobile-carousel"
 
-const RecentWork = () => {
+interface RecentWorkTypes {
+  isMobile: boolean
+}
+const RecentWork = ({isMobile}: RecentWorkTypes) => {
   return (
     <section>
       <SectionHeading id="recent-work-heading" heading="Recent Work." />
-      <Carousel />
+      {isMobile ? <MobileCarousel /> : <Carousel />}
     </section>
   )
 }

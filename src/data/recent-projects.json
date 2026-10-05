@@ -1,6 +1,6 @@
 [
   {
-    "id": 9,
+    "id": "9",
     "employer": {
       "name": "Today Design",
       "url": "https://today.design/"
@@ -15,14 +15,17 @@
     },
     "heroImages": [
       {
+        "id": "1",
         "path": "/images/projects/2026/today/ciaf/macbook.png",
         "alt": ""
       },
       {
+        "id": "2",
         "path": "/images/projects/2026/today/ciaf/iphone-1.png",
         "alt": ""
       },
       {
+        "id": "3",
         "path": "/images/projects/2026/today/ciaf/iphone-2.png",
         "alt": ""
       }
@@ -41,7 +44,7 @@
     "press": []
   },
   {
-    "id": 8,
+    "id": "8",
     "employer": {
       "name": "Today Design",
       "url": "https://today.design/"
@@ -56,14 +59,17 @@
     },
     "heroImages": [
       {
+        "id": "1",
         "path": "/images/projects/2026/today/mind/macbook.png",
         "alt": ""
       },
       {
+        "id": "2",
         "path": "/images/projects/2026/today/mind/iphone-1.png",
         "alt": ""
       },
       {
+        "id": "3",
         "path": "/images/projects/2026/today/mind/iphone-2.png",
         "alt": ""
       }
@@ -89,7 +95,7 @@
     "press": []
   },
   {
-    "id": 7,
+    "id": "7",
     "employer": {
       "name": "Thinkerbell",
       "url": "https://thinkerbell.com.au/"
@@ -104,14 +110,17 @@
     },
     "heroImages": [
       {
+        "id": "1",
         "path": "/images/projects/2026/thinkerbell/locker-land/macbook.png",
         "alt": ""
       },
       {
+        "id": "2",
         "path": "/images/projects/2026/thinkerbell/locker-land/iphone-1.png",
         "alt": ""
       },
       {
+        "id": "3",
         "path": "/images/projects/2026/thinkerbell/locker-land/iphone-2.png",
         "alt": ""
       }
@@ -142,7 +151,7 @@
     ]
   },
   {
-    "id": 6,
+    "id": "6",
     "employer": {
       "name": "Dijgtal",
       "url": "https://dijgtal.com/"
@@ -157,34 +166,42 @@
     },
     "heroImageSets": [
       {
+        "id": "1",
         "name": "Linde",
         "images": [
           {
+            "id": "1",
             "path": "/images/projects/2026/dijgtal/linde/macbook.png",
             "alt": ""
           },
           {
+            "id": "2",
             "path": "/images/projects/2026/dijgtal/linde/iphone-1.png",
             "alt": ""
           },
           {
+            "id": "3",
             "path": "/images/projects/2026/dijgtal/linde/iphone-2.png",
             "alt": ""
           }
         ]
       },
       {
+        "id": "2",
         "name": "Baoli",
         "images": [
           {
+            "id": "1",
             "path": "/images/projects/2026/dijgtal/baoli/macbook.png",
             "alt": ""
           },
           {
+            "id": "2",
             "path": "/images/projects/2026/dijgtal/baoli/iphone-1.png",
             "alt": ""
           },
           {
+            "id": "3",
             "path": "/images/projects/2026/dijgtal/baoli/iphone-2.png",
             "alt": ""
           }
@@ -221,7 +238,7 @@
     "press": []
   },
   {
-    "id": 4,
+    "id": "5",
     "employer": {
       "name": "Thinkerbell",
       "url": "https://thinkerbell.com.au/"
@@ -236,14 +253,17 @@
     },
     "heroImages": [
       {
+        "id": "1",
         "path": "/images/projects/2025/thinkerbell/kayo/macbook.png",
         "alt": ""
       },
       {
+        "id": "2",
         "path": "/images/projects/2025/thinkerbell/kayo/iphone-1.png",
         "alt": ""
       },
       {
+        "id": "3",
         "path": "/images/projects/2025/thinkerbell/kayo/iphone-2.png",
         "alt": ""
       }
@@ -284,7 +304,7 @@
     ]
   },
   {
-    "id": 3,
+    "id": "4",
     "employer": {
       "name": "Thinkerbell",
       "url": "https://thinkerbell.com.au/"
@@ -299,14 +319,17 @@
     },
     "heroImages": [
       {
+        "id": "1",
         "path": "/images/projects/2025/thinkerbell/oua/macbook.png",
         "alt": ""
       },
       {
+        "id": "2",
         "path": "/images/projects/2025/thinkerbell/oua/iphone-1.png",
         "alt": ""
       },
       {
+        "id": "3",
         "path": "/images/projects/2025/thinkerbell/oua/iphone-2.png",
         "alt": ""
       }

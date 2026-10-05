@@ -1,9 +1,7 @@
 {
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.codeActionsOnSave": {
-    "source.organizeImports.biome": "explicit"
-  },
+  "editor.codeActionsOnSave": false,
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -24,5 +22,12 @@
   },
   "[css]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "css.lint.enabled": false,
+  "css.validate": false,
+  "tailwindCSS.lint.cssConflict": "off",
+  "tailwindCSS.lint.invalidApply": "off",
+  "tailwindCSS.lint.invalidScreen": "off",
+  "tailwindCSS.lint.invalidVariant": "off",
+  "tailwindCSS.lint.recommendedVariantOrder": "off"
 }
