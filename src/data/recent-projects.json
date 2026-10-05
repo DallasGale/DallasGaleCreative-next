@@ -1,5 +1,46 @@
 [
   {
+    "id": 9,
+    "employer": {
+      "name": "Today Design",
+      "url": "https://today.design/"
+    },
+    "meta": {
+      "date": "Jul '26",
+      "jobType": "Contract"
+    },
+    "logo": {
+      "path": "/images/projects/2026/today/logo.jpeg",
+      "alt": ""
+    },
+    "heroImages": [
+      {
+        "path": "/images/projects/2026/today/ciaf/macbook.png",
+        "alt": ""
+      },
+      {
+        "path": "/images/projects/2026/today/ciaf/iphone-1.png",
+        "alt": ""
+      },
+      {
+        "path": "/images/projects/2026/today/ciaf/iphone-2.png",
+        "alt": ""
+      }
+    ],
+    "summary": "CIAF: Cairns Indigenous Arts Fair",
+    "keyTakeaways": "A rebranded full site for the 2026 Arts Fair. This project was a new build using NextJS/React and Tailwind CSS on the frontend and with Payload CMS on the backend. Fully content managed pages with news articles, artist bio's and event pages",
+
+    "links": [
+      {
+        "label": "CIAF",
+        "url": "https://www.ciaf.com.au/",
+        "urlLabel": "ciaf.com.au",
+        "archived": false
+      }
+    ],
+    "press": []
+  },
+  {
     "id": 8,
     "employer": {
       "name": "Today Design",
@@ -27,7 +68,7 @@
         "alt": ""
       }
     ],
-    "summary": "Mind Australia - MVP re-branded build.",
+    "summary": "Mind Australia",
     "keyTakeaways": "A rebranded front-end and new Payload CMS for one of Australia's largest mental health service providers. The first phase of a re-platforming project to progressively migrate from Drupal to React/Next.js, with the header and footer packaged as web components and injected into the Drupal site so legacy pages stay visually consistent during the transition.",
     "paragraphs": [
       {
@@ -75,7 +116,7 @@
         "alt": ""
       }
     ],
-    "summary": "Australia Post - Locker Land event landing page.",
+    "summary": "Australia Post",
     "keyTakeaways": "Developed a landing page for Australia Post's <i>Locker Land</i> promotion featuring animations and interactive transitions. Built using React and Tailwind this page including a custom built arc carousel and modal-driven benefits explorer.",
     "paragraphs": [
       {
@@ -116,23 +157,6 @@
     },
     "heroImageSets": [
       {
-        "name": "Baoli",
-        "images": [
-          {
-            "path": "/images/projects/2026/dijgtal/baoli/macbook.png",
-            "alt": ""
-          },
-          {
-            "path": "/images/projects/2026/dijgtal/baoli/iphone-1.png",
-            "alt": ""
-          },
-          {
-            "path": "/images/projects/2026/dijgtal/baoli/iphone-2.png",
-            "alt": ""
-          }
-        ]
-      },
-      {
         "name": "Linde",
         "images": [
           {
@@ -148,9 +172,26 @@
             "alt": ""
           }
         ]
+      },
+      {
+        "name": "Baoli",
+        "images": [
+          {
+            "path": "/images/projects/2026/dijgtal/baoli/macbook.png",
+            "alt": ""
+          },
+          {
+            "path": "/images/projects/2026/dijgtal/baoli/iphone-1.png",
+            "alt": ""
+          },
+          {
+            "path": "/images/projects/2026/dijgtal/baoli/iphone-2.png",
+            "alt": ""
+          }
+        ]
       }
     ],
-    "summary": "Dual website replatforming.",
+    "summary": "Linde Material Handling & Baoli",
     "keyTakeaways": "Replatformed two websites (Linde MH and Baoli Forklifts) from Sitecore to Next.js/React using monorepo architecture with shared design system. Implemented Storybook components, Vanilla Extract CSS for multi-brand variants, and Sanity.io CMS with custom page builder.",
     "paragraphs": [
       {
@@ -207,7 +248,7 @@
         "alt": ""
       }
     ],
-    "summary": "Full-stack competition landing page.",
+    "summary": "Kayo/Fox Sports",
     "keyTakeaways": "Built a competition microsite for <i>Kayo Sports/Fox Footy</i> to capture submissions for Australia's best amature sports commentator. Using an AstroJS/React on the frontend and Google Firebase to store the submissions it received 500+ entries during the  promotion.",
     "paragraphs": [
       {
@@ -227,7 +268,7 @@
       {
         "label": "thekayocallup.kayosports.com.au",
         "url": "https://kayo-dallasgale1s-projects.vercel.app/",
-        "urlLabel": "archived.url",
+        "urlLabel": "archived url",
         "archived": true
       }
     ],
@@ -270,7 +311,7 @@
         "alt": ""
       }
     ],
-    "summary": "Online study campaign landing page.",
+    "summary": "Open Universities Australia",
     "keyTakeaways": "Developed static campaign landing page with interactive course matching quiz using AstroJS so the build could be used in clients php codebase. Integrated SwiperJS parallax slider and React quiz component to forward users to customised course pathways.",
     "paragraphs": [
       {

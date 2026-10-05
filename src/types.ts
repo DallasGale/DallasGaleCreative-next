@@ -40,15 +40,23 @@ export type Project = {
     path: string
     alt: string
   }
-  heroImages: {
-    path: string
-    alt: string
-  }[]
+  heroImages?: HeroImages[]
+  heroImageSets?: HeroImageSet[]
   summary: string
   keyTakeaways: string
   paragraphs: {text: string}[]
   links: ProjectLink[]
   press: PressLink[]
+}
+
+export type HeroImages = {
+  path: string
+  alt: string
+}
+
+export type HeroImageSet = {
+  name: string
+  images: HeroImages[]
 }
 
 export type DaySegment = "morning" | "afternoon" | "evening"
