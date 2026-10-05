@@ -168,7 +168,7 @@ const Carousel = () => {
           </div>
         </div>
       </motion.div>
-      <div className="flex h-dvh w-full flex-col items-center lg:h-[160dvh] lg:flex-row lg:p-5">
+      <div className="flex h-svh w-full flex-col items-center lg:h-[160svh] lg:flex-row lg:p-5">
         <motion.div
           style={{opacity: imageOpacity}}
           className="relative top-[200px] z-2 flex w-full -translate-y-1/2 flex-col items-center gap-2 px-0 lg:fixed lg:top-1/2 lg:left-5 lg:w-1/3 lg:p-2"
@@ -193,7 +193,7 @@ const Carousel = () => {
         {currentImage && (
           <motion.div
             style={{y: heroImageY, opacity: imageOpacity}}
-            className="fixed top-2/3 right-0 z-0 flex h-[90dvh] w-full -translate-y-1/2 items-center justify-center pt-20 lg:top-1/2 lg:w-2/3 lg:items-end"
+            className="fixed top-2/3 right-0 z-0 flex h-[90svh] w-full -translate-y-1/2 items-center justify-center pt-20 lg:top-1/2 lg:w-2/3 lg:items-end"
           >
             <AnimatePresence mode="wait">
               <motion.div
@@ -217,7 +217,7 @@ const Carousel = () => {
               >
                 <motion.div
                   className={classnames("relative w-full", {
-                    "h-[40dvh]": isMobile,
+                    "h-[40svh]": isMobile,
                     "md:h-[700px]": !isMobile && isHeroImage,
                     "md:h-[600px]": !isMobile && !isHeroImage,
                   })}
@@ -244,7 +244,7 @@ const Carousel = () => {
                     src={currentImageUrl}
                     alt={currentImage.alt || "Project image"}
                     fill
-                    priority={currentIndex === 0}
+                    priority={true}
                     quality={100}
                     // sizes={isHeroImage ? "100vw" : isMobile ? "150px" : "900px"}
                     className="bg-transparent object-contain drop-shadow-2xl"
