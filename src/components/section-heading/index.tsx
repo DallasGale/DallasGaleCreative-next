@@ -7,10 +7,10 @@ const SectionHeading = (props: Props) => {
   return (
     <div
       id={id}
-      className="section sticky top-[70px] left-5 z-30 mx-auto mb-0 flex inline-block w-auto border-1 border-white bg-black p-2 px-4 md:mb-0 md:grid-cols-[1fr_2fr]"
+      className="section sticky top-[70px] left-5 z-30 mx-auto mb-0 flex inline-block w-auto border-1 border-white bg-white p-2 px-4 text-black md:mb-0 md:grid-cols-[1fr_2fr]"
     >
       <div>
-        <h2 className="relative inline-block text-[22px] leading-tight font-extrabold lg:text-[30px]">
+        <h2 className="relative inline-block text-sm leading-tight font-extrabold">
           {heading}
         </h2>
       </div>
