@@ -22,7 +22,7 @@ const CarouselImages = ({
   return (
     <motion.div
       style={{y: heroImageY, opacity: imageOpacity}}
-      className="fixed top-2/3 right-0 z-0 flex h-[90svh] w-full -translate-y-1/2 items-center justify-center pt-20 lg:top-1/2 lg:w-2/3 lg:items-end"
+      className="fixed top-2/3 right-0 z-0 flex h-[90svh] w-full -translate-y-1/2 items-center justify-center pt-20 lg:top-1/3 lg:w-2/3 lg:items-end"
     >
       <AnimatePresence mode="wait">
         <motion.div
@@ -48,7 +48,7 @@ const CarouselImages = ({
           <motion.div
             className={classNames("relative w-full", {
               "h-[40svh]": isMobile,
-              "md:h-[700px]": !isMobile && isHeroImage,
+              "md:h-[640px]": !isMobile && isHeroImage,
               "md:h-[600px]": !isMobile && !isHeroImage,
             })}
 

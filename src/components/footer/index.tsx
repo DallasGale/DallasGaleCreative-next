@@ -1,9 +1,23 @@
 import {GithubIcon, LinkedInIcon} from "@/components/icons"
+import Clock from "../clock"
 
-const Footer = () => {
+interface FooterProps {
+  isMobile: boolean
+}
+const Footer = ({isMobile}: FooterProps) => {
   return (
-    <footer className="site-footer relative bottom-0 z-[2] box-border flex h-[120px] w-full flex-col items-start justify-between p-5 md:fixed md:flex-row md:items-end">
-      <nav className="flex w-full flex-row items-start gap-2.5 md:items-center md:gap-5">
+    <footer className="relative bottom-14 z-0 box-border flex h-[90px] w-full flex-col items-start justify-center p-5 px-10 md:fixed md:flex-row md:items-center lg:bottom-0">
+      <nav className="flex w-full flex-row items-start justify-end gap-2.5 md:items-center md:gap-2">
+        {!isMobile && <Clock />}
+        <a href="/CV-Folio-v2.0.0.pdf" className="p-2 text-xs font-semibold">
+          Download Folio
+        </a>
+        <a
+          href="mailto:hello@dallasgale.com"
+          className="p-2 text-xs font-semibold"
+        >
+          Contact Me
+        </a>
         <a
           href="https://github.com/dallasgale"
           target="_blank"
@@ -23,21 +37,6 @@ const Footer = () => {
           <LinkedInIcon />
         </a>
       </nav>
-
-      <div className="flex w-full flex-row justify-start gap-5 md:justify-end">
-        <a
-          href="/CV-Folio-v2.0.0.pdf"
-          className="footer-cta p-2.5 text-sm font-semibold"
-        >
-          Download Folio
-        </a>
-        <a
-          href="mailto:hello@dallasgale.com"
-          className="footer-cta p-2.5 text-sm font-semibold"
-        >
-          Contact Me
-        </a>
-      </div>
     </footer>
   )
 }

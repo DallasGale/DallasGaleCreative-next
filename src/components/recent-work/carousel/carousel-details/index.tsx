@@ -10,7 +10,7 @@ const CarouselDetails = ({
   return (
     <motion.div
       style={{opacity: imageOpacity}}
-      className="relative top-[200px] z-2 flex w-full -translate-y-1/2 flex-col items-center gap-2 px-0 lg:fixed lg:top-1/2 lg:left-5 lg:w-1/3 lg:p-2"
+      className="relative top-[200px] z-2 flex w-full -translate-y-1/2 flex-col items-center gap-2 px-0 xxl:top-1/3 md:top-1/2 lg:fixed lg:left-5 lg:w-1/3 lg:p-2"
     >
       <motion.div className="left-0 w-full">
         <motion.div

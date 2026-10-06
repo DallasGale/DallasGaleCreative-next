@@ -4,22 +4,9 @@ import {
   IconDeviceLaptop,
   IconDeviceMobile,
 } from "@tabler/icons-react"
-import {type MotionValue, motion} from "framer-motion"
-import type {HeroImageSet, Project} from "@/types"
-
-interface CarouselNavigationProps {
-  currentImageCount: number
-  deviceIndex: number
-  imageOpacity: MotionValue<number>
-  isMobile: boolean
-  currentIndex: number
-  projects: Project[]
-  heroImageSets?: HeroImageSet[]
-  heroSetIndex: number
-  setDeviceIndex: (e: number) => void
-  setCurrentIndex: (e: number) => void
-  setHeroSetIndex: (e: number) => void
-}
+import {motion} from "framer-motion"
+import type {CarouselNavigationProps} from "./types"
+import type {HeroImageSet} from "@/types"
 
 const CarouselNavigation = ({
   currentImageCount,
@@ -71,7 +58,7 @@ const CarouselNavigation = ({
 
       <div className="flex w-full flex-row items-center justify-center md:w-auto lg:justify-start">
         {heroImageSets && heroImageSets.length > 0 && (
-          <div className="flex w-full items-center gap-2">
+          <div className="flex w-full items-center gap-1">
             {heroImageSets.map((set: HeroImageSet, index: number) => (
               <button
                 key={set.name}
@@ -80,7 +67,7 @@ const CarouselNavigation = ({
                   setHeroSetIndex(index)
                   setDeviceIndex(0)
                 }}
-                className={`cursor-pointer bg-transparent bg-none px-3 py-2 font-medium transition-all ${
+                className={`cursor-pointer bg-transparent bg-none px-3 py-2 text-xs font-medium transition-all ${
                   heroSetIndex === index
                     ? "text-highlight"
                     : "text-white hover:text-highlight"
