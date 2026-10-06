@@ -104,11 +104,14 @@ export default function Employers() {
     // Auto-scroll animation
     let animationFrameId: number
     const autoScroll = () => {
-      scrollContainer.scrollLeft += 1
+      scrollContainer.scrollLeft += 1.5
       animationFrameId = requestAnimationFrame(autoScroll)
     }
 
-    animationFrameId = requestAnimationFrame(autoScroll)
+    // Start animation with a small delay to ensure DOM is ready
+    setTimeout(() => {
+      animationFrameId = requestAnimationFrame(autoScroll)
+    }, 100)
 
     return () => {
       scrollContainer.removeEventListener("scroll", handleScroll)
@@ -122,7 +125,7 @@ export default function Employers() {
       <div className="mx-auto">
         <div
           ref={scrollRef}
-          className="scrollbar-none overflow-x-auto scroll-smooth [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+          className="scrollbar-none overflow-x-auto scroll-smooth [-ms-overflow-style:none] [-webkit-overflow-scrolling:auto] [&::-webkit-scrollbar]:hidden"
         >
           <div ref={contentRef} className="flex flex-row flex-nowrap gap-0">
             {duplicatedData.map((item, idx) => {
