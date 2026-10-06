@@ -1,11 +1,10 @@
 import Image from "next/image"
-import Link from "next/link"
 import GradientText from "../gradient-text"
 
 export default function About() {
   return (
-    <section className="flex h-svh flex-col items-center justify-center lg:mt-130 lg:mb-40">
-      <div className="flex flex-col items-center justify-center lg:max-w-1/2 lg:flex-row xxl:max-w-1/3">
+    <section className="flex h-svh flex-col items-start justify-center lg:mt-130 lg:mb-40">
+      <div className="flex flex-col items-center justify-center sm:max-w-1/2 lg:flex-row xxl:max-w-1/3">
         <div className="sticky top-30 z-1 flex flex-col items-start justify-center gap-4 border-white p-5 pt-20 backdrop-blur-md">
           <Image
             src="/images/avatar.png"

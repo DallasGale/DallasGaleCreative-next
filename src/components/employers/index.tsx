@@ -1,12 +1,26 @@
 "use client"
 
 import {motion} from "framer-motion"
-import {useRef, useEffect} from "react"
 import GradientText from "@/components/gradient-text"
 import employersData from "@/data/employers.json"
 import type {Employer} from "@/types"
 
 const data = employersData as Employer[]
+
+const scrollStyles = `
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-33.333% - 0px));
+    }
+  }
+
+  .scroll-container {
+    animation: scroll 10s linear infinite;
+  }
+`
 
 // const HEADING_DELAY = 0.1
 // const STAGGER_STEP = 0.05
@@ -74,93 +88,51 @@ const data = employersData as Employer[]
 // }
 
 export default function Employers() {
-  const scrollRef = useRef<HTMLDivElement>(null)
-  const contentRef = useRef<HTMLDivElement>(null)
-
   // Duplicate data to create infinite loop effect
   const duplicatedData = [...data, ...data, ...data]
 
-  useEffect(() => {
-    const scrollContainer = scrollRef.current
-    if (!scrollContainer || !contentRef.current) return
-
-    const singleSetWidth = scrollContainer.scrollWidth / 3
-
-    const handleScroll = () => {
-      const {scrollLeft} = scrollContainer
-
-      // Reset to middle set when reaching the end
-      if (scrollLeft >= singleSetWidth * 2) {
-        scrollContainer.scrollLeft = singleSetWidth
-      } else if (scrollLeft <= 0) {
-        scrollContainer.scrollLeft = singleSetWidth
-      }
-    }
-
-    scrollContainer.addEventListener("scroll", handleScroll)
-    // Start at middle set for seamless looping
-    scrollContainer.scrollLeft = singleSetWidth / 3.5
-
-    // Auto-scroll animation
-    let animationFrameId: number
-    const autoScroll = () => {
-      scrollContainer.scrollLeft += 1.5
-      animationFrameId = requestAnimationFrame(autoScroll)
-    }
-
-    // Start animation with a small delay to ensure DOM is ready
-    setTimeout(() => {
-      animationFrameId = requestAnimationFrame(autoScroll)
-    }, 100)
-
-    return () => {
-      scrollContainer.removeEventListener("scroll", handleScroll)
-      cancelAnimationFrame(animationFrameId)
-    }
-  }, [])
-
   return (
-    <section className="fixed bottom-0 z-10 w-full backdrop-blur-md lg:bottom-22">
-      {/* <SectionHeading id="recent-work-heading" heading="Past & Present." /> */}
-      <div className="mx-auto">
-        <div
-          ref={scrollRef}
-          className="scrollbar-none overflow-x-auto scroll-smooth [-ms-overflow-style:none] [-webkit-overflow-scrolling:auto] [&::-webkit-scrollbar]:hidden"
-        >
-          <div ref={contentRef} className="flex flex-row flex-nowrap gap-0">
-            {duplicatedData.map((item, idx) => {
-              const setNum = Math.floor(idx / data.length)
-              const itemNum = idx % data.length
-              return (
-                <motion.div
-                  key={`${item.id}-set-${setNum}-${itemNum}`}
-                  transition={{
-                    duration: 0.6,
-                    delay: (idx % data.length) * 0.1,
-                    repeat: Infinity,
-                    repeatDelay: 2.5,
-                    repeatType: "reverse",
-                  }}
-                  className="shrink-0"
-                >
-                  <GradientText
-                    className="relative -ml-px box-border flex border-collapse items-end border border-white px-4 text-[30px] leading-16 font-black md:leading-21 lg:text-[70px] lg:leading-27 xl:text-[80px] xxl:px-10 xxl:text-[120px] xxl:leading-43"
-                    duration={20}
-                    as="a"
-                    href={item.url}
+    <>
+      <style dangerouslySetInnerHTML={{__html: scrollStyles}} />
+      <section className="fixed bottom-0 z-10 w-full backdrop-blur-md lg:bottom-22">
+        {/* <SectionHeading id="recent-work-heading" heading="Past & Present." /> */}
+        <div className="mx-auto w-full">
+          <div className="overflow-hidden">
+            <div className="scroll-container flex flex-row flex-nowrap gap-0 will-change-transform">
+              {duplicatedData.map((item, idx) => {
+                const setNum = Math.floor(idx / data.length)
+                const itemNum = idx % data.length
+                return (
+                  <motion.div
+                    key={`${item.id}-set-${setNum}-${itemNum}`}
+                    transition={{
+                      duration: 1,
+                      delay: (idx % data.length) * 0.1,
+                      repeat: Infinity,
+                      repeatDelay: 2.5,
+                      repeatType: "reverse",
+                    }}
+                    className="shrink-0"
                   >
-                    {item.name}
+                    <GradientText
+                      className="relative -ml-px box-border flex border-collapse items-end border border-white px-4 text-[30px] leading-16 font-black md:leading-21 lg:text-[70px] lg:leading-27 xl:text-[80px] xxl:px-10 xxl:text-[120px] xxl:leading-43"
+                      duration={20}
+                      as="a"
+                      href={item.url}
+                    >
+                      {item.name}
 
-                    {/* <div className="relative mb-4.5 ml-2 hidden text-xs text-white md:mb-5.5 md:block lg:mb-7 xxl:mb-9">
-                      {item.location}
-                    </div> */}
-                  </GradientText>
-                </motion.div>
-              )
-            })}
+                      {/* <div className="relative mb-4.5 ml-2 hidden text-xs text-white md:mb-5.5 md:block lg:mb-7 xxl:mb-9">
+                        {item.location}
+                      </div> */}
+                    </GradientText>
+                  </motion.div>
+                )
+              })}
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   )
 }
