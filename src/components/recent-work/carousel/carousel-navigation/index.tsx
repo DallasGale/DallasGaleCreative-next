@@ -6,6 +6,7 @@ import {
 } from "@tabler/icons-react"
 import {motion} from "framer-motion"
 import type {CarouselNavigationProps} from "./types"
+import type {HeroImageSet} from "@/types"
 
 const CarouselNavigation = ({
   currentImageCount,
