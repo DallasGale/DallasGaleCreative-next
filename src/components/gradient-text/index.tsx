@@ -50,20 +50,24 @@ export default function GradientText({
     WebkitTextFillColor: "transparent",
   }
 
-  const hoverStyle: any = as === "a" ? {
-    backgroundImage: hoverColor,
-    WebkitTextFillColor: hoverColor,
-  } : {}
+  const hoverStyle: any =
+    as === "a"
+      ? {
+          backgroundImage: hoverColor,
+          WebkitTextFillColor: hoverColor,
+        }
+      : {}
 
   return (
     <Component
       ref={ref}
       href={href}
-      className={className}
+      className={`${className} transition-all`}
       animate={animation.animate}
       transition={animation.transition}
       style={style}
       whileHover={as === "a" ? hoverStyle : {}}
+      whileHoverTransition={{duration: 0.3, ease: "easeInOut"}}
     >
       {children}
     </Component>

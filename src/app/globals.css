@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+@theme {
+  --breakpoint-xxl: 1792px;
+}
+
 /* ------------------------------------------------------------------ *
  * Design tokens (ported from the original SCSS :root)
  * ------------------------------------------------------------------ */
@@ -47,6 +51,11 @@
   --color-highlight: var(--highlight);
   --color-med-grey: #adadad;
   --color-trans-black: rgba(19, 19, 19, 0.6);
+
+  --breakpoint-md: 1320px;
+  --breakpoint-lg: 1520px;
+  --breakpoint-xl: 1720px;
+  --breakpoint-xxl: 1920px;
 }
 @layer base {
   html {
@@ -291,13 +300,14 @@
   border-top-color: transparent;
   border-left-color: transparent;
   border-right-color: transparent;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.95);
+  color: black !important;
 }
 
 .feature-link:hover {
   border-left-color: white;
   border-right-color: white;
   border-top-color: white;
-  background: rgba(255, 255, 255, 0.95);
-  color: black;
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
 }

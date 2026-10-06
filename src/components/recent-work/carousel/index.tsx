@@ -86,7 +86,7 @@ const Carousel = () => {
     <section
       ref={sectionRef}
       id="recent-work"
-      className="relative mx-auto mb-[200px] flex h-auto w-full max-w-[20300px] flex-col items-start p-5"
+      className="relative mx-auto flex h-auto w-full max-w-[20300px] flex-col items-start p-5"
     >
       <CarouselNavigation
         currentImageCount={currentImageCount}
