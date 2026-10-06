@@ -126,7 +126,7 @@ export default function Employers() {
   }, [])
 
   return (
-    <section className="fixed bottom-0 z-10 w-full backdrop-blur-md lg:bottom-22">
+    <section className="fixed bottom-0 z-31 w-full backdrop-blur-md lg:bottom-22">
       {/* <SectionHeading id="recent-work-heading" heading="Past & Present." /> */}
       <div className="mx-auto w-full">
         <div className="overflow-hidden">
