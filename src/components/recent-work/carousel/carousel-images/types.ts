@@ -9,5 +9,6 @@ export interface CarouselImagesTypes {
   isHeroImage: boolean
   currentImage: HeroImage
   isMobile: boolean
+  isTablet: boolean
   setIndex: (e: number) => void
 }

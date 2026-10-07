@@ -18,11 +18,11 @@ export default function Home() {
       <main className="relative z-1 mx-auto flex flex-col">
         <Intro />
         <RecentWork isMobile={isMobile} />
-        <Employers />
+        {/* <Employers /> */}
         <About />
         <Footer isMobile={isMobile} />
       </main>
-      <ScrollEffects />
+      {/* <ScrollEffects /> */}
     </>
   )
 }

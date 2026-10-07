@@ -1,20 +1,29 @@
+"use client"
+
+import {motion} from "framer-motion"
+
 interface Props {
   heading: string
   id: string
+  isInView: boolean
 }
+
 const SectionHeading = (props: Props) => {
-  const {heading, id} = props
+  const {heading, id, isInView} = props
+
   return (
-    <div
+    <motion.div
       id={id}
-      className="section sticky top-[70px] left-5 z-30 mx-auto mb-0 flex inline-block w-auto border-1 border-white bg-white p-2 px-4 text-black md:mb-0 md:grid-cols-[1fr_2fr]"
+      initial={{opacity: 0}}
+      animate={isInView ? {opacity: 1} : {opacity: 0}}
+      transition={{duration: 0.6, ease: "easeOut"}}
+      className="section fixed top-5 left-32.5 z-30 w-auto border bg-white p-2 px-4 text-black"
     >
-      <div>
-        <h2 className="relative inline-block text-sm leading-tight font-extrabold">
-          {heading}
-        </h2>
-      </div>
-    </div>
+      <h2 className="relative inline-block text-sm leading-tight font-extrabold">
+        {heading}
+      </h2>
+    </motion.div>
   )
 }
+
 export default SectionHeading

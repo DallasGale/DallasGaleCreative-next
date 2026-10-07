@@ -4,14 +4,14 @@ const ProjectCard = ({project}: {project: Project}) => {
   const {summary, keyTakeaways, employer, logo, meta, links, press} = project
 
   return (
-    <div className="group box-border flex h-full w-full flex-row gap-3 p-0 py-[26px] transition-all duration-300 md:max-h-full md:py-[26px] lg:gap-0">
+    <div className="group box-border flex h-full w-full flex-row gap-3 p-0 py-[26px] transition-all duration-300 md:max-h-full md:gap-0 md:py-[26px]">
       <div className="md:h-[100px] md:min-w-[140px]">
         <div className="mb-2.5 flex w-full flex-col items-start gap-5 md:flex-col md:gap-2.5">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={logo.path}
             alt={`${employer.name} logo`}
-            className="h-10 max-h-10 w-auto max-w-[140px] rounded-[3px] object-contain lg:h-20 lg:max-h-20 xl:w-full"
+            className="h-10 max-h-10 w-auto max-w-[140px] rounded-[3px] object-contain md:h-20 md:max-h-20 xl:w-full"
           />
         </div>
       </div>
