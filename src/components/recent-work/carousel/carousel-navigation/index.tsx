@@ -32,9 +32,9 @@ const CarouselNavigation = ({
   return (
     <motion.div
       style={{opacity: imageOpacity}}
-      className={`z-10 flex w-full flex-col items-center gap-2 p-2 px-0 lg:flex-row ${isMobile ? "fixed right-0 bottom-0 left-0" : "sticky top-[119px]"}`}
+      className="fixed top-3.5 left-65 z-10 flex w-full flex-col items-center gap-2 p-2 px-0 md:flex-row"
     >
-      <div className="flex w-full items-center justify-center lg:max-w-[120px]">
+      <div className="flex w-full items-center justify-center md:max-w-[120px]">
         <button
           type="button"
           onClick={() => navigateProject(-1)}

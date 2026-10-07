@@ -15,6 +15,7 @@ const CarouselImages = ({
   isHeroImage,
   currentImage,
   isMobile,
+  isTablet,
 }: CarouselImagesTypes) => {
   const heroImageY = useTransform(scrollYProgress, [0, 1], [0, -150])
   const currentImageUrl = currentImage?.path
@@ -22,7 +23,7 @@ const CarouselImages = ({
   return (
     <motion.div
       style={{y: heroImageY, opacity: imageOpacity}}
-      className="fixed top-2/3 right-0 z-0 flex h-[90svh] w-full -translate-y-1/2 items-center justify-center pt-20 lg:top-1/3 lg:w-2/3 lg:items-end"
+      className="fixed top-2/3 right-0 z-0 flex h-[90svh] w-full -translate-y-1/2 items-center justify-center pt-20 md:top-1/3 md:w-2/3 md:items-end"
     >
       <AnimatePresence mode="wait">
         <motion.div
@@ -48,8 +49,9 @@ const CarouselImages = ({
           <motion.div
             className={classNames("relative w-full", {
               "h-[40svh]": isMobile,
-              "md:h-[640px]": !isMobile && isHeroImage,
-              "md:h-[600px]": !isMobile && !isHeroImage,
+              "h-[30svh]": isTablet,
+              "md:h-[640px]": !isTablet && isHeroImage,
+              "md:h-[600px]": !isTablet && !isHeroImage,
             })}
 
             variants={FLOAT_VARIANTS}

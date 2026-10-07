@@ -1,13 +1,22 @@
 import {GithubIcon, LinkedInIcon} from "@/components/icons"
 import Clock from "../clock"
+import Employers from "../employers"
 
 interface FooterProps {
   isMobile: boolean
 }
 const Footer = ({isMobile}: FooterProps) => {
   return (
-    <footer className="fixed bottom-33 z-30 box-border flex h-[60px] w-full flex-col items-start justify-center p-5 backdrop-blur-md sm:bottom-29 md:fixed md:flex-row md:items-center md:px-10 lg:bottom-0">
-      <nav className="flex w-full flex-row items-center justify-start gap-2.5 md:items-center md:justify-end md:gap-2">
+    <footer className="fixed right-0 bottom-0 z-40 box-border flex h-auto w-full flex-col items-start justify-center backdrop-blur-md md:items-center">
+      <Employers />
+
+      <div className="relative flex w-full items-center justify-center border-b-1 border-white p-4">
+        <p className="flex text-center text-sm font-bold text-white xl:text-sm">
+          Some of the amazing agencies, start-ups and organisations I have been
+          part of.
+        </p>
+      </div>
+      <nav className="flex w-full flex-row items-center justify-center gap-2.5 p-4 md:gap-2">
         {!isMobile && <Clock />}
         <a href="/CV-Folio-v2.0.0.pdf" className="text-xs font-semibold">
           Download Folio

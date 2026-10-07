@@ -61,8 +61,7 @@ export default function Employers() {
   }, [])
 
   return (
-    <section className="fixed bottom-0 z-31 w-full backdrop-blur-md lg:bottom-14">
-      {/* <SectionHeading id="recent-work-heading" heading="Past & Present." /> */}
+    <section className="relative z-31 flex w-full flex-col backdrop-blur-md">
       <div className="mx-auto w-full">
         <div className="overflow-hidden">
           <div
@@ -102,12 +101,6 @@ export default function Employers() {
             })}
           </div>
         </div>
-      </div>
-      <div className="relative flex w-auto items-center justify-start border-white p-4 lg:justify-center lg:border-b-1 lg:p-2">
-        <p className="inline text-sm font-bold text-white lg:text-center xl:text-sm">
-          Some of the amazing agencies, start-ups and organisations I have been
-          part of.
-        </p>
       </div>
     </section>
   )

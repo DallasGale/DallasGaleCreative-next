@@ -4,6 +4,7 @@ import {useScroll, useTransform} from "framer-motion"
 import {useEffect, useLayoutEffect, useRef, useState} from "react"
 import projectsData from "@/data/recent-projects.json"
 import useMobile from "@/hooks/useMobile"
+import useTablet from "@/hooks/useTablet"
 import type {HeroImage, Project} from "@/types"
 import CarouselDetails from "./carousel-details"
 import CarouselImages from "./carousel-images"
@@ -18,6 +19,8 @@ const Carousel = () => {
   const [mounted, setMounted] = useState(false)
   const isMobileQuery = useMobile()
   const isMobile = mounted ? isMobileQuery : false
+  const isTabletQuery = useTablet()
+  const isTablet = mounted ? isTabletQuery : false
   const sectionRef = useRef<HTMLElement>(null)
 
   const {scrollYProgress} = useScroll({
@@ -86,26 +89,26 @@ const Carousel = () => {
     <section
       ref={sectionRef}
       id="recent-work"
-      className="relative mx-auto flex h-auto w-full max-w-[20300px] flex-col items-start p-5"
+      className="relative mx-auto flex h-auto w-full max-w-[2030px] flex-row items-start p-5"
     >
-      <CarouselNavigation
-        currentImageCount={currentImageCount}
-        deviceIndex={deviceIndex}
+      <CarouselDetails
         imageOpacity={imageOpacity}
-        isMobile={isMobile}
         currentIndex={currentIndex}
-        projects={projects}
-        heroImageSets={heroImageSets}
-        heroSetIndex={heroSetIndex}
-        setDeviceIndex={(e) => setDeviceIndex(e)}
-        setCurrentIndex={(e) => setCurrentIndex(e)}
-        setHeroSetIndex={(e) => setHeroSetIndex(e)}
+        project={project}
       />
       <div className="flex h-svh w-full flex-col items-center lg:h-[160svh] lg:flex-row lg:p-5">
-        <CarouselDetails
+        <CarouselNavigation
+          currentImageCount={currentImageCount}
+          deviceIndex={deviceIndex}
           imageOpacity={imageOpacity}
+          isMobile={isMobile}
           currentIndex={currentIndex}
-          project={project}
+          projects={projects}
+          heroImageSets={heroImageSets}
+          heroSetIndex={heroSetIndex}
+          setDeviceIndex={(e) => setDeviceIndex(e)}
+          setCurrentIndex={(e) => setCurrentIndex(e)}
+          setHeroSetIndex={(e) => setHeroSetIndex(e)}
         />
 
         {currentImage && (
@@ -117,6 +120,7 @@ const Carousel = () => {
             isHeroImage={isHeroImage}
             currentImage={currentImage}
             isMobile={isMobile}
+            isTablet={isTablet}
             setIndex={(e) => setHeroSetIndex(e)}
           />
         )}
