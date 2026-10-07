@@ -8,71 +8,6 @@ import type {Employer} from "@/types"
 
 const data = employersData as Employer[]
 
-// const HEADING_DELAY = 0.1
-// const STAGGER_STEP = 0.05
-
-// const itemVariants: Variants = {
-//   hidden: {
-//     y: 0,
-//     // backgroundColor: "rgba(0,0,0,0)",
-//     color: "rgba(234,237,67,0)",
-//     opacity: 0,
-//     transition: {duration: 0.2, ease: "easeInOut"},
-//   },
-//   hover: (i: number) => ({
-//     opacity: 1,
-//     transition: {
-//       delay: HEADING_DELAY + i * STAGGER_STEP,
-//       duration: 1,
-//       ease: "easeInOut",
-//     },
-//   }),
-// }
-
-// function EmployerList({heading, items}: {heading: string; items: Employer[]}) {
-//   const ref = useRef<HTMLDivElement>(null)
-//   const hovered = useInView(ref, {amount: 0.5, once: false})
-
-//   const isMobile = useMobile()
-//   return (
-//     <div ref={ref} className="group">
-//       <h3
-//         className={`relative z-1 mb-0 block text-left text-[30px] leading-[1] font-black text-highlight opacity-100 transition-all duration-300 md:text-[30px] ${
-//           hovered ? "md:opacity-100" : "md:opacity-[0.095]"
-//         }`}
-//       >
-//         {heading}
-//       </h3>
-//       <ul className="z-0 mt-10 flex w-full list-none flex-wrap justify-start gap-2.5 pl-0 md:flex-row">
-//         {items.map(({id, name, logo}, index) => (
-//           <motion.li
-//             key={id}
-//             className="flex items-center justify-center bg-black p-2 font-bold uppercase md:p-5"
-//             custom={index}
-//             initial={!isMobile && "hidden"}
-//             // Mobile always shows; above mobile, reveal once the list scrolls into view.
-//             animate={isMobile ? "hover" : hovered ? "hover" : "hidden"}
-//             variants={itemVariants}
-//           >
-//             {logo ? (
-//               <Image
-//                 src={logo}
-//                 alt={name}
-//                 width={100}
-//                 height={100}
-//                 className="max-h-[100px] max-w-[100px] rounded-[3px]"
-//                 style={{width: "auto", height: "auto"}}
-//               />
-//             ) : (
-//               name
-//             )}
-//           </motion.li>
-//         ))}
-//       </ul>
-//     </div>
-//   )
-// }
-
 export default function Employers() {
   const containerRef = useRef<HTMLDivElement>(null)
 
@@ -126,7 +61,7 @@ export default function Employers() {
   }, [])
 
   return (
-    <section className="fixed bottom-0 z-31 w-full backdrop-blur-md lg:bottom-22">
+    <section className="fixed bottom-0 z-31 w-full backdrop-blur-md lg:bottom-14">
       {/* <SectionHeading id="recent-work-heading" heading="Past & Present." /> */}
       <div className="mx-auto w-full">
         <div className="overflow-hidden">
@@ -167,6 +102,12 @@ export default function Employers() {
             })}
           </div>
         </div>
+      </div>
+      <div className="relative flex w-auto items-center justify-start border-white p-4 lg:justify-center lg:border-b-1 lg:p-2">
+        <p className="inline text-sm font-bold text-white lg:text-center xl:text-sm">
+          Some of the amazing agencies, start-ups and organisations I have been
+          part of.
+        </p>
       </div>
     </section>
   )
