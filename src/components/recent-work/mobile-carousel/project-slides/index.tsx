@@ -58,7 +58,7 @@ const ProjectSlides = ({
           return (
             <div
               key={`${slide.data.id}-${index}`}
-              className="w-full shrink-0 snap-center px-4 py-4"
+              className="w-full shrink-0 snap-center px-5 py-4"
             >
               {slide.type === "card" && (
                 <ProjectCard project={slide.data as Project} />
