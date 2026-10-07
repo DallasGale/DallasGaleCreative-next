@@ -12,7 +12,9 @@ interface RecentWorkTypes {
 
 const RecentWork = ({isMobile}: RecentWorkTypes) => {
   const ref = useRef(null)
-  const isInView = useInView(ref, {margin: "0px 0px -800px 0px"})
+  const isInView = useInView(ref, {
+    margin: isMobile ? "0px 0px -200px 0px" : "0px 0px -800px 0px",
+  })
 
   return (
     <section ref={ref}>
