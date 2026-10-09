@@ -85,7 +85,7 @@ export default function Employers() {
                   className="shrink-0"
                 >
                   <GradientText
-                    className="relative -ml-px box-border flex border-collapse items-end border border-white px-4 text-[30px] leading-16 font-black md:leading-21 lg:text-[70px] lg:leading-27 xl:text-[80px] xxl:px-10 xxl:text-[120px] xxl:leading-43"
+                    className="relative -ml-px box-border flex border-collapse items-end border border-[var(--site-text-color)] px-4 text-[30px] leading-16 font-black md:leading-21 lg:text-[70px] lg:leading-27 xl:text-[80px] xxl:px-10 xxl:text-[120px] xxl:leading-43"
                     duration={20}
                     as="a"
                     href={item.url}

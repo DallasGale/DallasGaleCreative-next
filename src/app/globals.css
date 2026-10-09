@@ -8,13 +8,13 @@
  * Design tokens (ported from the original SCSS :root)
  * ------------------------------------------------------------------ */
 :root {
-  --highlight: #eaed43;
-  --site-bg: rgb(0, 0, 0);
-  --site-text-color: #ffffff;
+  --highlight: #000000;
+  --site-bg: #ffffff;
+  --site-text-color: #000000;
 
   --header-bg: var(--color-trans-black);
-  --scrolled-header-line-bg: var(--color-white);
-  --hover-shadow: #ffffff;
+  --scrolled-header-line-bg: #000000;
+  --hover-shadow: #000000;
 
   --cta-bg-color: #ffffff;
   --cta-color: #000000;
@@ -30,11 +30,18 @@
   --transition-slower: all 2.95s cubic-bezier(0.27, 0.82, 0, 1);
 
   /* Animated background palette */
-  --bg-blob-1: #000000;
-  --bg-blob-2: #254b7b;
-  --bg-blob-3: #511b6a;
-  --bg-blob-opacity: 0.65;
+  --bg-blob-1: #1a1a1a;
+  --bg-blob-2: #4a4a4a;
+  --bg-blob-3: #7a7a7a;
+  --bg-blob-opacity: 0.1;
   --bg-blob-blur: 120px;
+
+  /* Gradient text colors */
+  --gradient-color-1: #1a1a1a;
+  --gradient-color-2: #4a4a4a;
+  --gradient-color-3: #7a7a7a;
+  --gradient-color-4: #a0a0a0;
+  --gradient-color-5: #d4d4d4;
 }
 
 /* ------------------------------------------------------------------ *
@@ -69,7 +76,7 @@
     font-family: var(--default-font);
     line-height: 1.5;
     color: var(--site-text-color);
-    background-color: var(--site-bg);
+    background-color: black;
     transition: var(--transition);
     overscroll-behavior-y: none;
   }
@@ -158,9 +165,18 @@
 
 @media (prefers-reduced-motion: reduce) {
   .bg-gradient::before,
-  .bg-gradient::after {
+  .bg-gradient::after,
+  .intro-text {
     animation: none;
   }
+}
+
+body {
+  overflow-x: clip;
+}
+
+.intro-text {
+  position: relative;
 }
 
 /* ------------------------------------------------------------------ *
@@ -311,4 +327,149 @@
   border-top-color: white;
   color: white;
   background: rgba(255, 255, 255, 0.1);
+}
+
+/* ================================================================== *
+ * Theme Toggle Lines
+ * ================================================================== */
+.theme-cube-container {
+  width: 40px;
+  display: inline-block;
+}
+
+.theme-cube {
+  width: 100%;
+  height: 10px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.27, 0.82, 0, 1);
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  display: block;
+  position: relative;
+  pointer-events: auto;
+}
+
+.theme-cube::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  right: 0;
+  background: currentColor;
+  border-radius: 1px;
+  transition: inherit;
+}
+
+/* Right face */
+.theme-cube-right-face {
+  display: none;
+}
+
+/* ------------------------------------------------------------------ *
+ * Theme Toggle Classes
+ * ================================================================== *
+ * Add theme styles below. These classes are applied to the body tag
+ * when users interact with the theme toggle buttons.
+ *
+ * Example usage in CSS:
+ *   body.theme-light .element { color: #000; }
+ *   body.theme-blue .element { color: #3b82f6; }
+ * ------------------------------------------------------------------ */
+
+/* Dark Theme */
+body.theme-dark {
+  --site-bg: rgb(0, 0, 0);
+  --site-text-color: #ffffff;
+  --highlight: #eaed43;
+  --scrolled-header-line-bg: #ffffff;
+  --hover-shadow: #ffffff;
+  --bg-blob-1: #000000;
+  --bg-blob-2: #254b7b;
+  --bg-blob-3: #511b6a;
+  --bg-blob-opacity: 0.65;
+  --bg-blob-blur: 120px;
+  --gradient-color-1: #e6ba89;
+  --gradient-color-2: #e862ec;
+  --gradient-color-3: #e6ba89;
+  --gradient-color-4: #c097e2;
+  --gradient-color-5: #e6ba89;
+}
+
+/* Light Theme */
+body.theme-light {
+  --site-bg: #ffffff;
+  --site-text-color: #000000;
+  --highlight: #000000;
+  --scrolled-header-line-bg: #000000;
+  --hover-shadow: #000000;
+  --bg-blob-opacity: 0.1;
+  --gradient-color-1: #1a1a1a;
+  --gradient-color-2: #4a4a4a;
+  --gradient-color-3: #7a7a7a;
+  --gradient-color-4: #a0a0a0;
+  --gradient-color-5: #d4d4d4;
+}
+
+body.theme-light .bg-gradient::before {
+  opacity: 0.05;
+}
+
+body.theme-light .bg-gradient::after {
+  opacity: 0.08;
+}
+
+/* Blue Theme */
+body.theme-blue {
+  --site-bg: #0f172a;
+  --site-text-color: #e0e7ff;
+  --highlight: #60a5fa;
+  --scrolled-header-line-bg: #60a5fa;
+  --hover-shadow: #3b82f6;
+  --bg-blob-1: #0c4a6e;
+  --bg-blob-2: #1e40af;
+  --bg-blob-3: #1e3a8a;
+  --bg-blob-opacity: 0.5;
+  --gradient-color-1: #e0e7ff;
+  --gradient-color-2: #60a5fa;
+  --gradient-color-3: #3b82f6;
+  --gradient-color-4: #1e40af;
+  --gradient-color-5: #e0e7ff;
+}
+
+/* Purple Theme */
+body.theme-purple {
+  --site-bg: #1a0033;
+  --site-text-color: #f3e8ff;
+  --highlight: #d8b4fe;
+  --scrolled-header-line-bg: #c084fc;
+  --hover-shadow: #a855f7;
+  --bg-blob-1: #3f0f64;
+  --bg-blob-2: #6b21a8;
+  --bg-blob-3: #7c3aed;
+  --bg-blob-opacity: 0.55;
+  --gradient-color-1: #f3e8ff;
+  --gradient-color-2: #d8b4fe;
+  --gradient-color-3: #c084fc;
+  --gradient-color-4: #a855f7;
+  --gradient-color-5: #f3e8ff;
+}
+
+/* Green Theme */
+body.theme-green {
+  --site-bg: #051f1b;
+  --site-text-color: #d1fae5;
+  --highlight: #6ee7b7;
+  --scrolled-header-line-bg: #10b981;
+  --hover-shadow: #059669;
+  --bg-blob-1: #064e3b;
+  --bg-blob-2: #047857;
+  --bg-blob-3: #10b981;
+  --bg-blob-opacity: 0.5;
+  --gradient-color-1: #d1fae5;
+  --gradient-color-2: #6ee7b7;
+  --gradient-color-3: #10b981;
+  --gradient-color-4: #059669;
+  --gradient-color-5: #d1fae5;
 }

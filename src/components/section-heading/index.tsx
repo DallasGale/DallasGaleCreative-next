@@ -17,7 +17,7 @@ const SectionHeading = (props: Props) => {
       initial={{opacity: 0}}
       animate={isInView ? {opacity: 1} : {opacity: 0}}
       transition={{duration: 0.6, ease: "easeOut"}}
-      className="section fixed top-5 left-32.5 z-30 w-auto border bg-white p-2 px-4 text-black"
+      className="section fixed top-5 left-32.5 z-30 w-auto border-1 border-[var(--highlight)] bg-[var(--highlight)] p-2 px-4 text-[var(--site-bg)]"
     >
       <h2 className="relative inline-block text-sm leading-tight font-extrabold">
         {heading}

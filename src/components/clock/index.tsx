@@ -14,7 +14,7 @@ const Clock = () => {
   }, [])
 
   return (
-    <div className="header-content flex flex-col items-start opacity-20 md:flex-row md:items-center md:gap-2.5">
+    <div className="header-content flex flex-col items-start md:flex-row md:items-center md:gap-2.5">
       <div className="flex flex-row items-center gap-2.5">
         <p className="text-xs leading-tight font-semibold">
           <span>{clock?.welcome ?? " "}</span>!
@@ -24,10 +24,12 @@ const Clock = () => {
         </div>
       </div>
       <p className="hidden py-1 text-xs font-semibold md:block">
-        <span className="capitalize" style={{color: "var(--color-white)"}}>
+        <span className="capitalize" style={{color: "var(--site-text-color)"}}>
           {clock?.date ?? " "}
         </span>{" "}
-        <span style={{color: "var(--color-whtie)"}}>{clock?.time ?? ""}</span>
+        <span style={{color: "var(--site-text-color)"}}>
+          {clock?.time ?? ""}
+        </span>
       </p>
     </div>
   )

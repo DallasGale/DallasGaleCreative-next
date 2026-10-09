@@ -6,6 +6,8 @@ import Header from "@/components/header"
 import Intro from "@/components/intro"
 import RecentWork from "@/components/recent-work"
 import ScrollEffects from "@/components/scroll-effects"
+import SideSquares from "@/components/side-squares"
+import ThemeToggle from "@/components/theme-toggle"
 import useMobile from "@/hooks/useMobile"
 import About from "@components/about"
 
@@ -15,6 +17,8 @@ export default function Home() {
     <>
       <BackgroundGradient />
       <Header />
+      {/* <SideSquares /> */}
+      <ThemeToggle />
       <main className="relative z-1 mx-auto flex flex-col">
         <Intro />
         <RecentWork isMobile={isMobile} />
