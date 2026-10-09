@@ -10,8 +10,8 @@ const Footer = ({isMobile}: FooterProps) => {
     <footer className="fixed right-0 bottom-0 z-40 box-border flex h-auto w-full flex-col items-start justify-center backdrop-blur-md md:items-center">
       <Employers />
 
-      <div className="relative flex w-full items-center justify-center border-b-1 border-white p-4">
-        <p className="flex text-center text-sm font-bold text-white xl:text-sm">
+      <div className="relative flex w-full items-center justify-center border-b-1 border-[var(--site-text-color)] p-4">
+        <p className="flex text-center text-sm font-bold text-[var(--site-text-color)] xl:text-sm">
           Some of the amazing agencies, start-ups and organisations I have been
           part of.
         </p>

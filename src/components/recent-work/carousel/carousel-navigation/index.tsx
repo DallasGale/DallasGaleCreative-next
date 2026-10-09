@@ -39,7 +39,7 @@ const CarouselNavigation = ({
           type="button"
           onClick={() => navigateProject(-1)}
           disabled={currentIndex === 0}
-          className="cursor-pointer border-white bg-none p-2 font-medium text-white transition-all hover:text-highlight disabled:cursor-not-allowed disabled:opacity-30"
+          className="cursor-pointer border-[var(--site-text-color)] bg-none p-2 font-medium text-[var(--site-text-color)] transition-all hover:text-highlight disabled:cursor-not-allowed disabled:opacity-30"
         >
           <IconChevronLeft />
         </button>
@@ -50,7 +50,7 @@ const CarouselNavigation = ({
           type="button"
           onClick={() => navigateProject(1)}
           disabled={currentIndex === projects.length - 1}
-          className="cursor-pointer border-white bg-none p-2 font-medium text-white transition-all hover:text-highlight disabled:cursor-not-allowed disabled:opacity-30"
+          className="cursor-pointer border-[var(--site-text-color)] bg-none p-2 font-medium text-[var(--site-text-color)] transition-all hover:text-highlight disabled:cursor-not-allowed disabled:opacity-30"
         >
           <IconChevronRight />
         </button>
@@ -69,8 +69,8 @@ const CarouselNavigation = ({
                 }}
                 className={`cursor-pointer bg-transparent bg-none px-3 py-2 text-xs font-medium transition-all ${
                   heroSetIndex === index
-                    ? "text-highlight"
-                    : "text-white hover:text-highlight"
+                    ? "text-[var(--highlight)]"
+                    : "text-[var(--site-text-color)] hover:text-[var(--highlight)]"
                 }`}
               >
                 {set.name}
@@ -88,8 +88,8 @@ const CarouselNavigation = ({
               onClick={() => setDeviceIndex(index)}
               className={`cursor-pointer bg-transparent bg-none px-3 py-2 font-medium transition-all ${
                 deviceIndex === index
-                  ? "text-highlight"
-                  : "text-white hover:text-highlight"
+                  ? "text-[var(--highlight)]"
+                  : "text-[var(--site-text-color)] hover:text-[var(--highlight)]"
               }`}
             >
               {index === 0 ? <IconDeviceLaptop /> : <IconDeviceMobile />}

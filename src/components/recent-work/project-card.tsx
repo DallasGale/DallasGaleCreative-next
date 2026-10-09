@@ -33,7 +33,7 @@ const ProjectCard = ({project}: {project: Project}) => {
 
           <div className="rich-text flex flex-col gap-3 opacity-100 transition-all group-hover:opacity-100 md:opacity-[1]">
             <p
-              className="text-[16px] text-[var(--color-med-grey)]"
+              className="text-[16px] text-[var(--site-text-color)]"
               // biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
               dangerouslySetInnerHTML={{__html: keyTakeaways}}
             />
