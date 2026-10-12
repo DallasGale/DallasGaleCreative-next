@@ -3,7 +3,9 @@
 import {useEffect, useState} from "react"
 import classnames from "classnames"
 
-const THEMES = [
+type ThemeTypes =
+  "theme-blue" | "theme-purple" | "theme-green" | "theme-light" | "theme-dark"
+const THEMES: ThemeTypes[] = [
   "theme-blue",
   "theme-purple",
   "theme-green",
@@ -61,24 +63,28 @@ export default function ThemeToggle() {
 
   return (
     <div className="fixed top-5 right-5 z-50 flex flex-col items-end gap-4">
-      {THEMES.map((theme) => (
-        <div key={theme} className="theme-cube-container">
-          <button
-            type="button"
-            data-theme={theme}
-            className="theme-cube"
-            style={{color: getThemeColor(activeTheme)}}
-            title={theme}
-            aria-label={`Activate ${theme} theme`}
-          />
-        </div>
-      ))}
-      {/* <h2
-        className="absolute -top-6 right-0 flex w-auto justify-center text-xs font-black"
-        style={{transformOrigin: "bottom right"}}
-      >
-        theme
-      </h2> */}
+      {THEMES.filter((theme) => theme !== activeTheme).map((theme, _index) => {
+        return (
+          <div
+            key={theme}
+            className="flex w-[100px] items-start justify-end transition-all duration-2000"
+          >
+            <button
+              type="button"
+              data-theme={theme}
+              className={classnames("theme w-[40px]", {
+                "hover:w-[80%]": _index === 0,
+                "hover:w-[70%]": _index === 1,
+                "hover:w-[60%]": _index === 2,
+                "hover:w-[50%]": _index === 3,
+              })}
+              style={{color: getThemeColor(activeTheme)}}
+              title={theme}
+              aria-label={`Activate ${theme} theme`}
+            />
+          </div>
+        )
+      })}
     </div>
   )
 }
