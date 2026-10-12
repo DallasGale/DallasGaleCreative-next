@@ -329,41 +329,29 @@ body {
   background: rgba(255, 255, 255, 0.1);
 }
 
-/* ================================================================== *
- * Theme Toggle Lines
- * ================================================================== */
-.theme-cube-container {
-  width: 40px;
-  display: inline-block;
-}
-
-.theme-cube {
-  width: 100%;
+.theme {
   height: 10px;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.27, 0.82, 0, 1);
   border: none;
   background: transparent;
   padding: 0;
   margin: 0;
-  display: block;
   position: relative;
   pointer-events: auto;
 }
 
-.theme-cube::before {
+.theme::before {
   content: "";
   position: absolute;
   width: 100%;
   height: 2px;
   right: 0;
   background: currentColor;
-  border-radius: 1px;
   transition: inherit;
 }
 
 /* Right face */
-.theme-cube-right-face {
+.theme-right-face {
   display: none;
 }
 
