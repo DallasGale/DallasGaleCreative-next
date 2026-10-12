@@ -65,19 +65,19 @@ export default function ThemeToggle() {
     <div className="fixed top-5 right-5 z-50 flex flex-col items-end gap-4">
       {THEMES.filter((theme) => theme !== activeTheme).map((theme, _index) => {
         return (
-          <div
-            key={theme}
-            className="flex w-[100px] items-start justify-end transition-all duration-2000"
-          >
+          <div key={theme} className="flex w-[100px] items-start justify-end">
             <button
               type="button"
               data-theme={theme}
-              className={classnames("theme w-[40px]", {
-                "hover:w-[80%]": _index === 0,
-                "hover:w-[70%]": _index === 1,
-                "hover:w-[60%]": _index === 2,
-                "hover:w-[50%]": _index === 3,
-              })}
+              className={classnames(
+                "theme w-[40px] transition-all duration-2000",
+                {
+                  "hover:w-[80%]": _index === 0,
+                  "hover:w-[70%]": _index === 1,
+                  "hover:w-[60%]": _index === 2,
+                  "hover:w-[50%]": _index === 3,
+                },
+              )}
               style={{color: getThemeColor(activeTheme)}}
               title={theme}
               aria-label={`Activate ${theme} theme`}
