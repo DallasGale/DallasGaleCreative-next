@@ -69,15 +69,12 @@ export default function ThemeToggle() {
             <button
               type="button"
               data-theme={theme}
-              className={classnames(
-                "theme w-[40px] transition-all duration-2000",
-                {
-                  "hover:w-[80%]": _index === 0,
-                  "hover:w-[70%]": _index === 1,
-                  "hover:w-[60%]": _index === 2,
-                  "hover:w-[50%]": _index === 3,
-                },
-              )}
+              className={classnames("theme w-[40px]", {
+                "hover:w-[80%]": _index === 0,
+                "hover:w-[70%]": _index === 1,
+                "hover:w-[60%]": _index === 2,
+                "hover:w-[50%]": _index === 3,
+              })}
               style={{color: getThemeColor(activeTheme)}}
               title={theme}
               aria-label={`Activate ${theme} theme`}
