@@ -5,8 +5,8 @@ import {
   IconDeviceMobile,
 } from "@tabler/icons-react"
 import {motion} from "framer-motion"
-import type {CarouselNavigationProps} from "./types"
 import type {HeroImageSet} from "@/types"
+import type {CarouselNavigationProps} from "./types"
 
 const CarouselNavigation = ({
   currentImageCount,
@@ -14,12 +14,12 @@ const CarouselNavigation = ({
   deviceIndex,
   imageOpacity,
   currentIndex,
-  isMobile,
   projects,
   setCurrentIndex,
   setHeroSetIndex,
   heroImageSets,
   heroSetIndex,
+  isHeroImage,
 }: CarouselNavigationProps) => {
   const navigateProject = (direction: number) => {
     const newIndex = currentIndex + direction
@@ -29,6 +29,7 @@ const CarouselNavigation = ({
       setDeviceIndex(0)
     }
   }
+
   return (
     <motion.div
       style={{opacity: imageOpacity}}
@@ -92,7 +93,11 @@ const CarouselNavigation = ({
                   : "text-[var(--site-text-color)] hover:text-[var(--highlight)]"
               }`}
             >
-              {index === 0 ? <IconDeviceLaptop /> : <IconDeviceMobile />}
+              {index === 0 && isHeroImage ? (
+                <IconDeviceLaptop />
+              ) : (
+                <IconDeviceMobile />
+              )}
             </button>
           ))}
         </div>

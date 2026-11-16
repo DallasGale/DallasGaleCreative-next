@@ -1,4 +1,5 @@
 import type {Project} from "@/types"
+import Image from "next/image"
 
 const ProjectCard = ({project}: {project: Project}) => {
   const {summary, keyTakeaways, employer, logo, meta, links, press} = project
@@ -27,7 +28,15 @@ const ProjectCard = ({project}: {project: Project}) => {
             </small>
           </div>
 
-          <h4 className="mb-5 text-sm leading-tight font-bold transition-all md:text-2xl lg:text-lg">
+          <h4 className="mb-5 flex flex-row items-center gap-2 text-sm leading-tight font-bold transition-all md:text-2xl lg:text-lg">
+            {project.projectLogo && (
+              <Image
+                width={40}
+                height={40}
+                src={project.projectLogo.path}
+                alt={project.projectLogo.alt}
+              />
+            )}
             {summary}
           </h4>
 
