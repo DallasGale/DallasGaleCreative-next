@@ -58,7 +58,7 @@ const Carousel = () => {
       }
     } else if (heroImages && heroImages.length > 0) {
       currentImage = heroImages[Math.min(deviceIndex, heroImages.length - 1)]
-      isHeroImage = deviceIndex === 0
+      isHeroImage = heroImages[0].type === "desktop"
     }
   }
 
@@ -109,6 +109,7 @@ const Carousel = () => {
           setDeviceIndex={(e) => setDeviceIndex(e)}
           setCurrentIndex={(e) => setCurrentIndex(e)}
           setHeroSetIndex={(e) => setHeroSetIndex(e)}
+          isHeroImage={isHeroImage}
         />
 
         {currentImage && (

@@ -10,6 +10,7 @@ export interface CarouselNavigationProps {
   projects: Project[]
   heroImageSets?: HeroImageSet[]
   heroSetIndex: number
+  isHeroImage: boolean
   setDeviceIndex: (e: number) => void
   setCurrentIndex: (e: number) => void
   setHeroSetIndex: (e: number) => void

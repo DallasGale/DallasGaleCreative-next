@@ -1,5 +1,50 @@
 [
   {
+    "id": "10",
+    "employer": {
+      "name": "Upgrowth",
+      "url": "https://www.upgrowth.com"
+    },
+    "meta": {
+      "date": "Sep - Nov '26",
+      "jobType": "Contract"
+    },
+    "logo": {
+      "path": "/images/projects/2026/upgrowth/logo.jpg",
+      "alt": "Upgrowth"
+    },
+    "projectLogo": {
+      "path": "/images/logos/bigw-logo.svg",
+      "alt": "Big W"
+    },
+    "heroImages": [
+      {
+        "type": "mobile",
+        "id": "1",
+        "path": "/images/projects/2026/upgrowth/bigw/iphone-1.png",
+        "alt": ""
+      },
+      {
+        "type": "mobile",
+        "id": "2",
+        "path": "/images/projects/2026/upgrowth/bigw/iphone-2.png",
+        "alt": ""
+      }
+    ],
+    "summary": "Big W",
+    "keyTakeaways": "As part of the BigW-X team I implemented an <i>AI Shopping Assistant</i> powered by Algolia. The deadline was <a href='https://en.wikipedia.org/wiki/Black_Friday_(shopping)' target='_blank'>Black Friday</a> so the aim was to shoehorn supplied JS scripts/css to fit within the exisiting Next.JS/React/TypeScript architecture. When a shopper visits a <a href='https://www.bigw.com.au/product/lego-architecture-tower-bridge-21067/p/6080055' target='_blank'>product detail page</a> on mobile web the shopping agent scans all the product details and provides suggested questions/ similar products which begin a conversation with the shopper.",
+
+    "links": [
+      {
+        "label": "Big W",
+        "url": "https://www.bigw.com.au/",
+        "urlLabel": "bigw.com.au",
+        "archived": false
+      }
+    ],
+    "press": []
+  },
+  {
     "id": "9",
     "employer": {
       "name": "Today Design",
@@ -15,16 +60,19 @@
     },
     "heroImages": [
       {
+        "type": "desktop",
         "id": "1",
         "path": "/images/projects/2026/today/ciaf/macbook.png",
         "alt": ""
       },
       {
+        "type": "mobile",
         "id": "2",
         "path": "/images/projects/2026/today/ciaf/iphone-1.png",
         "alt": ""
       },
       {
+        "type": "mobile",
         "id": "3",
         "path": "/images/projects/2026/today/ciaf/iphone-2.png",
         "alt": ""
@@ -59,16 +107,19 @@
     },
     "heroImages": [
       {
+        "type": "desktop",
         "id": "1",
         "path": "/images/projects/2026/today/mind/macbook.png",
         "alt": ""
       },
       {
+        "type": "mobile",
         "id": "2",
         "path": "/images/projects/2026/today/mind/iphone-1.png",
         "alt": ""
       },
       {
+        "type": "mobile",
         "id": "3",
         "path": "/images/projects/2026/today/mind/iphone-2.png",
         "alt": ""
@@ -110,16 +161,19 @@
     },
     "heroImages": [
       {
+        "type": "desktop",
         "id": "1",
         "path": "/images/projects/2026/thinkerbell/locker-land/macbook.png",
         "alt": ""
       },
       {
+        "type": "mobile",
         "id": "2",
         "path": "/images/projects/2026/thinkerbell/locker-land/iphone-1.png",
         "alt": ""
       },
       {
+        "type": "mobile",
         "id": "3",
         "path": "/images/projects/2026/thinkerbell/locker-land/iphone-2.png",
         "alt": ""
@@ -170,16 +224,19 @@
         "name": "Linde",
         "images": [
           {
+            "type": "desktop",
             "id": "1",
             "path": "/images/projects/2026/dijgtal/linde/macbook.png",
             "alt": ""
           },
           {
+            "type": "mobile",
             "id": "2",
             "path": "/images/projects/2026/dijgtal/linde/iphone-1.png",
             "alt": ""
           },
           {
+            "type": "mobile",
             "id": "3",
             "path": "/images/projects/2026/dijgtal/linde/iphone-2.png",
             "alt": ""
@@ -191,16 +248,19 @@
         "name": "Baoli",
         "images": [
           {
+            "type": "desktop",
             "id": "1",
             "path": "/images/projects/2026/dijgtal/baoli/macbook.png",
             "alt": ""
           },
           {
+            "type": "mobile",
             "id": "2",
             "path": "/images/projects/2026/dijgtal/baoli/iphone-1.png",
             "alt": ""
           },
           {
+            "type": "mobile",
             "id": "3",
             "path": "/images/projects/2026/dijgtal/baoli/iphone-2.png",
             "alt": ""
@@ -253,16 +313,19 @@
     },
     "heroImages": [
       {
+        "type": "desktop",
         "id": "1",
         "path": "/images/projects/2025/thinkerbell/kayo/macbook.png",
         "alt": ""
       },
       {
+        "type": "mobile",
         "id": "2",
         "path": "/images/projects/2025/thinkerbell/kayo/iphone-1.png",
         "alt": ""
       },
       {
+        "type": "mobile",
         "id": "3",
         "path": "/images/projects/2025/thinkerbell/kayo/iphone-2.png",
         "alt": ""
@@ -319,16 +382,19 @@
     },
     "heroImages": [
       {
+        "type": "desktop",
         "id": "1",
         "path": "/images/projects/2025/thinkerbell/oua/macbook.png",
         "alt": ""
       },
       {
+        "type": "mobile",
         "id": "2",
         "path": "/images/projects/2025/thinkerbell/oua/iphone-1.png",
         "alt": ""
       },
       {
+        "type": "mobile",
         "id": "3",
         "path": "/images/projects/2025/thinkerbell/oua/iphone-2.png",
         "alt": ""

@@ -34,6 +34,10 @@ export type Project = {
     path: string
     alt: string
   }
+  projectLogo?: {
+    path: string
+    alt: string
+  }
   heroImages?: HeroImage[]
   heroImageSets?: HeroImageSet[]
   summary: string
@@ -44,6 +48,7 @@ export type Project = {
 }
 
 export type HeroImage = {
+  type: "desktop" | "mobile"
   id: string
   path: string
   alt: string
