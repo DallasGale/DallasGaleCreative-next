@@ -18,12 +18,7 @@ const Footer = ({isMobile}: FooterProps) => {
       </div>
       <nav className="flex w-full flex-row items-center justify-center gap-2.5 p-4 md:gap-2">
         {!isMobile && <Clock />}
-        <a href="/CV-Folio-v2.0.0.pdf" className="text-xs font-semibold">
-          Download Folio
-        </a>
-        <a href="mailto:hello@dallasgale.com" className="text-xs font-semibold">
-          Contact Me
-        </a>
+
         <a
           href="https://github.com/dallasgale"
           target="_blank"
