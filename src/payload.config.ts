@@ -31,6 +31,9 @@ export default buildConfig({
     pool: {
       connectionString: process.env.DATABASE_URL,
     },
+    // Schema changes go through migrations only; dev-mode pushes write a
+    // "dev" row to payload_migrations, which blocks `payload migrate`.
+    push: false,
     prodMigrations: migrations,
   }),
   // If you want to resize images, crop, set focal point, etc.
