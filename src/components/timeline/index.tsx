@@ -3,7 +3,7 @@
 import {useInView} from "framer-motion"
 import Image from "next/image"
 import {useRef} from "react"
-import data from "@/data/timeline.json"
+import data from "@src/data/timeline.json"
 
 type TimelineEntry = (typeof data)[number]
 

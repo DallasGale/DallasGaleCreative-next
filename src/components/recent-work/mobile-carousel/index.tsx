@@ -1,7 +1,7 @@
 "use client"
 
-import projectsData from "@/data/recent-projects.json"
-import type {Project} from "@/types"
+import projectsData from "@src/data/recent-projects.json"
+import type {Project} from "@src/types"
 import {type ProjectSlideData} from "./types"
 import ProjectSlides from "./project-slides"
 

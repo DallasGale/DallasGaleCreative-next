@@ -1,4 +1,4 @@
-import type {Project} from "@/types"
+import type {Project} from "@src/types"
 import Image from "next/image"
 
 const ProjectCard = ({project}: {project: Project}) => {

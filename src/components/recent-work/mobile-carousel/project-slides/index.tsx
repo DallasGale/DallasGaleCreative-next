@@ -1,6 +1,6 @@
 /** biome-ignore-all lint/suspicious/noArrayIndexKey: <explanation> */
 import {useEffect, useRef, useState} from "react"
-import type {Project} from "@/types"
+import type {Project} from "@src/types"
 import BuildSlides from "../build-slides"
 import ProjectCard from "../../project-card"
 import Image from "next/image"

@@ -1,4 +1,4 @@
-import type {DaySegment} from "@/types"
+import type {DaySegment} from "@src/types"
 
 const GREY = "#ADADAD"
 

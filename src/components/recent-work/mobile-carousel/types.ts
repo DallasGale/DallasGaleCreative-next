@@ -1,4 +1,4 @@
-import type {Project, HeroImageSet, HeroImage} from "@/types"
+import type {Project, HeroImageSet, HeroImage} from "@src/types"
 
 export type ProjectSlideData = Project & HeroImageSet[]
 

@@ -1,4 +1,4 @@
-import type {HeroImage, HeroImageSet, Project} from "@/types"
+import type {HeroImage, HeroImageSet, Project} from "@src/types"
 import type {SlideType} from "./types"
 
 const BuildSlides = (project: Project) => {

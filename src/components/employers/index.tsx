@@ -2,9 +2,9 @@
 
 import {motion} from "framer-motion"
 import {useRef, useEffect} from "react"
-import GradientText from "@/components/gradient-text"
-import employersData from "@/data/employers.json"
-import type {Employer} from "@/types"
+import GradientText from "@src/components/gradient-text"
+import employersData from "@src/data/employers.json"
+import type {Employer} from "@src/types"
 
 const data = employersData as Employer[]
 

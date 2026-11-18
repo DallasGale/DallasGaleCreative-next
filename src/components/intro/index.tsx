@@ -1,4 +1,4 @@
-import GradientText from "@/components/gradient-text"
+import GradientText from "@src/components/gradient-text"
 
 export default function Intro() {
   return (
