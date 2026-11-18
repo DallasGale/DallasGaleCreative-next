@@ -48,7 +48,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="antialiased">
-      <body className="w-full theme-light">
+      <body className="theme-light w-full">
         {children}
 
         <Script

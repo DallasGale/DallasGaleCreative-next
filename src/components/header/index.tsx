@@ -12,9 +12,9 @@ export default function Header() {
             Dallas Gale.
           </Link>
           <div className="flex-direction flex gap-2">
-            <Link href="/thoughts" className="link">
+            {/* <Link href="/thoughts" className="link">
               Thoughts.
-            </Link>
+            </Link> */}
             <a href="/CV-Folio-v2.0.0.pdf" className="link">
               Folio.
             </a>

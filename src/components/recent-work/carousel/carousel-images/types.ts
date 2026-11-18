@@ -1,5 +1,5 @@
 import type {MotionValue} from "framer-motion"
-import type {HeroImage} from "@/types"
+import type {HeroImage} from "@src/types"
 
 export interface CarouselImagesTypes {
   scrollYProgress: MotionValue<number>

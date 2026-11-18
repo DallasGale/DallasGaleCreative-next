@@ -1,12 +1,12 @@
 "use client"
 import About from "@components/about"
-import BackgroundGradient from "@/components/background-gradient"
-import Footer from "@/components/footer"
-import Header from "@/components/header"
-import Intro from "@/components/intro"
-import RecentWork from "@/components/recent-work"
-import ThemeToggle from "@/components/theme-toggle"
-import useMobile from "@/hooks/useMobile"
+import BackgroundGradient from "@src/components/background-gradient"
+import Footer from "@src/components/footer"
+import Header from "@src/components/header"
+import Intro from "@src/components/intro"
+import RecentWork from "@src/components/recent-work"
+import ThemeToggle from "@src/components/theme-toggle"
+import useMobile from "@src/hooks/useMobile"
 
 export default function Home() {
   const isMobile = useMobile()

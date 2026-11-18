@@ -1,4 +1,4 @@
-import {GithubIcon, LinkedInIcon} from "@/components/icons"
+import {GithubIcon, LinkedInIcon} from "@src/components/icons"
 import Clock from "../clock"
 import Employers from "../employers"
 

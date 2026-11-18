@@ -2,13 +2,26 @@ import sharp from 'sharp'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { vercelPostgresAdapter } from '@payloadcms/db-vercel-postgres'
 import { buildConfig } from 'payload'
+import {Posts} from "@src/collections/posts"
+
 
 export default buildConfig({
   // If you'd like to use Rich Text, pass your editor here
   editor: lexicalEditor(),
 
+  admin: {
+    livePreview: {
+      url: ({ data, collectionConfig, locale }) =>
+        `${data.tenant.url}${
+          collectionConfig?.slug === 'posts'
+            ? `/thoughts/${data.slug}`
+            : `${data.slug !== 'home' ? `/${data.slug}` : ''}`
+        }${locale ? `?locale=${locale?.code}` : ''}`, // Localization query param
+      collections: ['pages'],
+      }
+  },
   // Define and configure your collections in this array
-  collections: [],
+  collections: [Posts],
 
   // Your Payload secret - should be a complex and secure string, unguessable
   secret: process.env.PAYLOAD_SECRET || '',

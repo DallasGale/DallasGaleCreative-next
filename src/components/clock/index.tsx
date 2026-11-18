@@ -1,8 +1,8 @@
 "use client"
 
 import {useEffect, useState} from "react"
-import {TimeIcon} from "@/components/icons"
-import {type ClockData, getClockData} from "@/lib/datetime"
+import {TimeIcon} from "@src/components/icons"
+import {type ClockData, getClockData} from "@src/lib/datetime"
 
 const Clock = () => {
   const [clock, setClock] = useState<ClockData | null>(null)

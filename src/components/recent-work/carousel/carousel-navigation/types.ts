@@ -1,5 +1,5 @@
 import type {MotionValue} from "framer-motion"
-import type {HeroImageSet, Project} from "@/types"
+import type {HeroImageSet, Project} from "@src/types"
 
 export interface CarouselNavigationProps {
   currentImageCount: number

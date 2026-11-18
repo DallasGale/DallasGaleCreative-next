@@ -5,7 +5,7 @@ import {
   IconDeviceMobile,
 } from "@tabler/icons-react"
 import {motion} from "framer-motion"
-import type {HeroImageSet} from "@/types"
+import type {HeroImageSet} from "@src/types"
 import type {CarouselNavigationProps} from "./types"
 
 const CarouselNavigation = ({

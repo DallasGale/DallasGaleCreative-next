@@ -19,7 +19,8 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"],
+      "@root": ["./*"],
+      "@src/*": ["./src/*"],
       "@components/*": ["./src/components/*"],
       "@assets/*": ["./public/*"],
       "@payload-config": ["./src/payload.config.ts"]
