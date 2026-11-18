@@ -1,9 +1,37 @@
+import {revalidatePath} from "next/cache"
 import type {CollectionConfig} from "payload"
+
+/** Refresh the cached public pages for a post whenever it changes. */
+function revalidatePost(slugs: (string | undefined)[]) {
+  try {
+    revalidatePath("/thoughts")
+    for (const slug of new Set(slugs)) {
+      if (slug) revalidatePath(`/thoughts/${slug}`)
+    }
+  } catch (err) {
+    // Outside a Next.js request (e.g. the Payload CLI), there is no cache to clear.
+    console.warn("Revalidation skipped:", err)
+  }
+}
 
 export const Posts: CollectionConfig = {
   slug: "posts",
   admin: {
     useAsTitle: "title",
+  },
+  hooks: {
+    afterChange: [
+      ({doc, previousDoc}) => {
+        // Include the previous slug so a renamed post's old URL is refreshed too.
+        revalidatePost([doc.slug, previousDoc?.slug])
+        return doc
+      },
+    ],
+    afterDelete: [
+      ({doc}) => {
+        revalidatePost([doc.slug])
+      },
+    ],
   },
   fields: [
     {

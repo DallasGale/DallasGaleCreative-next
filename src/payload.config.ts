@@ -4,6 +4,7 @@ import {postgresAdapter} from "@payloadcms/db-postgres"
 
 import {buildConfig} from "payload"
 import {Posts} from "@src/collections/posts"
+import {migrations} from "./migrations"
 
 export default buildConfig({
   // If you'd like to use Rich Text, pass your editor here
@@ -30,6 +31,7 @@ export default buildConfig({
     pool: {
       connectionString: process.env.DATABASE_URL,
     },
+    prodMigrations: migrations,
   }),
   // If you want to resize images, crop, set focal point, etc.
   // make sure to install it and pass it to the config.
