@@ -5,14 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "payload migrate && next build",
     "start": "next start",
     "lint": "eslint",
     "format": "prettier --write .",
     "check": "biome check --write ."
   },
   "dependencies": {
-    "@payloadcms/db-mongodb": "^3.93.0",
     "@payloadcms/db-postgres": "^3.93.0",
     "@payloadcms/db-vercel-postgres": "^3.93.0",
     "@payloadcms/live-preview-react": "3.93.0",
