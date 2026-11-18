@@ -15,7 +15,7 @@
     "@payloadcms/db-mongodb": "^3.93.0",
     "@payloadcms/db-postgres": "^3.93.0",
     "@payloadcms/db-vercel-postgres": "^3.93.0",
-    "@payloadcms/live-preview-react": "^3.94.0",
+    "@payloadcms/live-preview-react": "3.93.0",
     "@payloadcms/next": "^3.93.0",
     "@payloadcms/richtext-lexical": "^3.93.0",
     "@react-three/drei": "^10.7.8",
