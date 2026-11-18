@@ -1,9 +1,9 @@
-import sharp from 'sharp'
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
-import { vercelPostgresAdapter } from '@payloadcms/db-vercel-postgres'
-import { buildConfig } from 'payload'
-import {Posts} from "@src/collections/posts"
+import sharp from "sharp"
+import {lexicalEditor} from "@payloadcms/richtext-lexical"
+import {postgresAdapter} from "@payloadcms/db-postgres"
 
+import {buildConfig} from "payload"
+import {Posts} from "@src/collections/posts"
 
 export default buildConfig({
   // If you'd like to use Rich Text, pass your editor here
@@ -11,22 +11,22 @@ export default buildConfig({
 
   admin: {
     livePreview: {
-      url: ({ data, collectionConfig, locale }) =>
+      url: ({data, collectionConfig, locale}) =>
         `${data.tenant.url}${
-          collectionConfig?.slug === 'posts'
+          collectionConfig?.slug === "posts"
             ? `/thoughts/${data.slug}`
-            : `${data.slug !== 'home' ? `/${data.slug}` : ''}`
-        }${locale ? `?locale=${locale?.code}` : ''}`, // Localization query param
-      collections: ['pages'],
-      }
+            : `${data.slug !== "home" ? `/${data.slug}` : ""}`
+        }${locale ? `?locale=${locale?.code}` : ""}`, // Localization query param
+      collections: ["pages"],
+    },
   },
   // Define and configure your collections in this array
   collections: [Posts],
 
   // Your Payload secret - should be a complex and secure string, unguessable
-  secret: process.env.PAYLOAD_SECRET || '',
+  secret: process.env.PAYLOAD_SECRET || "",
   // Whichever Database Adapter you're using should go here
-  db: vercelPostgresAdapter({
+  db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URL,
     },
